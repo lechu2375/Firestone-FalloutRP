@@ -1,0 +1,7 @@
+"base"
+{
+	"base"		"nutscript"
+	"title"		"falloutrp"
+	"author"	"Firestone Development Team"
+	"menusystem"	"1"
+}

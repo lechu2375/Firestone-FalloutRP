@@ -1,0 +1,11 @@
+ITEM.name = "Ammo Cartridge"
+ITEM.model = "models/Items/combine_rifle_cartridge01.mdl"
+ITEM.ammo = "ar2" // type of the ammo
+ITEM.width = 3
+ITEM.height = 1
+ITEM.maxQuantity = 64
+ITEM.isStackable = false
+ITEM.ammoDesc = "A Cartridge that contains %s of Runner Ammo"
+ITEM.category = "Ammunition"
+ITEM.price = 66
+ITEM.flag = "y"
