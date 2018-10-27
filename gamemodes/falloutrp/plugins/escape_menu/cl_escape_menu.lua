@@ -21,7 +21,7 @@ PLUGIN:AddButton({
 PLUGIN:AddButton({
 	Name = "Option",
 	Click = function()
-		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
+		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		RunConsoleCommand("gamemenucommand", "openoptionsdialog")
 		RunConsoleCommand("gameui_activate")
 	end
@@ -30,7 +30,7 @@ PLUGIN:AddButton({
 PLUGIN:AddButton({
 	Name = "Content",
 	Click = function()
-		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
+		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN:ContentURL )
 	end
 })
@@ -38,7 +38,7 @@ PLUGIN:AddButton({
 PLUGIN:AddButton({
 	Name = "Website",
 	Click = function()
-		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
+		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN:WebsiteURL )
 	end
 })
@@ -46,7 +46,7 @@ PLUGIN:AddButton({
 PLUGIN:AddButton({
 	Name = "Reconnect",
 	Click = function( ply )
-		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
+		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		PLUGIN:ReConMenu()
 	end
 })
@@ -54,12 +54,34 @@ PLUGIN:AddButton({
 PLUGIN:AddButton({
 	Name = "Exit",
 	Click = function()
-		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
+		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		PLUGIN:ExitMenu()
 	end
 })
 
 if !CLIENT then return end 
+
+function PLUGIN:Background()
+
+	if ( !BgSlideOn ) then
+		local Bg = 'materials/bg/'..math.random(1,35)..'.jpg'
+		PLUGIN:BgImg = Bg
+		BgSlideOn = true;
+		BgChangeTime = CurTime() + PLUGIN:BgChangeSlideTime
+	end
+	
+	Materials(PLUGIN:BgImg, 0, 0, ScrW(), ScrH())
+end
+
+hook.Add('Think', 'testbg', function()
+	if (BgSlideOn == true) then
+		if CurTime() > BgChangeTime then 
+			local Bg = 'materials/fsc_esc/'..math.random(1,35)..'.jpg'
+			PLUGIN:BgImg = Bg
+			BgChangeTime = CurTime() + PLUGIN:BgChangeSlideTime
+		end
+	end
+end)
 
 local fonttext = "Arial"
 
