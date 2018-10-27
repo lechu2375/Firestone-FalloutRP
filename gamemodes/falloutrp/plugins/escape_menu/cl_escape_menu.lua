@@ -11,14 +11,14 @@ PLUGIN:BgImg = "gamemodes/sandbox/backgrounds/1.jpg"
 PLUGIN:ContentURL = "http://google.com/"
 PLUGIN:WebsiteURL = "http://google.com/"
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Resume",
 	Click = function()
 		Menu:Remove()
 	end
 })
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Option",
 	Click = function()
 		RunConsoleCommand("gamemenucommand", "openoptionsdialog")
@@ -26,31 +26,31 @@ Esc.AddBatton({
 	end
 })
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Content",
 	Click = function()
 		gui.OpenURL( PLUGIN:ContentURL )
 	end
 })
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Website",
 	Click = function()
 		gui.OpenURL( PLUGIN:WebsiteURL )
 	end
 })
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Reconnect",
 	Click = function( ply )
-		Esc.ReConMenu()
+		PLUGIN:ReConMenu()
 	end
 })
 
-Esc.AddBatton({
+PLUGIN:AddBatton({
 	Name = "Exit",
 	Click = function()
-		Esc.ExitMenu()
+		PLUGIN:ExitMenu()
 	end
 })
 
@@ -147,7 +147,7 @@ local function PLUGIN:BaseMenu()
     	Menu:SetSize( ScrW(), ScrH() )
 		Menu:MakePopup()
 		Menu.Paint = function(self)
-    		Esc.Background()
+    		PLUGIN:Background()
     	TextBlurBig(GetHostName(), 10, ScrH()/2 - 80, PLUGIN:TextColor, PLUGIN:ColorBlur, 3)
     	TextBlur(GAMEMODE.Name, 15, ScrH()/2 - 15, PLUGIN:TextColor, PLUGIN:ColorBlur, 3)
 
