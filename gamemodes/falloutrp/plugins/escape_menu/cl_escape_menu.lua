@@ -11,50 +11,53 @@ PLUGIN:BgImg = "gamemodes/sandbox/backgrounds/1.jpg"
 PLUGIN:ContentURL = "http://google.com/"
 PLUGIN:WebsiteURL = "http://google.com/"
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Resume",
 	Click = function()
 		Menu:Remove()
 	end
 })
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Option",
 	Click = function()
+		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
 		RunConsoleCommand("gamemenucommand", "openoptionsdialog")
 		RunConsoleCommand("gameui_activate")
 	end
 })
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Content",
 	Click = function()
+		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN:ContentURL )
 	end
 })
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Website",
 	Click = function()
+		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN:WebsiteURL )
 	end
 })
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Reconnect",
 	Click = function( ply )
+		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
 		PLUGIN:ReConMenu()
 	end
 })
 
-PLUGIN:AddBatton({
+PLUGIN:AddButton({
 	Name = "Exit",
 	Click = function()
+		surface.PlaySound("sound/fs_ui/ui_menu_ok.wav")
 		PLUGIN:ExitMenu()
 	end
 })
-
-
 
 if !CLIENT then return end 
 
