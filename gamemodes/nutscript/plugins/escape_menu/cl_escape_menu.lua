@@ -44,36 +44,36 @@ surface.CreateFont( "text_big",
 
  )
 
-function Materials( mat, x, y, w, h )
+local function Materials( mat, x, y, w, h )
 	surface.SetDrawColor( Color(255,255,255,255) )
 	surface.SetMaterial( Material( mat ) )
 	surface.DrawTexturedRect( x, y, w, h)
 end
 
-function DrawBox( x, y, w, h, col )
+local function DrawBox( x, y, w, h, col )
 	surface.SetDrawColor(col)
 	surface.DrawRect(x, y, w, h)
 end
 
-function TextBlur(text, x, y, col, colblur, pos)
+local function TextBlur(text, x, y, col, colblur, pos)
 	for i=1,9 do
 		draw.SimpleText(text, "text_blur", x, y, colblur, pos)
 	end
 	draw.SimpleText(text, "text", x, y, col, pos)
 end
 
-function TextBlurBig(text, x, y, col, colblur, pos)
+local function TextBlurBig(text, x, y, col, colblur, pos)
 	for i=1,9 do
 			draw.SimpleText(text, "text_blur_big", x, y, colblur, pos)
 	end
 	draw.SimpleText(text, "text_big", x, y, col, pos)
 end
 
-function Esc.AddBatton( Button )
+local function PLUGIN:AddButton( Button )
 	FalloutTable[#FalloutTable + 1] = Button
 end
 
-function Esc.BaseMenu()
+local function PLUGIN:BaseMenu()
 	if IsValid(Menu) and not Menu.Closed then 
 		Menu:SetVisible(false) 
 		Menu.Closed = true 
@@ -111,7 +111,7 @@ function Esc.BaseMenu()
     end
 end
 
-function Esc.ExitMenu()
+local function PLUGIN:ExitMenu()
 	local MenuExit = vgui.Create("DPanel", Menu)
 		MenuExit:SetSize(400, 160)
     	MenuExit:Center()
@@ -157,7 +157,7 @@ function Esc.ExitMenu()
 
 end
 
-function Esc.ReConMenu()
+local function PLUGIN:ReConMenu()
 	local ReConMenu = vgui.Create("DPanel", Menu)
 		ReConMenu:SetSize(400, 160)
     	ReConMenu:Center()
@@ -207,10 +207,10 @@ hook.Add("PreRender", "PreRender", function()
 	if input.IsKeyDown(KEY_ESCAPE) and gui.IsGameUIVisible() then
 		if ValidPanel(Menu) then
 			gui.HideGameUI()
-			Esc.BaseMenu()
+			PLUGIN:BaseMenu()
 		else
 			gui.HideGameUI()
-			Esc.BaseMenu()
+			PLUGIN:BaseMenu()
 		end
 	end
 end)
