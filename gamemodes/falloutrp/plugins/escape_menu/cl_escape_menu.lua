@@ -64,7 +64,7 @@ if !CLIENT then return end
 function PLUGIN:Background()
 
 	if ( !BgSlideOn ) then
-		local Bg = 'materials/bg/'..math.random(1,35)..'.jpg'
+		local Bg = 'materials/fs_esc/'..math.random(1,35)..'.jpg'
 		PLUGIN:BgImg = Bg
 		BgSlideOn = true;
 		BgChangeTime = CurTime() + PLUGIN:BgChangeSlideTime
