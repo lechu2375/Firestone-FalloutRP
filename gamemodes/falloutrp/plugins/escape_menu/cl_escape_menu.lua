@@ -1,3 +1,61 @@
+
+PLUGIN:TextColor = Color(255,185,70)
+PLUGIN:WindowBg = Color(0,0,0,150)
+PLUGIN:HoverBorder = Color(195,140,50)
+PLUGIN:HoverBg = Color(255,185,70,10)
+PLUGIN:ColorBlur = Color(0,0,0,255)
+
+PLUGIN:BgChangeSlideTime = 10
+PLUGIN:BgImg = "gamemodes/sandbox/backgrounds/1.jpg"
+
+PLUGIN:ContentURL = "http://google.com/"
+PLUGIN:WebsiteURL = "http://google.com/"
+
+Esc.AddBatton({
+	Name = "Resume",
+	Click = function()
+		Menu:Remove()
+	end
+})
+
+Esc.AddBatton({
+	Name = "Option",
+	Click = function()
+		RunConsoleCommand("gamemenucommand", "openoptionsdialog")
+		RunConsoleCommand("gameui_activate")
+	end
+})
+
+Esc.AddBatton({
+	Name = "Content",
+	Click = function()
+		gui.OpenURL( PLUGIN:ContentURL )
+	end
+})
+
+Esc.AddBatton({
+	Name = "Website",
+	Click = function()
+		gui.OpenURL( PLUGIN:WebsiteURL )
+	end
+})
+
+Esc.AddBatton({
+	Name = "Reconnect",
+	Click = function( ply )
+		Esc.ReConMenu()
+	end
+})
+
+Esc.AddBatton({
+	Name = "Exit",
+	Click = function()
+		Esc.ExitMenu()
+	end
+})
+
+
+
 if !CLIENT then return end 
 
 local fonttext = "Arial"
@@ -90,8 +148,8 @@ local function PLUGIN:BaseMenu()
 		Menu:MakePopup()
 		Menu.Paint = function(self)
     		Esc.Background()
-    	TextBlurBig(GetHostName(), 10, ScrH()/2 - 80, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 3)
-    	TextBlur(GAMEMODE.Name, 15, ScrH()/2 - 15, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 3)
+    	TextBlurBig(GetHostName(), 10, ScrH()/2 - 80, PLUGIN:TextColor, PLUGIN:ColorBlur, 3)
+    	TextBlur(GAMEMODE.Name, 15, ScrH()/2 - 15, PLUGIN:TextColor, PLUGIN:ColorBlur, 3)
 
     	end
 
@@ -101,11 +159,11 @@ local function PLUGIN:BaseMenu()
 		Button:SetPos(ScrW() - 290, ScrH()/2 - 120 + ((k - 1) * 30))
 		Button:SetSize( 280, 30 )
 		Button.Paint = function( self )
-			DrawBox( 0, 0, Button:GetWide(), Button:GetTall(), self.Hovered and FalloutEsc.HoverBg or Color(0,0,0,0))
-			surface.SetDrawColor( self.Hovered and FalloutEsc.HoverBorder or Color(0,0,0,0))
+			DrawBox( 0, 0, Button:GetWide(), Button:GetTall(), self.Hovered and PLUGIN:HoverBg or Color(0,0,0,0))
+			surface.SetDrawColor( self.Hovered and PLUGIN:HoverBorder or Color(0,0,0,0))
 			Button:DrawOutlinedRect( 0, 0, Button:GetWide(), Button:GetTall())
 
-			TextBlur(v.Name, 260, 2.5, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 2)
+			TextBlur(v.Name, 260, 2.5, PLUGIN:TextColor, PLUGIN:ColorBlur, 2)
 		end
 		Button.DoClick = v.Click
     end
@@ -117,11 +175,11 @@ local function PLUGIN:ExitMenu()
     	MenuExit:Center()
 		MenuExit:MakePopup()
 		MenuExit.Paint = function(self)
-			DrawBox(0, 0, MenuExit:GetWide(), MenuExit:GetTall(), FalloutEsc.WindowBg)
+			DrawBox(0, 0, MenuExit:GetWide(), MenuExit:GetTall(), PLUGIN:WindowBg)
 			surface.SetDrawColor( Color(255,180,95) )
 			MenuExit:DrawOutlinedRect( 0, 0, MenuExit:GetWide(), MenuExit:GetTall())
 
-			TextBlur("Are you sure you want to quit?", MenuExit:GetWide()/2, 40, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 1)
+			TextBlur("Are you sure you want to quit?", MenuExit:GetWide()/2, 40, PLUGIN:TextColor, PLUGIN:ColorBlur, 1)
     end
 
 
@@ -130,11 +188,11 @@ local function PLUGIN:ExitMenu()
         ButtonExit:SetSize( 100, 30 )
     	ButtonExit:SetPos(40,100)
 		ButtonExit.Paint = function(self)
-			DrawBox( 0, 0, ButtonExit:GetWide(), ButtonExit:GetTall(), self.Hovered and FalloutEsc.HoverBg or Color(0,0,0,0))
-			surface.SetDrawColor( self.Hovered and FalloutEsc.HoverBorder or Color(0,0,0,0) )
+			DrawBox( 0, 0, ButtonExit:GetWide(), ButtonExit:GetTall(), self.Hovered and PLUGIN:HoverBg or Color(0,0,0,0))
+			surface.SetDrawColor( self.Hovered and PLUGIN:HoverBorder or Color(0,0,0,0) )
 			ButtonExit:DrawOutlinedRect( 0, 0, ButtonExit:GetWide(), ButtonExit:GetTall())
 
-			TextBlur("Exit", 95, 2.5, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 2)
+			TextBlur("Exit", 95, 2.5, PLUGIN:TextColor, PLUGIN:ColorBlur, 2)
     	end
         ButtonExit.DoClick = function()
     		RunConsoleCommand("disconnect")
@@ -145,11 +203,11 @@ local function PLUGIN:ExitMenu()
     	ButtonClose:SetSize( 100, 30 )
     	ButtonClose:SetPos(260, 100)
 		ButtonClose.Paint = function(self)
-			DrawBox( 0, 0, ButtonClose:GetWide(), ButtonClose:GetTall(), self.Hovered and FalloutEsc.HoverBg or Color(0,0,0,0))
-			surface.SetDrawColor( self.Hovered and FalloutEsc.HoverBorder or Color(0,0,0,0) )
+			DrawBox( 0, 0, ButtonClose:GetWide(), ButtonClose:GetTall(), self.Hovered and PLUGIN:HoverBg or Color(0,0,0,0))
+			surface.SetDrawColor( self.Hovered and PLUGIN:HoverBorder or Color(0,0,0,0) )
 			ButtonClose:DrawOutlinedRect( 0, 0, ButtonClose:GetWide(), ButtonClose:GetTall())
 
-			TextBlur("Cancel", 95, 2.5, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 2)
+			TextBlur("Cancel", 95, 2.5, PLUGIN:TextColor, PLUGIN:ColorBlur, 2)
     	end
     	ButtonClose.DoClick = function()
     		MenuExit:Remove()
@@ -163,11 +221,11 @@ local function PLUGIN:ReConMenu()
     	ReConMenu:Center()
 		ReConMenu:MakePopup()
 		ReConMenu.Paint = function(self)
-			DrawBox(0, 0, ReConMenu:GetWide(), ReConMenu:GetTall(), FalloutEsc.WindowBg)
+			DrawBox(0, 0, ReConMenu:GetWide(), ReConMenu:GetTall(), PLUGIN:WindowBg)
 			surface.SetDrawColor( Color(255,180,95) )
 			ReConMenu:DrawOutlinedRect( 0, 0, ReConMenu:GetWide(), ReConMenu:GetTall())
 
-			TextBlur("Are you sure you want to reconnect?", ReConMenu:GetWide()/2, 40, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 1)
+			TextBlur("Are you sure you want to reconnect?", ReConMenu:GetWide()/2, 40, PLUGIN:TextColor, PLUGIN:ColorBlur, 1)
     end
 
 
@@ -176,11 +234,11 @@ local function PLUGIN:ReConMenu()
         ReConMenuYes:SetSize( 100, 30 )
     	ReConMenuYes:SetPos(40,100)
 		ReConMenuYes.Paint = function(self)
-			DrawBox( 0, 0, ReConMenuYes:GetWide(), ReConMenuYes:GetTall(), self.Hovered and FalloutEsc.HoverBg or Color(0,0,0,0))
-			surface.SetDrawColor( self.Hovered and FalloutEsc.HoverBorder or Color(0,0,0,0) )
+			DrawBox( 0, 0, ReConMenuYes:GetWide(), ReConMenuYes:GetTall(), self.Hovered and PLUGIN:HoverBg or Color(0,0,0,0))
+			surface.SetDrawColor( self.Hovered and PLUGIN:HoverBorder or Color(0,0,0,0) )
 			ReConMenuYes:DrawOutlinedRect( 0, 0, ReConMenuYes:GetWide(), ReConMenuYes:GetTall())
 
-			TextBlur("Yes", 95, 2.5, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 2)
+			TextBlur("Yes", 95, 2.5, PLUGIN:TextColor, PLUGIN:ColorBlur, 2)
     	end
         ReConMenuYes.DoClick = function()
     		RunConsoleCommand("retry")
@@ -191,11 +249,11 @@ local function PLUGIN:ReConMenu()
     	ReConMenuClose:SetSize( 100, 30 )
     	ReConMenuClose:SetPos(260, 100)
 		ReConMenuClose.Paint = function(self)
-			DrawBox( 0, 0, ReConMenuClose:GetWide(), ReConMenuClose:GetTall(), self.Hovered and FalloutEsc.HoverBg or Color(0,0,0,0))
-			surface.SetDrawColor( self.Hovered and FalloutEsc.HoverBorder or Color(0,0,0,0) )
+			DrawBox( 0, 0, ReConMenuClose:GetWide(), ReConMenuClose:GetTall(), self.Hovered and PLUGIN:HoverBg or Color(0,0,0,0))
+			surface.SetDrawColor( self.Hovered and PLUGIN:HoverBorder or Color(0,0,0,0) )
 			ReConMenuClose:DrawOutlinedRect( 0, 0, ReConMenuClose:GetWide(), ReConMenuClose:GetTall())
 
-			TextBlur("Cancel", 95, 2.5, FalloutEsc.TextColor, FalloutEsc.ColorBlur, 2)
+			TextBlur("Cancel", 95, 2.5, PLUGIN:TextColor, PLUGIN:ColorBlur, 2)
     	end
     	ReConMenuClose.DoClick = function()
     		ReConMenu:Remove()
