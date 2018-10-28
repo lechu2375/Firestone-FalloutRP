@@ -6,6 +6,8 @@ SCHEMA.desc = "Firestone"
 nut.util.includeDir("hooks")
 nut.util.include("sh_config.lua")
 
+Firestone = {}
+
 nut.currency.set("", "kapsel", "kapsli") 
 
 nut.flag.add("y", "Access to the light runner items.")
