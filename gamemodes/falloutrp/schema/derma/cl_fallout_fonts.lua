@@ -1,25 +1,26 @@
 resource.AddFile("resources/fonts/BebasNeue_regular.ttf")
+resource.AddFile("resources/fonts/Overseer.ttf")
 
 
-surface.CreateFont( "Medium_Fallout_Font", {
+surface.CreateFont( "FS_Main", {
 	font = "Bebas Neue Regular",
 	size = 26,
 	antialias = true,
 } )
 
-surface.CreateFont( "Medium_Fallout_Font_Bold", {
+surface.CreateFont( "FS_Main_Bold", {
 	font = "Bebas Neue Bold",
 	size = 26,
 	antialias = true,
 } )
 
-surface.CreateFont( "Medium_Overseer_Font", {
+surface.CreateFont( "FS_Fallout", {
 	font = "Overseer",
 	size = 26,
 	antialias = true,
 } )
 
-surface.CreateFont( "Medium_Overseer_Font_Bold", {
+surface.CreateFont( "FS_Fallout_Bold", {
 	font = "Overseer Bold",
 	size = 26,
 	antialias = true,
