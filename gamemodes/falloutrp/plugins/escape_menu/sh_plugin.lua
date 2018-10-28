@@ -6,10 +6,10 @@ PLUGIN.author = "Firestone"
 PLUGIN.desc = "Adds a fallout-styled escape menu."
 
 
-PLUGIN.TextColor = Color(255,185,70)
-PLUGIN.WindowBg = Color(0,0,0,150)
-PLUGIN.HoverBorder = Color(195,140,50)
-PLUGIN.HoverBg = Color(255,185,70,10)
+PLUGIN.TextColor = Color(27,255,128)
+PLUGIN.WindowBg = Color(0, 0, 0, 150)
+PLUGIN.HoverBorder = Color(27,255,128)
+PLUGIN.HoverBg = Color(27,255,128,10)
 PLUGIN.ColorBlur = Color(0,0,0,255)
 
 PLUGIN.BgChangeSlideTime = 10
@@ -71,13 +71,12 @@ hook.Add('Think', 'testbg', function()
 	end
 end)
 
-local fonttext = "Arial"
+local fonttext = "Trebuchet24"
 
 	surface.CreateFont( "text",
 	{
 		font      = fonttext,
 		size      = 24,
-		weight    = -1,
 	}
 
  )
@@ -85,7 +84,6 @@ local fonttext = "Arial"
 	{
 		font      = fonttext,
 		size      = 24,
-		weight    = -1,
 		underline = 0,
 		additive  = false,
 		outline = false,
@@ -98,7 +96,6 @@ surface.CreateFont( "text_big",
 	{
 		font      = fonttext,
 		size      = 72,
-		weight    = -1,
 	}
 
  )
@@ -157,8 +154,8 @@ local function BaseMenu()
 		Menu:MakePopup()
 		Menu.Paint = function(self)
     		Escape_Background()
-    	TextBlurBig(GetHostName(), 10, ScrH()/2 - 80, PLUGIN.TextColor, PLUGIN.ColorBlur, 3)
-    	TextBlur(GAMEMODE.Name, 15, ScrH()/2 - 15, PLUGIN.TextColor, PLUGIN.ColorBlur, 3)
+    	TextBlurBig("Firestone Foundation", 10, ScrH()/2 - 80, PLUGIN.TextColor, PLUGIN.ColorBlur, 3)
+    	TextBlur("FalloutRP", 15, ScrH()/2 - 15, PLUGIN.TextColor, PLUGIN.ColorBlur, 3)
 
     	end
 
@@ -188,7 +185,7 @@ local function ExitMenu()
 			surface.SetDrawColor( Color(255,180,95) )
 			MenuExit:DrawOutlinedRect( 0, 0, MenuExit:GetWide(), MenuExit:GetTall())
 
-			TextBlur("Are you sure you want to quit?", MenuExit:GetWide()/2, 40, PLUGIN.TextColor, PLUGIN.ColorBlur, 1)
+			TextBlur("Wyjdź?", MenuExit:GetWide()/2, 40, PLUGIN.TextColor, PLUGIN.ColorBlur, 1)
     end
 
 
@@ -201,7 +198,7 @@ local function ExitMenu()
 			surface.SetDrawColor( self.Hovered and PLUGIN.HoverBorder or Color(0,0,0,0) )
 			ButtonExit:DrawOutlinedRect( 0, 0, ButtonExit:GetWide(), ButtonExit:GetTall())
 
-			TextBlur("Exit", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
+			TextBlur("Tak", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
     	end
         ButtonExit.DoClick = function()
 			surface.PlaySound("fs_ui/ui_menu_ok.wav")
@@ -217,7 +214,7 @@ local function ExitMenu()
 			surface.SetDrawColor( self.Hovered and PLUGIN.HoverBorder or Color(0,0,0,0) )
 			ButtonClose:DrawOutlinedRect( 0, 0, ButtonClose:GetWide(), ButtonClose:GetTall())
 
-			TextBlur("Cancel", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
+			TextBlur("Nie", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
     	end
     	ButtonClose.DoClick = function()
     		MenuExit:Remove()
@@ -235,7 +232,7 @@ local function ReConMenu()
 			surface.SetDrawColor( Color(255,180,95) )
 			ReConMenu:DrawOutlinedRect( 0, 0, ReConMenu:GetWide(), ReConMenu:GetTall())
 
-			TextBlur("Are you sure you want to reconnect?", ReConMenu:GetWide()/2, 40, PLUGIN.TextColor, PLUGIN.ColorBlur, 1)
+			TextBlur("Reconnect?", ReConMenu:GetWide()/2, 40, PLUGIN.TextColor, PLUGIN.ColorBlur, 1)
     end
 
 
@@ -248,7 +245,7 @@ local function ReConMenu()
 			surface.SetDrawColor( self.Hovered and PLUGIN.HoverBorder or Color(0,0,0,0) )
 			ReConMenuYes:DrawOutlinedRect( 0, 0, ReConMenuYes:GetWide(), ReConMenuYes:GetTall())
 
-			TextBlur("Yes", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
+			TextBlur("Tak", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
     	end
         ReConMenuYes.DoClick = function()
     		RunConsoleCommand("retry")
@@ -263,7 +260,7 @@ local function ReConMenu()
 			surface.SetDrawColor( self.Hovered and PLUGIN.HoverBorder or Color(0,0,0,0) )
 			ReConMenuClose:DrawOutlinedRect( 0, 0, ReConMenuClose:GetWide(), ReConMenuClose:GetTall())
 
-			TextBlur("Cancel", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
+			TextBlur("Nie", 95, 2.5, PLUGIN.TextColor, PLUGIN.ColorBlur, 2)
     	end
     	ReConMenuClose.DoClick = function()
     		ReConMenu:Remove()
@@ -284,7 +281,7 @@ hook.Add("PreRender", "PreRender", function()
 end)
 
 AddButton({
-	Name = "Resume",
+	Name = "Wznów",
 	Click = function()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		Menu:Remove()
@@ -292,7 +289,7 @@ AddButton({
 })
 
 AddButton({
-	Name = "Option",
+	Name = "Opcje",
 	Click = function()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		RunConsoleCommand("gamemenucommand", "openoptionsdialog")
@@ -301,7 +298,7 @@ AddButton({
 })
 
 AddButton({
-	Name = "Content",
+	Name = "Kolekcja",
 	Click = function()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN.ContentURL )
@@ -309,7 +306,7 @@ AddButton({
 })
 
 AddButton({
-	Name = "Website",
+	Name = "Strona",
 	Click = function()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 		gui.OpenURL( PLUGIN.WebsiteURL )
