@@ -1,7 +1,7 @@
 "base"
 {
 	"base"		"nutscript"
-	"title"		"falloutrp"
+	"title"		"FalloutRP"
 	"author"	"Firestone Development Team"
 	"menusystem"	"1"
 }
