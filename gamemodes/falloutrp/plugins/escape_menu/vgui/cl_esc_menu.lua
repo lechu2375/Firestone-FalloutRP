@@ -44,16 +44,17 @@ local function Toggle()
   end
 
 	local buttonHolder = mainDerma:Add("DPanel")
-	buttonHolder:SetSize(scale*0.18,scale*0.4)
+	buttonHolder:SetSize(scale*0.22,scale*0.4)
 	buttonHolder:SetPos(scale*0.4,scale*0.4)
 	buttonHolder.Paint = function( panel, w, h )
 		draw.RoundedBox(0,0,0,w,h,Color(15, 72, 34,215))
-		draw.RoundedBox(0,0,buttonHolder:GetTall()-4,buttonHolder:GetWide(),4,Color(17,255,31))
-		draw.RoundedBox(0,0,0,buttonHolder:GetWide(),4,Color(17,255,31))
-		draw.RoundedBox(0,0,0,4,buttonHolder:GetTall()*0.05,Color(17,255,31))
-		draw.RoundedBox(0,buttonHolder:GetWide()-4,0,4,buttonHolder:GetTall()*0.05,Color(17,255,31))
-		draw.RoundedBox(0,0,buttonHolder:GetTall()-buttonHolder:GetTall()*0.05,4,buttonHolder:GetTall()*0.05,Color(17,255,31))
-		draw.RoundedBox(0,buttonHolder:GetWide()-4,buttonHolder:GetTall()-buttonHolder:GetTall()*0.05,4,buttonHolder:GetTall()*0.05,Color(17,255,31))
+		surface.SetDrawColor(17,255,31)
+		surface.DrawRect(0,buttonHolder:GetTall()-4,buttonHolder:GetWide(),4)
+		surface.DrawRect(0,0,buttonHolder:GetWide(),4)
+		surface.DrawRect(0,0,4,buttonHolder:GetTall()*0.02)
+		surface.DrawRect(buttonHolder:GetWide()-4,0,4,buttonHolder:GetTall()*0.02)
+		surface.DrawRect(0,buttonHolder:GetTall()-buttonHolder:GetTall()*0.02,4,buttonHolder:GetTall()*0.02)
+		surface.DrawRect(buttonHolder:GetWide()-4,buttonHolder:GetTall()-buttonHolder:GetTall()*0.02,4,buttonHolder:GetTall()*0.02)
 	end
 
   local pos = 7
@@ -63,7 +64,7 @@ local function Toggle()
     f_button:SetSize(buttonHolder:GetWide()*0.8,buttonHolder:GetTall()*0.1)
     f_button:SetText(v.Name)
 		f_button:SetPos(20,pos)
-		f_button:SetFont("FS_Main")
+		f_button:SetFont("FS_Side")
 		f_button:SetContentAlignment(5)
     f_button.DoClick = v.Click
 		f_button.OnCursorEntered = function()
@@ -81,7 +82,7 @@ local function Toggle()
   end
 end
 
-hook.Add("PreRender", "lui bag", function()
+hook.Add("PreRender", "djuk's lui bag", function()
 	if input.IsKeyDown(KEY_ESCAPE) and gui.IsGameUIVisible() then
 		if ValidPanel(mainDerma) then
 			gui.HideGameUI()
@@ -94,7 +95,7 @@ hook.Add("PreRender", "lui bag", function()
 end)
 
 AddFalloutButton({
-	Name = "WZNÓW",
+	Name = "WZNOW",
 	Click = function()
 		mainDerma:Remove()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
@@ -154,3 +155,5 @@ AddFalloutButton({
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 	end
 })
+
+// NIE MA CZASU CZAS ROBIĆ KESZ
