@@ -4,10 +4,11 @@
 SCHEMA.name = "Fallout Roleplay"
 SCHEMA.author = "Firestone Development"
 
------------------------
---[[ GLOBAL TABLES ]]--
------------------------
+----------------
+--[[ GLOBAL ]]--
+----------------
 Firestone = {}
+Firestone.Blur = Material("pp/blurscreen")
 
 ------------------
 --[[ INCLUDES ]]--
