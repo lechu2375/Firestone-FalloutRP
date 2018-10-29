@@ -1,5 +1,6 @@
 resource.AddFile("resources/fonts/BebasNeue_regular.ttf")
 resource.AddFile("resources/fonts/Overseer.ttf")
+resource.AddFile("resources/fonts/monofonto.ttf")
 
 
 surface.CreateFont( "FS_Main", {
@@ -14,13 +15,19 @@ surface.CreateFont( "FS_Main_Bold", {
 	antialias = true,
 } )
 
-surface.CreateFont( "FS_Fallout", {
+surface.CreateFont( "FS_Side", {
+	font = "Monofonto-Regular",
+	size = 26,
+	antialias = true,
+} )
+
+surface.CreateFont( "FS_Title", {
 	font = "Overseer",
 	size = 26,
 	antialias = true,
 } )
 
-surface.CreateFont( "FS_Fallout_Bold", {
+surface.CreateFont( "FS_Title_Bold", {
 	font = "Overseer Bold",
 	size = 26,
 	antialias = true,
