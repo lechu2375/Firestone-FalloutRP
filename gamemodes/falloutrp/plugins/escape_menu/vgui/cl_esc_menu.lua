@@ -64,7 +64,7 @@ local function Toggle()
     f_button:SetSize(buttonHolder:GetWide()*0.8,buttonHolder:GetTall()*0.1)
     f_button:SetText(v.Name)
 		f_button:SetPos(20,pos)
-		f_button:SetFont("FS_Side")
+		f_button:SetFont("FS_Main")
 		f_button:SetContentAlignment(5)
     f_button.DoClick = v.Click
 		f_button.OnCursorEntered = function()
@@ -155,5 +155,3 @@ AddFalloutButton({
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 	end
 })
-
-// NIE MA CZASU CZAS ROBIĆ KESZ
