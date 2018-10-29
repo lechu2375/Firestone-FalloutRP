@@ -1,14 +1,24 @@
-SCHEMA.name = "Fallout RolePlay"
-SCHEMA.introName = "lecim na Szczecin, pędzim na Będzim."
-SCHEMA.author = "Firestone Development Group"
-SCHEMA.desc = "Firestone"
+--------------
+--[[ INFO ]]--
+--------------
+SCHEMA.name = "Fallout Roleplay"
+SCHEMA.author = "Firestone Development"
 
-nut.util.includeDir("hooks")
-nut.util.include("sh_config.lua")
-
+-----------------------
+--[[ GLOBAL TABLES ]]--
+-----------------------
 Firestone = {}
 
-nut.currency.set("", "kapsel", "kapsli") 
+------------------
+--[[ INCLUDES ]]--
+------------------
+nut.util.includeDir("hooks")
+nut.util.includeDir("derma")
+nut.util.include("sh_config.lua")
 
+-----------------------
+--[[ CONFIGURATION ]]--
+-----------------------
+nut.currency.set("", "kapsel", "kapsli") 
 nut.flag.add("y", "Access to the light runner items.")
 nut.flag.add("Y", "Access to the heavy runner items.")
