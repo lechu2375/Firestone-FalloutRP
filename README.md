@@ -21,7 +21,8 @@ PLAYER:GetBodyPartHealth(strBodyPart)
 PLAYER:HealBodyPart(strBodyPart, intAmount)
 ```
 
-### Dział Programistów
+### Credits
 - SaturdaysHeroes (Lead Developer)
 - Djuk (Developer)
 - FrX (Developer)
+- Lechu (Mapping)
