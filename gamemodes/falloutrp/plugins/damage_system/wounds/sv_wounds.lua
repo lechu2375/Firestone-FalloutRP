@@ -40,6 +40,6 @@ end
 
 function PLUGIN:PlayerDeath(victim, inflictor, attacker)
     for i, v in ipairs(DamageSys.BodyParts) do 
-        victim:SetNWInt("Firestone."..v.."Health", 100)
+        victim:SetNWInt("Firestone."..v[1].."Health", 100)
     end
 end
