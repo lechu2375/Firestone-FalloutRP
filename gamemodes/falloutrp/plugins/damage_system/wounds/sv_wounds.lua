@@ -6,7 +6,12 @@ function PLAYER:DamageBodyPart(strBodypPart, intDmg)
 end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
-    return self:GetNWInt("Firestone."..strBodyPart.."Health")
+   local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health")
+    if BodyPartHP != nil then 
+         return BodyPartHP
+     else
+         return 100
+     end
 end
 
 function PLAYER:HealBodyPart(strBodyPart, intAmount)
