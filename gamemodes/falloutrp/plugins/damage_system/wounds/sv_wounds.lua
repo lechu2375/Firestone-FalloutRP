@@ -5,7 +5,7 @@ function PLAYER:DamageBodyPart(bodypart, dmg)
    self:SetNWInt("Firestone."..bodypart.."Health", self:GetNWInt("Firestone."..bodypart.."Health", 100) - dmg) 
 end
 
-function PLAYER:GetBodyHealth(strBodyPart)
+function PLAYER:GetBodyPartHealth(strBodyPart)
     return self:GetNWInt("Firestone."..strBodyPart.."Health")
 end
 
