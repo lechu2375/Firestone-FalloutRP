@@ -7,7 +7,6 @@ local blur = Material("pp/blurscreen")
 function PANEL:Init()
   self.dark = Color(15, 72, 34,215)
   self.light = Color(17,255,31)
-  self:MakePopup()
   self:SetTitle("")
 end
 
