@@ -5,6 +5,19 @@ function PLAYER:DamageBodyPart(bodypart, dmg)
    self:SetNWInt("Firestone."..bodypart.."Health", self:GetNWInt("Firestone."..bodypart.."Health", 100) - dmg) 
 end
 
+function PLAYER:GetBodyHealth(strBodyPart)
+    return self:GetNWInt("Firestone."..strBodyPart.."Health")
+end
+
+function PLAYER:HealBodyPart(strBodyPart, intAmount)
+    local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health")
+
+    if BodyPartHP > 100 then return end 
+    if intAmount + BodyPartHP > 100 then return end 
+    
+    self:SetNWInt("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
+end
+
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart = ""
     if  hitgroup == HITGROUP_HEAD then
