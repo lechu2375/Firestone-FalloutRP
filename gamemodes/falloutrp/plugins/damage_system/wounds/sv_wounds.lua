@@ -1,8 +1,8 @@
 local PLUGIN = PLUGIN
 local PLAYER = FindMetaTable("Player")
 
-function PLAYER:DamageBodyPart(bodypart, dmg)
-   self:SetNWInt("Firestone."..bodypart.."Health", self:GetNWInt("Firestone."..bodypart.."Health", 100) - dmg) 
+function PLAYER:DamageBodyPart(strBodypPart, intDmg)
+   self:SetNWInt("Firestone."..strBodypPart.."Health", self:GetNWInt("Firestone."..strBodypPart.."Health", 100) - intDmg) 
 end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
@@ -11,11 +11,12 @@ end
 
 function PLAYER:HealBodyPart(strBodyPart, intAmount)
     local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health")
-
-    if BodyPartHP > 100 then return end 
-    if intAmount + BodyPartHP > 100 then return end 
-    
-    self:SetNWInt("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
+    if BodyPartHP >= 100 then return end 
+    if intAmount + BodyPartHP <= 100 then
+        self:SetNWInt("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
+    else
+        self:SetNWInt("Firestone."..strBodyPart.."Health", 100)
+    end
 end
 
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
@@ -51,8 +52,8 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*4)
 end
 
-function PLUGIN:PlayerDeath(victim, inflictor, attacker)
+function PLUGIN:PlayerSpawn(ply)
     for i, v in ipairs(DamageSys.BodyParts) do 
-        victim:SetNWInt("Firestone."..v[1].."Health", 100)
+        ply:SetNWInt("Firestone."..v[1].."Health", 100)
     end
 end
