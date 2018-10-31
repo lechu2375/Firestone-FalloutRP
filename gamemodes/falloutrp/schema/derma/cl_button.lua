@@ -23,4 +23,10 @@ function BUTTON:OnCursorEntered()
   surface.PlaySound("fs_ui/ui_menu_focus.wav")
 end
 
+function BUTTON:OnFocus()
+  surface.PlaySound("fs_ui/ui_menu_focus.wav")
+end
+
+
+
 vgui.Register("FS_Button", BUTTON, "DButton")
