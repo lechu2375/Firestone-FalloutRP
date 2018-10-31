@@ -21,6 +21,7 @@ end
 
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart = ""
+    
     if  hitgroup == HITGROUP_HEAD then
        dmginfo:ScaleDamage(2)
        bodypart = "Head"
