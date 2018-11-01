@@ -12,6 +12,7 @@ DamageSys.BodyParts = {
     {"Right Leg", "Prawa noga"},
     {"Left Leg", "Lewa noga"}
 }
+DamageSys.BleedingInterval = 3
 
 local dir = PLUGIN.folder.."/"
 nut.util.includeDir(dir.."wounds", true, true)

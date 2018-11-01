@@ -24,6 +24,23 @@ function PLAYER:HealBodyPart(strBodyPart, intAmount)
     end
 end
 
+function PLAYER:ApplyBleeding(intAmount)
+    self:SetNWInt("Firestone.Bleeding", self:GetNWInt("Firestone.Bleeding", 0) + intAmount)
+    self.BleedingTimer = CurTime()
+end
+
+function PLAYER:GetBleeding()
+    return self:GetNWInt("Firestone.Bleeding", 0)
+end
+
+function PLAYER:IsBleeding()
+    if self:GetBleeding() > 0 then
+        return true
+    else
+        return false 
+    end
+end
+
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart = ""
     
@@ -55,11 +72,25 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         dmginfo:ScaleDamage(0.75)
         bodypart = "Left Leg"
     end
-    ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*4)
+    ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5)
+    ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
 end
 
 function PLUGIN:PlayerSpawn(ply)
     for i, v in ipairs(DamageSys.BodyParts) do 
         ply:SetNWInt("Firestone."..v[1].."Health", 100)
+        ply:SetNWInt("Firestone.Bleeding", 0)
+    end
+end
+
+function PLUGIN:Think()
+    for i, v in ipairs(player.GetAll()) do
+        if v:IsBleeding() then
+            if CurTime() > v.BleedingTimer + DamageSys.BleedingInterval then
+                v.BleedingTimer = CurTime()
+                v:TakeDamage(1, v, nil)
+                v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
+            end
+        end
     end
 end
