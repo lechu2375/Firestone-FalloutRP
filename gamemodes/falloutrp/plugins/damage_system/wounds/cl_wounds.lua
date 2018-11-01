@@ -2,7 +2,6 @@ local PLUGIN = PLUGIN
 local pIsVisible = false
 scale = ScrH()
 
-
 local function ToggleDerma()
     damagesys_frame = vgui.Create("FS_Panel")
     damagesys_frame:SetSize(scale*0.3, scale*0.4)
@@ -82,3 +81,5 @@ function PLUGIN:HUDPaint()
     end
     DrawBleedingUI()
 end
+
+// frx jest walony na dziure bo to zbrodniarz wojenny
