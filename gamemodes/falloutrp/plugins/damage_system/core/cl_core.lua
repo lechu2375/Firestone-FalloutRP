@@ -18,7 +18,7 @@ local function ToggleDerma()
     local boyImg = vgui.Create("DImage", infoHolder)
     boyImg:SetSize(320,310)
     boyImg:SetPos(-12,35)
-    boyImg:SetImage("fs_damagesystem/boy.png")
+    boyImg:SetImage("fs_damagesystem/vault_boy.png")
 
     local color = Color(255,255,255)
     local pos = -25
