@@ -49,6 +49,6 @@ DamageSys.BodyParts = {
 }
 
 local dir = PLUGIN.folder.."/"
-nut.util.includeDir(dir.."wounds", true, true)
+nut.util.includeDir(dir.."core", true, true)
 nut.util.includeDir(dir.."modules", true, true)
 nut.util.includeDir(dir.."debuffs", true, true)
