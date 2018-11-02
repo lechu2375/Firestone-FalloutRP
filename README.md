@@ -19,6 +19,13 @@ vgui.Create("FS_Button")
 PLAYER:DamageBodyPart(strBodypPart, intDmg)
 PLAYER:GetBodyPartHealth(strBodyPart)
 PLAYER:HealBodyPart(strBodyPart, intAmount)
+PLAYER:ApplyBleeding(intAmount)
+PLAYER:GetBleeding()
+PLAYER:IsBleeding()
+PLAYER:SetArmor(intAmount)
+PLAYER:GetArmor()
+PLAYER:AddArmor(intAmount)
+PLAYER:RemoveArmor(intAmount)
 ```
 
 ### Credits
