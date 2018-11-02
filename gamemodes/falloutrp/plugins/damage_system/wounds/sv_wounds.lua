@@ -55,8 +55,15 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         dmginfo:ScaleDamage(0.75)
         bodypart = "Left Leg"
     end
-    ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5)
-    ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
+
+    if self:GetArmor() != nil && != 0 then 
+        ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5 - self:GetArmor())
+        ply:RemoveArmor(dmginfo:GetDamage()*5)
+        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
+    else
+        ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5)
+        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
+    end
 end
 
 function PLUGIN:PlayerSpawn(ply)
