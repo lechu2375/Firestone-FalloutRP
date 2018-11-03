@@ -18,3 +18,12 @@ function PLUGIN:PlayerSpawn(ply)
         ply:AddArmor(100)
     end
 end
+
+function PLUGIN:PlayerFootstep(ply, pos, foot, sound, volume, rf)
+    if ply:GetPowerArmor() == true then 
+        ply:EmitSound("fs_armor/fs_power_0"..math.random(1, 6)..".wav", 75, 100, CHAN_AUTO)
+        return true
+    else
+        return false
+    end
+end
