@@ -34,7 +34,7 @@ end
 
 function PLUGIN:PlayerFootstep(ply, pos, foot, sound, volume, rf)
     if ply:GetPowerArmor() == true then 
-        ply:EmitSound("fs_armor/fs_power_0"..math.random(1, 6)..".wav", 75, 100, 1, CHAN_AUTO)
+        ply:EmitSound("fs_armor/fs_power_0"..math.random(1, 6)..".wav", 125, 100, 1, CHAN_AUTO)
         return true
     else
         return false
