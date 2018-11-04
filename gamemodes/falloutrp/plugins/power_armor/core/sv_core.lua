@@ -22,7 +22,7 @@ function PLAYER:SetPowerArmor(bState)
     end
 end
 
-function PLAYER:IsWearingPowerArmor()
+function PLAYER:GetPowerArmor()
     return self:GetNWBool("Firestone.PowerArmor")
 end
 
