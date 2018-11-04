@@ -12,7 +12,7 @@ end
 
 function PANEL:SetTitle(strTitle)
   self.title = string.upper(strTitle)
-  surface.SetFont("FS_Main")
+  surface.SetFont("FS_Side")
   self.textsize = surface.GetTextSize(self.title)
 end
 
@@ -29,12 +29,14 @@ function PANEL:Paint(w, h)
     end
   draw.RoundedBox(0, 0, 0, w, h, self.dark)
   surface.SetDrawColor(self.light)
+  // Left Side
   surface.DrawRect(0,self:GetTall()-4,self:GetWide(),4)
   surface.DrawRect(0,0,self:GetWide(),4)
   surface.DrawRect(0,0,4,self:GetTall()*0.02)
+  // Right Side
   surface.DrawRect(self:GetWide()-4,0,4,self:GetTall()*0.02)
   surface.DrawRect(0,self:GetTall()-self:GetTall()*0.02,4,self:GetTall()*0.02)
   surface.DrawRect(self:GetWide()-4,self:GetTall()-self:GetTall()*0.02,4,self:GetTall()*0.02)
 end
 
-vgui.Register("FS_Panel", PANEL, "DPanel")
+vgui.Register("FS_PanelV", PANEL, "DPanel")
