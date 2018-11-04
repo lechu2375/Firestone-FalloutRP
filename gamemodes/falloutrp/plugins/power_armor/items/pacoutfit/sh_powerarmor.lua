@@ -211,3 +211,7 @@ end)
 ITEM:hook("EquipUn", function(item)
     item.player:SetPowerArmor(false)
 end)
+
+ITEM:hook("drop", function(item)
+    item.player:SetPowerArmor(false)
+end)
