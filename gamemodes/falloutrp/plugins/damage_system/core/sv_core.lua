@@ -56,12 +56,15 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         bodypart = "Left Leg"
     end
 
-    if ply:GetArmor() != nil && ply:GetArmor() != 0 then 
-        ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5 - ply:GetArmor())
-        ply:RemoveArmor(dmginfo:GetDamage()*5)
-        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
+    if ply:IsWearingPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
+        ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
+        ply:RemoveArmor(math.Round(dmginfo:GetDamage()*5))
+    elseif ply:GetArmor() != nil && ply:GetArmor() != 0 then 
+        ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
+        ply:RemoveArmor(math.Round(dmginfo:GetDamage()*5))
+        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2 - ply:GetArmor(), dmginfo:GetDamage() - ply:GetArmor())))
     else
-        ply:DamageBodyPart(bodypart, dmginfo:GetDamage()*5)
+        ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5))
         ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
     end
 end
