@@ -12,8 +12,14 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 ### Dokumentacja 
 ```lua
 -- Fallout UI Library 
-vgui.Create("FS_Panel")
 vgui.Create("FS_Button")
+vgui.Create("FS_Button_S")
+vgui.Create("FS_Close")
+vgui.Create("FS_Label")
+vgui.Create("FS_Frame")
+vgui.Create("FS_PanelH")
+vgui.Create("FS_PanelV")
+vgui.Create("FS_TextEntry")
 
 -- Damage System 
 PLAYER:DamageBodyPart(strBodypPart, intDmg)
