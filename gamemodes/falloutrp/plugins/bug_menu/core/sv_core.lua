@@ -15,21 +15,22 @@ end
 
 net.Receive("fs_bug_info", function(len, ply)
     local problem = net.ReadString()
-    local priority = net.ReadInt()
+    local priority = net.ReadString(p)
+
     local priority_color 
     local priority_name
 
-    if priority == 1 then 
+    if priority == "1" then 
         priority_color = 6729778
         priority_name = "Niski"
     end
 
-    if priority == 2 then 
+    if priority == "2" then 
         priority_color = 16753920
         priority_name = "Średni"
     end
 
-    if priority == 3 then 
+    if priority == "3" then 
         priority_color = 16711680
         priority_name = "Wysoki"
     end
@@ -41,7 +42,7 @@ net.Receive("fs_bug_info", function(len, ply)
                 fields = {
                     {
                         name = "Zgłaszajacy",
-                        value = "Nick:"..ply:Nick().."\n Steam ID:"..ply:SteamID64().."\n Ranga:"..ply:GetUserGroup().."",
+                        value = "Nick: "..ply:Nick().."\n Steam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
                         url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
                     },
                     {
