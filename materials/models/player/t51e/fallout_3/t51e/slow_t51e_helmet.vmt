@@ -1,0 +1,10 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/player/t51e/fallout_3/t51e/slow_t51e"
+	"$bumpmap" "models/player/t51e/fallout_3/t51e/slow_t51e_bump"
+
+ 	"$phong" "1"
+	"$phongexponent" "8"
+	"$phongboost"	"5"
+	"$phongfresnelranges"	"[.15 .45 1]"
+}

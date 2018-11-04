@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\bos\erdim_cylmap"
+	"$halflambert" 1
+}

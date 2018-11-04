@@ -1,0 +1,11 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/player/t51k/fallout_3/t51k/slow_t51k"
+//	"$bumpmap" "models/player/t51k/fallout_3/t51k/slow_t51k_bump"
+
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$envmaptint" "[.75 .75 .8]" 
+	"$envmapcontrast" .85
+	"$envmapsaturation" .65
+}

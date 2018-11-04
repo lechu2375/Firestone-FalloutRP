@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/hub/fallout/armors/knight/t45d_body_knight"
+	"$bumpmap" "models/hub/fallout/armors/knight/t45d_body_n"
+}
+
