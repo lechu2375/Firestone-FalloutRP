@@ -26,6 +26,10 @@ PLAYER:SetArmor(intAmount)
 PLAYER:GetArmor()
 PLAYER:AddArmor(intAmount)
 PLAYER:RemoveArmor(intAmount)
+
+-- Power Armor
+PLAYER:SetPowerArmor(bState)
+PLAYER:GetPowerArmor()
 ```
 
 ### Credits
