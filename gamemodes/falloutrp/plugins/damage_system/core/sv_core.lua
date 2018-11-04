@@ -68,7 +68,7 @@ end
 
 function PLUGIN:PlayerSpawn(ply)
     for i, v in ipairs(DamageSys.BodyParts) do 
-        ply:SetNWInt("Firestone."..v[1].."Health", 100)
+        ply:SetNWInt("Firestone."..v.name.."Health", 100)
         ply:SetNWInt("Firestone.Bleeding", 0)
     end
 end
