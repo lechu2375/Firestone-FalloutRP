@@ -6,9 +6,10 @@ util.AddNetworkString("fs_bug_ui")
 util.AddNetworkString("fs_bug_info")
 
 PLUGIN:PlayerSay(ply, text)
-    if string.lower(text) == "!bug"
+    if (string.lower(text) == "!bug") then 
         net.Start("fs_bug_ui")
         net.Send(ply)
+        return ""
     end
 end
 
