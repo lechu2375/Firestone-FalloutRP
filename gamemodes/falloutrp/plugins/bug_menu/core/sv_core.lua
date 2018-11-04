@@ -9,8 +9,9 @@ util.AddNetworkString("fs_bug_info")
 local function GetAvatar(sid64)
     http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
         local tbl = util.JSONToTable(body)
-        return tbl.response.players[1].avatarfull
+        avatar_url = tbl.response.players[1].avatarfull
     end)
+    return avatar_url
 end
 
 function PLUGIN:PlayerSay(ply, text)
