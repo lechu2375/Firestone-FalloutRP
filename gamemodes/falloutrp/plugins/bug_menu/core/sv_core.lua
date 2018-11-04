@@ -31,7 +31,7 @@ net.Receive("fs_bug_info", function(len, ply)
     end
 
     if priority == "3" then 
-        priority_color = 16711680
+        priority_color = 10824234
         priority_name = "Wysoki"
     end
 
@@ -39,11 +39,16 @@ net.Receive("fs_bug_info", function(len, ply)
     local payload = {
         embeds = {
             {
+                author = {
+                    name = "Zgłaszający",
+                    url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
+                },
+
                 fields = {
                     {
-                        name = "Zgłaszajacy",
+                        name = "Dane",
                         value = "Nick: "..ply:Nick().."\n Steam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
-                        url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
+                        inline = false,
                     },
                     {
                         name = "Opis",
@@ -56,6 +61,7 @@ net.Receive("fs_bug_info", function(len, ply)
                         inline = false,
                     },
                 },
+
                 thumbnail = {
                     url = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/43/4396047dea902e3538d281a47d1742ebc1c6ad87_full.jpg"
                 },
