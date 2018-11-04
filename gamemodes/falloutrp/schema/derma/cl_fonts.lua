@@ -9,6 +9,12 @@ surface.CreateFont( "FS_Main", {
 	antialias = true,
 } )
 
+surface.CreateFont( "FS_Main_Small", {
+	font = "Bebas Neue Regular",
+	size = 24,
+	antialias = true,
+} )
+
 surface.CreateFont( "FS_Main_Bold", {
 	font = "Bebas Neue Bold",
 	size = 26,
@@ -18,6 +24,12 @@ surface.CreateFont( "FS_Main_Bold", {
 surface.CreateFont( "FS_Side", {
 	font = "Monofonto-Regular",
 	size = 26,
+	antialias = true,
+} )
+
+surface.CreateFont( "FS_Side_Small", {
+	font = "Monofonto-Regular",
+	size = 16,
 	antialias = true,
 } )
 

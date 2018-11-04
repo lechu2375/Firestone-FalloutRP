@@ -1,0 +1,7 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/dominator/fallout/armors/t-45d/t45d_decal"
+	"$bumpmap" "models/dominator/fallout/armors/t-45d/t45d_decal_n"
+
+	"$translucent" 1
+}

@@ -1,0 +1,5 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\bos\van_facemap"
+	"$halflambert" 1
+}

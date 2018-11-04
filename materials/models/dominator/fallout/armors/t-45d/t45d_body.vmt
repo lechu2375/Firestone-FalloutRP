@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/dominator/fallout/armors/t-45d/t45d_body"
+	"$bumpmap" "models/dominator/fallout/armors/t-45d/t45d_body_n"
+}
+
