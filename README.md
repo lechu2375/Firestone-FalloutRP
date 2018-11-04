@@ -29,7 +29,7 @@ PLAYER:RemoveArmor(intAmount)
 
 -- Power Armor
 PLAYER:SetPowerArmor(bState)
-PLAYER:GetPowerArmor()
+PLAYER:IsWearingPowerArmor()
 ```
 
 ### Credits
