@@ -56,7 +56,7 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         bodypart = "Left Leg"
     end
 
-    if ply:IsWearingPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
+    if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
         ply:RemoveArmor(math.Round(dmginfo:GetDamage()*5))
     elseif ply:GetArmor() != nil && ply:GetArmor() != 0 then 
