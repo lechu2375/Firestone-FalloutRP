@@ -5,8 +5,17 @@ local PLUGIN = PLUGIN
 util.AddNetworkString("fs_bug_ui")
 util.AddNetworkString("fs_bug_info")
 
+
+local function GetAvatar(sid64)
+    http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
+        local tbl = util.JSONToTable(body)
+        return tbl.response.players[1].avatarfull
+    end)
+end
+
 function PLUGIN:PlayerSay(ply, text)
     if (string.lower(text) == "!bug") then 
+        GetAvatar("76561198053408101")
         net.Start("fs_bug_ui")
         net.Send(ply)
         return ""
@@ -63,7 +72,7 @@ net.Receive("fs_bug_info", function(len, ply)
                 },
 
                 thumbnail = {
-                    url = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/43/4396047dea902e3538d281a47d1742ebc1c6ad87_full.jpg"
+                    url = GetAvatar(ply:SteamID64())
                 },
 
                 color = priority_color
