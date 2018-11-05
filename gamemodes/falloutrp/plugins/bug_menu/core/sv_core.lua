@@ -5,6 +5,13 @@ local PLUGIN = PLUGIN
 util.AddNetworkString("fs_bug_ui")
 util.AddNetworkString("fs_bug_info")
 
+function PLUGIN:PlayerSay(ply, text)
+    if (string.lower(text) == "!bug") then 
+        net.Start("fs_bug_ui")
+        net.Send(ply)
+        return ""
+    end
+end
 
 local function GetAvatar(sid64)
     http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
@@ -14,13 +21,12 @@ local function GetAvatar(sid64)
     return avatar_url
 end
 
-function PLUGIN:PlayerSay(ply, text)
-    if (string.lower(text) == "!bug") then 
-        GetAvatar("76561198053408101")
-        net.Start("fs_bug_ui")
-        net.Send(ply)
-        return ""
-    end
+local function GetUserName(sid64)
+        http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
+        local tbl = util.JSONToTable(body)
+        steam_name = tbl.response.players[1].personaname
+    end)
+    return steam_name
 end
 
 net.Receive("fs_bug_info", function(len, ply)
@@ -50,7 +56,7 @@ net.Receive("fs_bug_info", function(len, ply)
         embeds = {
             {
                 author = {
-                    name = "Zgłaszający",
+                    name = GetUserName(ply:SteamID64()),
                     url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
                 },
 
