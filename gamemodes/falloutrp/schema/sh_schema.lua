@@ -8,6 +8,7 @@ SCHEMA.author = "Firestone Development"
 --[[ GLOBAL ]]--
 ----------------
 Firestone = {}
+Firestone.API = {}
 Firestone.LightGreen = Color(15, 72, 34,215)
 Firestone.DarkGreen = Color(17,255,31)
 Firestone.Blur = Material("pp/blurscreen")
