@@ -1,7 +1,8 @@
 if !CLIENT then return end
+local notifsOnScreen = {}
 
 function FS_Notif(notifyText,notifyLength)
-	table.ForceInsert(notifsOnScreen,"FS_Notify")
+	table.insert(notifsOnScreen,"FS_Notify")
   local notifLength = string.len(notifyText)
 	local notifText = tostring(notifyText)
 	local yPos = #notifsOnScreen * 60 - 40
@@ -13,7 +14,7 @@ function FS_Notif(notifyText,notifyLength)
 		timer.Simple(notifyLength,function()
 			notifyBackground:MoveTo(-400, yPos, 0.5, 0, 0.5, function()
 				notifyBackground:Remove()
-				table.RemoveByValue(notifsOnScreen,"FS_Notify")
+					table.RemoveByValue(notifsOnScreen,"FS_Notify")
 			end)
 		end)
 	end)
