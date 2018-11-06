@@ -55,33 +55,37 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         dmginfo:ScaleDamage(0.75)
         bodypart = "Left Leg"
     end
-
+    
     if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
         ply:RemoveArmor(math.Round(dmginfo:GetDamage()*5))
     elseif ply:GetArmor() != nil && ply:GetArmor() != 0 then 
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
         ply:RemoveArmor(math.Round(dmginfo:GetDamage()*5))
-        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2 - ply:GetArmor(), dmginfo:GetDamage() - ply:GetArmor())))
+        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2 - ply:GetArmor(), dmginfo:GetDamage() - ply:GetArmor())), bodypart)
     else
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5))
-        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
+        ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())), bodypart)
     end
 end
 
 function PLUGIN:PlayerSpawn(ply)
     for i, v in ipairs(DamageSys.BodyParts) do 
         ply:SetNWInt("Firestone."..v.name.."Health", 100)
+        ply:SetNWInt("Firestone."..v.name..".Bleeding", 0)
         ply:SetNWInt("Firestone.Bleeding", 0)
     end
 end
 
 function PLUGIN:Think()
-    for i, v in ipairs(player.GetAll()) do
+    for _, v in ipairs(player.GetAll()) do
         if v:IsBleeding() then
             if CurTime() > v.BleedingTimer + DamageSys.BleedingInterval then
                 v.BleedingTimer = CurTime()
                 v:TakeDamage(1, v, nil)
+                for _, bodypart in pairs(DamageSys.BleedingBodyParts) do
+                    v:DamageBodyPart(bodypart, 1)
+                end
                 v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
             end
         end
