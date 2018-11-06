@@ -1,5 +1,5 @@
 if !SERVER then return end
-util.AddNetworkString("runNotify")
+util.AddNetworkString("FS_RunNotify")
 
 function PLUGIN:PlayerSay(ply,text)
   if ply:GetUserGroup() != "superadmin" then return "" end
@@ -8,7 +8,7 @@ function PLUGIN:PlayerSay(ply,text)
     if string.len(notifText) < 10 then
       ply:ChatPrint("Treść ogłoszenia jest za krótka!")
     else
-      net.Start("runNotify")
+      net.Start("FS_RunNotify")
       net.WriteString(notifText)
       net.Broadcast()
     end
