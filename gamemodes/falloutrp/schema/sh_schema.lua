@@ -19,6 +19,7 @@ Firestone.Blur = Material("pp/blurscreen")
 nut.util.includeDir("hooks")
 nut.util.includeDir("derma")
 nut.util.includeDir("api")
+nut.util.includeDir("util")
 nut.util.include("sh_config.lua")
 
 -----------------------
