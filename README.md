@@ -21,6 +21,9 @@ vgui.Create("FS_PanelH")
 vgui.Create("FS_PanelV")
 vgui.Create("FS_TextEntry")
 
+-- Utility Library 
+PLAYER:Notify(strText, intLength)
+
 -- Damage System 
 PLAYER:DamageBodyPart(strBodypPart, intDmg)
 PLAYER:GetBodyPartHealth(strBodyPart)
