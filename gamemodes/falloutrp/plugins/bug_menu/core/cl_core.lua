@@ -5,17 +5,17 @@ scale = ScrH()
 net.Receive("fs_bug_ui", function()
 
   local mainBugFrame = vgui.Create("FS_Frame")
-  mainBugFrame:SetSize(ScrW()*0.2,scale*0.4)
-  mainBugFrame:Center()
+  mainBugFrame:SetSize(scale*0.3,scale*0.4)
+  mainBugFrame:SetPos(ScrW()/2 - mainBugFrame:GetWide()/2 ,ScrH()/2 - mainBugFrame:GetTall()/2 - 100)
   mainBugFrame:MakePopup()
-
+  mainBugFrame:MoveTo(ScrW()/2 - mainBugFrame:GetWide()/2,ScrH()/2 - mainBugFrame:GetTall()/2,0.3)
   local width = mainBugFrame:GetWide()
   local height = mainBugFrame:GetTall()
 
   local close = mainBugFrame:Add("FS_Close")
   close:SetPos(width-25,5)
   close.DoClick = function()
-    mainBugFrame:Remove()
+    mainBugFrame:MoveTo(ScrW()/2 - mainBugFrame:GetWide()/2,ScrH()/2 - mainBugFrame:GetTall()/2 - 100,0.3,0,-1,function() mainBugFrame:Remove() end)
     surface.PlaySound("fs_ui/ui_menu_ok.wav")
   end
 
@@ -64,10 +64,10 @@ net.Receive("fs_bug_ui", function()
       local p = tostring((prSlider:GetValue()))
       net.WriteString(tostring(textEntry:GetValue()))
       net.WriteString(p)
-      print(p)
     net.SendToServer()
-    mainBugFrame:Remove()
+    mainBugFrame:MoveTo(ScrW()/2 - mainBugFrame:GetWide()/2,ScrH()/2 - mainBugFrame:GetTall()/2 - 100,0.3,0,-1,function() mainBugFrame:Remove() end)
     surface.PlaySound("fs_ui/ui_menu_ok.wav")
+    FS_Notif("Poprawnie wysłano raport!", 2)
   end
 
 end)

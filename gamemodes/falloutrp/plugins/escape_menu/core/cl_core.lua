@@ -52,7 +52,7 @@ hook.Add("PreRender", "djuk's lui bag", function()
 end)
 
 AddFalloutButton({
-	Name = "WZNOW",
+	Name = "WZNÓW",
 	Click = function()
 		mainDerma:Remove()
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")

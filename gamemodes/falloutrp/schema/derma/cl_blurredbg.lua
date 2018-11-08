@@ -4,10 +4,6 @@ local PANEL = {}
 
 local blur = Material("pp/blurscreen")
 
-function PANEL:Init()
-  self:SetTitle("")
-end
-
 function PANEL:Paint(w, h)
   local x, y = self:LocalToScreen(0, 0)
     local scrW, scrH = ScrW(), ScrH()

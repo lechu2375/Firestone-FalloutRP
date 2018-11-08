@@ -1,6 +1,5 @@
 if !CLIENT then return end
 scale = ScrH()
-
 net.Receive("FS_RunAdvert", function()
 
   local text = net.ReadString()

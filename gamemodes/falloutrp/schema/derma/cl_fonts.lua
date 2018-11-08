@@ -1,22 +1,24 @@
 resource.AddFile("resources/fonts/BebasNeue_regular.ttf")
 resource.AddFile("resources/fonts/Overseer.ttf")
 resource.AddFile("resources/fonts/monofonto.ttf")
+resource.AddFile("resources/fonts/RobotoCondensed-Bold.ttf")
+resource.AddFile("resources/fonts/RobotoCondensed-Regular.ttf")
 
 
 surface.CreateFont( "FS_Main", {
-	font = "Bebas Neue Regular",
+	font = "Roboto Condensed",
 	size = 26,
 	antialias = true,
 } )
 
 surface.CreateFont( "FS_Main_Small", {
-	font = "Bebas Neue Regular",
+	font = "Roboto Condensed",
 	size = 24,
 	antialias = true,
 } )
 
 surface.CreateFont( "FS_Main_Bold", {
-	font = "Bebas Neue Bold",
+	font = "Roboto Bold Condensed",
 	size = 26,
 	antialias = true,
 } )
