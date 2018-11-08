@@ -1,5 +1,5 @@
 local PLUGIN = PLUGIN
-PLUGIN.name = "Escape Menu"
+PLUGIN.name = "Adverts"
 PLUGIN.author = "Djuk"
 
 local dir = PLUGIN.folder.."/"

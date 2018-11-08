@@ -5,7 +5,7 @@ local BUTTON = {}
 function BUTTON:Init()
   self.dark = Color(15, 72, 34,215)
   self.light = Color(17,255,31)
-  self:SetFont("FS_Side")
+  self:SetFont("FS_Main")
   self:SetContentAlignment(5)
 end
 
@@ -33,4 +33,4 @@ end
 
 
 
-vgui.Register("FS_Button", BUTTON, "DButton")
+vgui.Register("FS_Button_ESC", BUTTON, "DButton")
