@@ -1,31 +1,29 @@
-Firestone.Util.Notify = {}
-
 local PLAYER = FindMetaTable("Player")
 local notifsOnScreen = {}
 
-if (SERVER) then 
+if (SERVER) then
 
     util.AddNetworkString("FS_Notify")
 
     function PLAYER:Notify(strText, intLength)
         net.Start("FS_Notify")
-            net.WriteInt(intLength)
+            net.WriteInt(intLength, 8)
             net.WriteString(strText)
         net.Send(self)
     end
 
 end
 
-if (CLIENT) then 
-    
+if (CLIENT) then
+
     net.Receive("FS_Notify", function()
+        local time = net.ReadInt( 8 )
         local text = net.ReadString()
-        local time = net.ReadInt()
-        
+
         table.insert(notifsOnScreen, "FS_Notify")
         local notifLength = string.len(text)
-	    local notifText = tostring(text)
-	    local yPos = #notifsOnScreen * 60 - 40
+	      local notifText = tostring(text)
+	      local yPos = #notifsOnScreen * 60 - 40
 
         local notifyBackground = vgui.Create("FS_PanelH")
         notifyBackground:SetSize(42+notifLength*9,50)
@@ -54,4 +52,3 @@ if (CLIENT) then
     end)
 
 end
-
