@@ -1,5 +1,6 @@
 local PLUGIN = PLUGIN
 local pIsVisible = false
+local isBleedingPanelOnScreen = false
 scale = ScrH()
 
 local function ToggleDerma()
@@ -53,6 +54,26 @@ local function ToggleDerma()
     end
 end
 
+local function DrawBleedingUI()
+    damagesys_BleedingFrame = vgui.Create("FS_PanelH")
+    damagesys_BleedingFrame:SetSize(160, 40)
+    damagesys_BleedingFrame:SetPos(-damagesys_BleedingFrame:GetWide(), scale/2 + 25)
+    damagesys_BleedingFrame:MoveTo(10,scale/2 + 25,0.3)
+
+    local text = vgui.Create("DLabel", damagesys_BleedingFrame)
+    text:SetPos(40, 10)
+    text:SetSize(100, 20)
+    text:SetFont("FS_Side_Small")
+    text.Think = function()
+        text:SetText("Krwawienie: ".. LocalPlayer():GetNWInt("Firestone.Bleeding", 0))
+    end
+
+    local icon = vgui.Create("DImage", damagesys_BleedingFrame)
+    icon:SetPos(8, 5)
+    icon:SetSize(32, 32)
+    icon:SetImage("bleeding.png")
+end
+
 function PLUGIN:Think()
     if input.IsKeyDown(KEY_F4) && !pIsVisible then
         ToggleDerma()
@@ -64,22 +85,22 @@ function PLUGIN:Think()
             pIsVisible = false
         end)
     end
-end
-
-local function DrawBleedingUI()
-    local BleedingAmount = LocalPlayer():GetNWInt("Firestone.Bleeding", 0)
-    if BleedingAmount > 0 then
-        draw.RoundedBox(2, 1750, 200, 150, 75, Color(50, 50, 50, 200))
-        draw.DrawText("Bleeding: "..BleedingAmount, "FS_Side", 1800, 37, Color(255, 255, 255))
+    if !pIsVisible && !isBleedingPanelOnScreen && LocalPlayer():GetNWInt("Firestone.Bleeding", 0) > 0 then
+        DrawBleedingUI()
+        isBleedingPanelOnScreen = true
+    end
+    if pIsVisible || LocalPlayer():GetNWInt("Firestone.Bleeding", 0) <= 0 || !LocalPlayer():Alive() then
+        if IsValid(damagesys_BleedingFrame) then
+            damagesys_BleedingFrame:Remove()
+            isBleedingPanelOnScreen = false
+        end
     end
 end
-
 
 function PLUGIN:HUDPaint()
     if !pIsVisible then
         draw.SimpleText("F4 - Stan Postaci", "FS_Main", 10, ScrH()/2)
     end
-    DrawBleedingUI()
 end
 
 // frx jest walony na dziure bo to zbrodniarz wojenny
