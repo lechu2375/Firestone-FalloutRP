@@ -24,7 +24,7 @@ net.Receive("FS_RunAdvert", function()
 
   local textPos = -length*10
   advertText.Think = function()
-    textPos = textPos+0.4
+    textPos = textPos+1.5
     advertText:SetPos(textPos,height/2-advertText:GetTall()/2)
     if textPos > width + length then
       textPos = -length*10
