@@ -48,7 +48,7 @@ surface.CreateFont( "FS_Title_Bold", {
 } )
 
 surface.CreateFont( "FS_Notify", {
-	font = "Trebuchet24",
+	font = "Roboto Condensed",
 	size = 20,
 	antialias = true,
 } )
