@@ -7,6 +7,7 @@ function TEXTENTRY:Init()
   self.light = Color(17,255,31)
   self:SetText("")
   self:SetDrawLanguageID(false)
+  self:SetMultiline(true)
 end
 
 function TEXTENTRY:Paint(w, h)

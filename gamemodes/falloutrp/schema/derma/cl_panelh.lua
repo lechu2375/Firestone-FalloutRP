@@ -35,8 +35,8 @@ function PANEL:Paint(w, h)
   surface.DrawRect(4,self:GetTall()-4,self:GetWide()*0.01,4)
   // Right Side
   surface.DrawRect(self:GetWide()-4,0,4,self:GetTall())
-  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-4,0,self:GetWide()*0.01,4)
-  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-4,self:GetTall()-4,self:GetWide()*0.01,4)
+  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-2,0,self:GetWide()*0.01,4)
+  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-2,self:GetTall()-4,self:GetWide()*0.01,4)
 end
 
 vgui.Register("FS_PanelH", PANEL, "DPanel")
