@@ -40,14 +40,14 @@ net.Receive("fs_bug_info", function(len, ply)
         embeds = {
             {
                 author = {
-                    name = ply:Nick(),
+                    name = ply:SteamName(),
                     url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
                 },
 
                 fields = {
                     {
                         name = "Dane",
-                        value = "Steam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
+                        value = "Nick: "..ply:Nick().."\nSteam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
                         inline = false,
                     },
                     {
