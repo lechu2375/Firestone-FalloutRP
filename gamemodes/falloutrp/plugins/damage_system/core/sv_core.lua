@@ -67,12 +67,17 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5))
         ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
     end
+    if ply:IsBleeding() && !ply.WasNotified then
+        ply:Notify("Krwawisz", 5)
+        ply.WasNotified = true
+    end
 end
 
 function PLUGIN:PlayerSpawn(ply)
     for i, v in ipairs(DamageSys.BodyParts) do 
         ply:SetNWInt("Firestone."..v.name.."Health", 100)
         ply:SetNWInt("Firestone.Bleeding", 0)
+        ply.WasNotified = false
     end
 end
 
@@ -84,6 +89,12 @@ function PLUGIN:Think()
                 v:TakeDamage(1, v, nil)
                 v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
             end
+        else v.WasNotified = false
+        end
+        if v:GetBodyPartHealth("Right Leg") < 100 || v:GetBodyPartHealth("Left Leg") < 100 then
+            local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
+            v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
+            v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 70), 7, 240))
         end
     end
 end
