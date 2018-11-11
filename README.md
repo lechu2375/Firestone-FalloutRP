@@ -14,12 +14,15 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 -- Fallout UI Library 
 vgui.Create("FS_Button")
 vgui.Create("FS_Button_S")
+vgui.Create("FS_Button_ESC")
 vgui.Create("FS_Close")
 vgui.Create("FS_Label")
 vgui.Create("FS_Frame")
 vgui.Create("FS_PanelH")
 vgui.Create("FS_PanelV")
+vgui.Create("FS_Panel")
 vgui.Create("FS_TextEntry")
+vgui.Create("FS_Blur")
 
 -- Utility Library 
 PLAYER:Notify(strText, intLength)
