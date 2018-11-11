@@ -13,22 +13,6 @@ function PLUGIN:PlayerSay(ply, text)
     end
 end
 
-local function GetAvatar(sid64)
-    http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
-        local tbl = util.JSONToTable(body)
-        avatar_url = tbl.response.players[1].avatarfull
-    end)
-    return avatar_url
-end
-
-local function GetUserName(sid64)
-        http.Fetch("http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=034C7BA8AE239DD4E7FF5CC0E3FB6E8B&steamids="..sid64, function(body, len, headers, code)
-        local tbl = util.JSONToTable(body)
-        steam_name = tbl.response.players[1].personaname
-    end)
-    return steam_name
-end
-
 net.Receive("fs_bug_info", function(len, ply)
     local problem = string.gsub(net.ReadString(), "@", "")
     local priority = net.ReadInt(3)
@@ -56,14 +40,14 @@ net.Receive("fs_bug_info", function(len, ply)
         embeds = {
             {
                 author = {
-                    name = GetUserName(ply:SteamID64()),
+                    name = ply:Nick(),
                     url = "https://steamcommunity.com/profiles/"..ply:SteamID64().."/",
                 },
 
                 fields = {
                     {
                         name = "Dane",
-                        value = "Nick: "..ply:Nick().."\n Steam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
+                        value = "Steam ID: "..ply:SteamID64().."\n Ranga: "..ply:GetUserGroup().."",
                         inline = false,
                     },
                     {
@@ -79,16 +63,16 @@ net.Receive("fs_bug_info", function(len, ply)
                 },
 
                 thumbnail = {
-                    url = GetAvatar(ply:SteamID64())
+                    url = "http://api.saturdaysheroes.me/gmod/savatar/index.php/steamProfileByID?id="..ply:SteamID64()
                 },
 
                 color = priority_color
-            }
+            }   
         }
     }
 
     http.Post(PLUGIN.WebhookURL, {payload_json = util.TableToJSON(payload)})
-    ply:Notify("Wyslano zgloszenie!", 5)
+    ply:Notify("Otrzymalismy zgloszenie, dziekujemy!", 5)
     
 end)
 
