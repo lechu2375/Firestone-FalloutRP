@@ -31,7 +31,7 @@ surface.CreateFont( "FS_Side", {
 
 surface.CreateFont( "FS_Side_Small", {
 	font = "Monofonto-Regular",
-	size = 24,
+	size = 16,
 	antialias = true,
 } )
 
