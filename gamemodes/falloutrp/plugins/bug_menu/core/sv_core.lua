@@ -30,7 +30,7 @@ local function GetUserName(sid64)
 end
 
 net.Receive("fs_bug_info", function(len, ply)
-    local problem = net.ReadString()
+    local problem = string.gsub(net.ReadString(), "@", "")
     local priority = net.ReadInt(p)
 
     local priority_color 
