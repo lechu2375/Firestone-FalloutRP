@@ -31,7 +31,7 @@ end
 
 net.Receive("fs_bug_info", function(len, ply)
     local problem = string.gsub(net.ReadString(), "@", "")
-    local priority = net.ReadInt(p)
+    local priority = net.ReadInt(3)
 
     local priority_color 
     local priority_name
