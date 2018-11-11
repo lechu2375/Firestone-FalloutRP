@@ -88,6 +88,7 @@ net.Receive("fs_bug_info", function(len, ply)
     }
 
     http.Post(PLUGIN.WebhookURL, {payload_json = util.TableToJSON(payload)})
+    ply:Notify("Otrzymalismy zgloszenie, dziekujemy!", 5)
     
 end)
 
