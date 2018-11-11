@@ -31,22 +31,22 @@ end
 
 net.Receive("fs_bug_info", function(len, ply)
     local problem = net.ReadString()
-    local priority = net.ReadString(p)
+    local priority = net.ReadInt(p)
 
     local priority_color 
     local priority_name
 
-    if priority == "1" then 
+    if priority == 1 then 
         priority_color = 6729778
         priority_name = "Niski"
     end
 
-    if priority == "2" then 
+    if priority == 2 then 
         priority_color = 16753920
         priority_name = "Średni"
     end
 
-    if priority == "3" then 
+    if priority == 3 then 
         priority_color = 10824234
         priority_name = "Wysoki"
     end
