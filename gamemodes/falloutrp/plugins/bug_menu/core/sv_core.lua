@@ -1,12 +1,12 @@
-if !SERVER then return end 
+if !SERVER then return end
 
-local PLUGIN = PLUGIN 
+local PLUGIN = PLUGIN
 
 util.AddNetworkString("fs_bug_ui")
 util.AddNetworkString("fs_bug_info")
 
 function PLUGIN:PlayerSay(ply, text)
-    if (string.lower(text) == "!bug") then 
+    if (string.lower(text) == "!bug") then
         net.Start("fs_bug_ui")
         net.Send(ply)
         return ""
@@ -17,20 +17,25 @@ net.Receive("fs_bug_info", function(len, ply)
     local problem = string.gsub(net.ReadString(), "@", "")
     local priority = net.ReadInt(3)
 
-    local priority_color 
+    if string.len(problem) < 10 then
+      ply:Notify("Minimalna ilosc znakow wynosi 10!", 5)
+      return
+    end
+
+    local priority_color
     local priority_name
 
-    if priority == 1 then 
+    if priority == 1 then
         priority_color = 6729778
         priority_name = "Niski"
     end
 
-    if priority == 2 then 
+    if priority == 2 then
         priority_color = 16753920
         priority_name = "Średni"
     end
 
-    if priority == 3 then 
+    if priority == 3 then
         priority_color = 10824234
         priority_name = "Wysoki"
     end
@@ -67,12 +72,11 @@ net.Receive("fs_bug_info", function(len, ply)
                 },
 
                 color = priority_color
-            }   
+            }
         }
     }
 
     http.Post(PLUGIN.WebhookURL, {payload_json = util.TableToJSON(payload)})
     ply:Notify("Otrzymalismy zgloszenie, dziekujemy!", 5)
-    
-end)
 
+end)
