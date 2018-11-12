@@ -22,13 +22,16 @@ if (CLIENT) then
 
         table.insert(notifsOnScreen, "FS_Notify")
         local notifLength = string.len(text)
+        if string.len(text) < 15 then
+          notifLength = notifLength + 2
+        end
 	      local notifText = tostring(text)
 	      local yPos = #notifsOnScreen * 60 - 40
 
         local notifyBackground = vgui.Create("FS_PanelH")
-        notifyBackground:SetSize(42+notifLength*9,50)
-	    notifyBackground:SetPos(-400,yPos)
-	    notifyBackground:MoveTo( 10, yPos, 0.5, 0, 0.5, function()
+        notifyBackground:SetSize(60+notifLength*7.7,50)
+	      notifyBackground:SetPos(-400,yPos)
+	      notifyBackground:MoveTo( 10, yPos, 0.5, 0, 0.5, function()
 		    timer.Simple(time, function()
 		        notifyBackground:MoveTo(-400, yPos, 0.5, 0, 0.5, function()
 		            notifyBackground:Remove()
@@ -43,10 +46,10 @@ if (CLIENT) then
         notifyImage:SetImage("fs_notifs/vaultboy.png")
 
         local notifyText = notifyBackground:Add("DLabel")
-        notifyText:SetSize(notifyBackground:GetWide()-62,notifyBackground:GetTall())
-        notifyText:SetPos(62,0)
+        notifyText:SetPos(62,15)
         notifyText:SetFont("FS_Notify")
         notifyText:SetText(notifText)
+        notifyText:SizeToContents()
         notifyText:SetColor(Color(17,255,31))
 
     end)
