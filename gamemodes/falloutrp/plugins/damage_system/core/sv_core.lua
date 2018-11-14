@@ -2,7 +2,7 @@ local PLUGIN = PLUGIN
 local PLAYER = FindMetaTable("Player")
 
 function PLAYER:DamageBodyPart(strBodypPart, intDmg)
-   self:SetNWInt("Firestone."..strBodypPart.."Health", self:GetNWInt("Firestone."..strBodypPart.."Health", 100) - intDmg) 
+   self:SetNWInt("Firestone."..strBodypPart.."Health", self:GetNWInt("Firestone."..strBodypPart.."Health", 100) - math.Clamp(intDmg, 0, self:GetNWInt("Firestone."..strBodypPart.."Health", 100))) 
 end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
