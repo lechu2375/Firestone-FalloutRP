@@ -78,17 +78,17 @@ function PLUGIN:HUDPaint()
 	local clipAmmo = tonumber(weapon:Clip1()) or -1
 	local restOfAmmo = LocalPlayer():GetAmmoCount(weapon:GetPrimaryAmmoType() or "")
 	if clipAmmo != -1 then
-		if clipAmmo > 9 then
-			clipAmmo = "0"..clipAmmo
-		elseif clipAmmo > 99 then
+		if clipAmmo > 99 then
 			clipAmmo = clipAmmo
+		elseif clipAmmo > 9 then
+			clipAmmo = "0"..clipAmmo
 		else
 			clipAmmo = "00"..clipAmmo
 		end
-		if restOfAmmo > 9 then
-			restOfAmmo = "0"..restOfAmmo
-		elseif restOfAmmo > 99 then
+		if restOfAmmo > 99 then
 			restOfAmmo = restOfAmmo
+		elseif restOfAmmo > 9 then
+			restOfAmmo = "0"..restOfAmmo
 		else
 			restOfAmmo = "00"..restOfAmmo
 		end
@@ -115,10 +115,6 @@ surface.CreateFont( "F4_Ammo_Font", {
 
 
 local toHide = {
-	["CHudHealth"] = true,
-	["CHudBattery"] = true,
-	["CHudAmmo"] = true,
-	["CHudSecondaryAmmo"] = true,
 }
 
 hook.Add( "HUDShouldDraw", "HidingDefaultHud", function( name )
