@@ -14,13 +14,13 @@ DamageSys.BodyParts = {
     name = "Chest",
     xPos = 140,
     yPos = 150,
-    textPos = 160,
+    textPos = 170,
   },
   [3] = {
     name = "Stomach",
     xPos = 140,
     yPos = 210,
-    textPos = 220,
+    textPos = 230,
   },
   [4] = {
     name = "Right Arm",
@@ -38,13 +38,13 @@ DamageSys.BodyParts = {
     name = "Right Leg",
     xPos = 90,
     yPos = 300,
-    textPos = 330,
+    textPos = 340,
   },
   [7] = {
     name = "Left Leg",
     xPos = 190,
     yPos = 300,
-    textPos = 330,
+    textPos = 340,
   },
 }
 
