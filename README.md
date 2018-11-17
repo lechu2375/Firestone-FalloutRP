@@ -3,7 +3,7 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 
 ### Informacje
 - GitHub: https://github.com/rebel1324/NutScript
-- FalloutRP (dla inspiracji): https://github.com/NutScript/falloutrp
+- FalloutRP Schema (dla inspiracji): https://github.com/NutScript/falloutrp
 - Discord: https://discord.gg/vgfGyEs
 - Dokumentacja: https://nutscript.miraheze.org/wiki/Main_Page
 - Stara Dokumentacja: https://github.com/Chessnut/NutScript/wiki
