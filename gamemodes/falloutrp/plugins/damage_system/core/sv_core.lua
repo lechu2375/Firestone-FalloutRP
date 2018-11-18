@@ -75,7 +75,6 @@ end
 
 function PLUGIN:EntityTakeDamage(ply, dmginfo)
     local bodyparts = {"Right Leg", "Left Leg"}
-    local hasArmor = false
     if dmginfo:IsFallDamage() then
         for _, v in ipairs(bodyparts) do
             if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
