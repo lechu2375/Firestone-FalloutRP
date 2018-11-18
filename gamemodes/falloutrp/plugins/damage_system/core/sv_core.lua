@@ -112,16 +112,3 @@ function PLUGIN:Think()
         end
     end
 end
-
---[[
-    Wzór: F = m * g
-
-    Dane:
-    Waga <cenzura> = 3000 kg
-    g = 10 N/kg  
-    Szukane:
-    F = ?
-
-    F = 3000kg * 10N/kg
-    F = 30000N
-]]--
