@@ -25,7 +25,7 @@ function PLAYER:HealBodyPart(strBodyPart, intAmount)
 end
 
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
-    local bodypart = ""
+    local bodypart
     
     if  hitgroup == HITGROUP_HEAD then
        dmginfo:ScaleDamage(2)
