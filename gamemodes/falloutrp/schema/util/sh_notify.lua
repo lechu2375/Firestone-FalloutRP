@@ -19,8 +19,8 @@ if (CLIENT) then
     net.Receive("FS_Notify", function()
         local time = net.ReadInt( 8 )
         local text = net.ReadString()
-
-        table.insert(notifsOnScreen, "FS_Notify")
+        local id = table.maxn(notifsOnScreen)
+	      table.insert(notifsOnScreen,"FS_Notify"..id+1)
         local notifLength = string.len(text)
         if string.len(text) < 15 then
           notifLength = notifLength + 2
@@ -34,8 +34,8 @@ if (CLIENT) then
 	      notifyBackground:MoveTo( 10, yPos, 0.5, 0, 0.5, function()
 		    timer.Simple(time, function()
 		        notifyBackground:MoveTo(-400, yPos, 0.5, 0, 0.5, function()
-		            notifyBackground:Remove()
-		            table.RemoveByValue(notifsOnScreen, "FS_Notify")
+		        notifyBackground:Remove()
+			      table.RemoveByValue(notifsOnScreen,"FS_Notify"..id)
 			    end)
 		    end)
 	    end)
