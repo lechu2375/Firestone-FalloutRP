@@ -1,6 +1,6 @@
 PLUGIN.name = "Radio"
 PLUGIN.author = "Black Tea"
-PLUGIN.desc = "You can communicate with other people in distance."
+PLUGIN.desc = "Pozwala na komunikację z innymi."
 local RADIO_CHATCOLOR = Color(100, 255, 50)
 
 -- This is how initialize Language in Single File.
