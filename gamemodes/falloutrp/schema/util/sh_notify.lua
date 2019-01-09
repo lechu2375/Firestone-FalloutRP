@@ -2,56 +2,55 @@ local PLAYER = FindMetaTable("Player")
 local notifsOnScreen = {}
 
 if (SERVER) then
-
     util.AddNetworkString("FS_Notify")
-
-    function PLAYER:Notify(strText, intLength)
+    --
+    function PLAYER:Notify(strText)
         net.Start("FS_Notify")
-            net.WriteInt(intLength, 8)
             net.WriteString(strText)
         net.Send(self)
     end
-
 end
 
 if (CLIENT) then
-
-    net.Receive("FS_Notify", function()
-        local time = net.ReadInt( 8 )
-        local text = net.ReadString()
-        local id = table.maxn(notifsOnScreen)
-	      table.insert(notifsOnScreen,"FS_Notify"..id+1)
-        local notifLength = string.len(text)
-        if string.len(text) < 15 then
-          notifLength = notifLength + 2
+    net.Receive("FS_notice", function()
+        local noticeString = net.ReadString()
+        local notice = vgui.Create("FS_PanelH")
+        --
+        local noticeText = notice:Add("DLabel")
+        noticeText:SetPos(60,15)
+        noticeText:SetFont("FS_Notify")
+        noticeText:SetText(noticeString)
+        noticeText:SizeToContents()
+        noticeText:SetColor(Color(17,255,31))
+        --
+        notice:SetSize(80+noticeText:GetWide(),50)
+	    notice:SetPos(-notice:GetWide()*1.5, 30)
+        --
+        table.insert(notifsOnScreen, notice)
+        --
+        local noticeImage = notice:Add("DImage")
+        noticeImage:SetSize(32,40)
+        noticeImage:SetPos(15, 3)
+        noticeImage:SetImage("fs_notifs/vaultboy.png")
+        --
+        local function showNotice()
+            for k, v in ipairs(notifsOnScreen) do
+                v:MoveTo(10, 30, 0.5, 0, 0.3, function()
+                    surface.PlaySound("buttons/button14.wav")
+                    timer.Simple(4, function()
+                        if IsValid(v) then
+                            v:MoveTo(-v:GetWide()*1.5, 30, 0.5, 0, 0.5, function()
+                                v:Remove()
+                                table.remove(notifsOnScreen, 1)
+                                showNotice()
+                            end)
+                        end
+                    end)
+                end)
+                break
+            end
         end
-	      local notifText = tostring(text)
-	      local yPos = #notifsOnScreen * 60 - 40
-
-        local notifyBackground = vgui.Create("FS_PanelH")
-        notifyBackground:SetSize(60+notifLength*7.7,50)
-	      notifyBackground:SetPos(-400,yPos)
-	      notifyBackground:MoveTo( 10, yPos, 0.5, 0, 0.5, function()
-		    timer.Simple(time, function()
-		        notifyBackground:MoveTo(-400, yPos, 0.5, 0, 0.5, function()
-		        notifyBackground:Remove()
-			      table.RemoveByValue(notifsOnScreen,"FS_Notify"..id)
-			    end)
-		    end)
-	    end)
-
-        local notifyImage = notifyBackground:Add("DImage")
-        notifyImage:SetSize(48, 48)
-        notifyImage:SetPos(10, 0)
-        notifyImage:SetImage("fs_notifs/vaultboy.png")
-
-        local notifyText = notifyBackground:Add("DLabel")
-        notifyText:SetPos(62,15)
-        notifyText:SetFont("FS_Notify")
-        notifyText:SetText(notifText)
-        notifyText:SizeToContents()
-        notifyText:SetColor(Color(17,255,31))
-
+        --
+        showNotice()
     end)
-
 end
