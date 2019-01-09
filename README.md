@@ -1,8 +1,8 @@
-# Firestone Foundation - FalloutRP
+﻿# Firestone Foundation - FalloutRP
 Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatywą Lecha mający na celu stworzenie najlepszego w Polsce serwera opartego o serię gier Fallout. Projekt w całości działa na silnku Nutscript, jest on jednak wspomagany autorskimi skryptami oraz innowacyjnymi rozwiązaniami. Projekt jest aktualnie w fazie Alpha podczas której nasz zespół aktywnie pracuje nad wprowadzaniem nowych mechanik oraz udoskonalaniem starych.
 
 ### Informacje
-- GitHub: https://github.com/rebel1324/NutScript
+- GitHub: https://github.com/rebel1324/NutScript d
 - FalloutRP (dla inspiracji): https://github.com/NutScript/falloutrp
 - Discord: https://discord.gg/vgfGyEs
 - Dokumentacja: https://nutscript.miraheze.org/wiki/Main_Page
