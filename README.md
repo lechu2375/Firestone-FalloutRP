@@ -47,5 +47,4 @@ PLAYER:GetPowerArmor()
 ### Credits
 - SaturdaysHeroes (Lead Developer)
 - Djuk (Developer)
-- FrX (Developer)
 - Lechu (Mapper)
