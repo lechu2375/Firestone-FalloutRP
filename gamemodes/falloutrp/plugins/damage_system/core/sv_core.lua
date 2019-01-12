@@ -68,13 +68,19 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
     end
     if ply:IsBleeding() && !ply.WasNotified then
-        ply:Notify("Krwawisz", 5)
+        ply:Notify("W wyniku postrzalu zaczales krwawic!")
         ply.WasNotified = true
+    end
+    
+    local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
+    if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
+        v.WasRagdolled = false
     end
 end
 
 function PLUGIN:EntityTakeDamage(ply, dmginfo)
     local bodyparts = {"Right Leg", "Left Leg"}
+    local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
     if dmginfo:IsFallDamage() then
         for _, v in ipairs(bodyparts) do
             if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
@@ -82,16 +88,25 @@ function PLUGIN:EntityTakeDamage(ply, dmginfo)
             else
                 ply:DamageBodyPart(v, math.Round(math.random(dmginfo:GetDamage()/1.5, dmginfo:GetDamage()*1.5)))
             end
+            if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
+                ply.WasRagdolled = false
+            end
         end
     end
 end
 
-function PLUGIN:PlayerSpawn(ply)
+function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wyświetlać hp kończyn, aż do respawnu.
+    ply.WasRagdolled = true
+    ply:setRagdolled(false)
+end
+
+function PLUGIN:PlayerSpawn(ply) 
     for i, v in ipairs(DamageSys.BodyParts) do 
         ply:SetNWInt("Firestone."..v.name.."Health", 100)
         ply:SetNWInt("Firestone.Bleeding", 0)
-        ply.WasNotified = false
     end
+    ply.WasNotified = false
+    ply.WasRagdolled = false
 end
 
 function PLUGIN:Think()
@@ -107,7 +122,16 @@ function PLUGIN:Think()
         if v:GetBodyPartHealth("Right Leg") < 100 || v:GetBodyPartHealth("Left Leg") < 100 then
             local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
             v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
-            v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 70), 7, 240))
+            v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
+            if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
+                if !v.WasRagdolled then
+                    v:setRagdolled(true)
+                    v.WasRagdolled = true
+                end
+            else
+                v:setRagdolled(false)
+                v.WasRagdolled = false
+            end
         end
     end
 end
