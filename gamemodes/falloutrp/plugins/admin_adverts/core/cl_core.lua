@@ -2,7 +2,7 @@ if !CLIENT then return end
 scale = ScrH()
 net.Receive("FS_RunAdvert", function()
 
-  local text = net.ReadString()
+  local text = string.upper(table.concat( net.ReadTable(), " " ))
   local length = string.len(text)
 
   local advertPanel = vgui.Create("FS_PanelH")

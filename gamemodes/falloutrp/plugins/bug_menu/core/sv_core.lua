@@ -5,14 +5,6 @@ local PLUGIN = PLUGIN
 util.AddNetworkString("fs_bug_ui")
 util.AddNetworkString("fs_bug_info")
 
-function PLUGIN:PlayerSay(ply, text)
-    if (string.lower(text) == "!bug") then
-        net.Start("fs_bug_ui")
-        net.Send(ply)
-        return ""
-    end
-end
-
 net.Receive("fs_bug_info", function(len, ply)
     local problem = string.gsub(net.ReadString(), "@", "")
     local priority = net.ReadInt(3)
