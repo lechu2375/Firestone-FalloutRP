@@ -10,9 +10,9 @@ Firestone.Karma.Ranks = {
 }
 
 Firestone.Karma.BadActions = {
-    ["Zabojstwo"] = -50,
-    ["Kradziez"] = -25,
-    ["Klamstwo"] = -10
+    ["Zabojstwo"] = 150,
+    ["Kradziez"] = 25,
+    ["Klamstwo"] = 10
 }
 
 Firestone.Karma.GoodActions = {

@@ -11,7 +11,7 @@ function PLAYER:AddKarma(intAmount)
         char:setData("karma", 0)
     end
 
-    char:setData("karma", char:getData("karma") + intAmount)
+    char:setData("karma", char:getData("karma")+intAmount)
 end
 
 function PLAYER:RemoveKarma(intAmount)
@@ -21,7 +21,7 @@ function PLAYER:RemoveKarma(intAmount)
         char:setData("karma", 0)
     end
 
-    char:setData("karma", char:getData("karma") - intAmount)
+    char:setData("karma", char:getData("karma")-intAmount)
 end
 
 function PLAYER:GetKarma()
@@ -96,6 +96,7 @@ function PLUGIN:OnNPCKilled(npc, attacker)
     local action = "Zabojstwo"
 
     attacker:RemoveKarma(Firestone.Karma.BadActions[action])
+    print(attacker:GetKarma())
     attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
     attacker:LoadKarmaRank()
 end
