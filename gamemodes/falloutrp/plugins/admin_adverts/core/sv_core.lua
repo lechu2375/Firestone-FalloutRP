@@ -2,23 +2,17 @@ if !SERVER then return end
 local PLUGIN = PLUGIN
 
 util.AddNetworkString("FS_RunAdvert")
-local cooldown = false
 
-function PLUGIN:PlayerSay(ply, text)
-  if ply:GetUserGroup() != "superadmin" then return "" end
-  if string.sub(string.lower(text),1,11) == "!ogloszenie" then
-    if cooldown then ply:ChatPrint("Aktualnie na ekranie widnieje inne ogłoszenie!") return "" end
-    local advertText = string.sub(text,13)
-    if string.len(advertText) < 10 then
-      ply:ChatPrint("Treść ogłoszenia jest za krótka!")
-    else
+nut.command.add("ogloszenie", {
+	syntax = "<treść>",
+	adminOnly = true,
+	onRun = function(ply, arg)
+    local cd = false
+    if ply:GetUserGroup() != "superadmin" then return "Brak uprawnień!" end
       net.Start("FS_RunAdvert")
-      net.WriteString(string.upper(advertText))
-      net.WriteString(string.upper(ply:Nick()))
+        net.WriteString(string.upper( arg[1] )) 
       net.Broadcast()
-      cooldown = true
-      timer.Simple(31, function() cooldown = false end)
-    end
-    return ""
-  end
-end
+      cd = true
+      timer.Simple(30 + 1, function() cd = false end)
+	end
+})

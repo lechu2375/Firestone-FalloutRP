@@ -30,13 +30,13 @@ function PANEL:Paint(w, h)
   draw.RoundedBox(0, 0, 0, w, h, self.dark)
   surface.SetDrawColor(self.light)
   // Left side
-  surface.DrawRect(0,0,4,self:GetTall())
-  surface.DrawRect(4,0,self:GetWide()*0.01,4)
-  surface.DrawRect(4,self:GetTall()-4,self:GetWide()*0.01,4)
+  surface.DrawRect(0,0,3,self:GetTall())
+  surface.DrawRect(3,0,5,3)
+  surface.DrawRect(3,self:GetTall()-3,5,3)
   // Right Side
-  surface.DrawRect(self:GetWide()-4,0,4,self:GetTall())
-  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-2,0,self:GetWide()*0.01,4)
-  surface.DrawRect(self:GetWide()-self:GetWide()*0.01-2,self:GetTall()-4,self:GetWide()*0.01,4)
+  surface.DrawRect(self:GetWide()-3,0,3,self:GetTall())
+  surface.DrawRect(self:GetWide()-8,0,5,3)
+  surface.DrawRect(self:GetWide()-8,self:GetTall()-3,5,3)
 end
 
 vgui.Register("FS_PanelH", PANEL, "DPanel")

@@ -5,14 +5,14 @@ if (SERVER) then
     util.AddNetworkString("FS_Notify")
     --
     function PLAYER:Notify(strText)
-        net.Start("FS_Notify")
+        net.Start("FS_Notify") 
             net.WriteString(strText)
         net.Send(self)
     end
 end
 
 if (CLIENT) then
-    net.Receive("FS_notice", function()
+    net.Receive("FS_Notify", function()
         local noticeString = net.ReadString()
         local notice = vgui.Create("FS_PanelH")
         --
@@ -37,7 +37,7 @@ if (CLIENT) then
             for k, v in ipairs(notifsOnScreen) do
                 v:MoveTo(10, 30, 0.5, 0, 0.3, function()
                     surface.PlaySound("buttons/button14.wav")
-                    timer.Simple(4, function()
+                    timer.Simple(8, function()
                         if IsValid(v) then
                             v:MoveTo(-v:GetWide()*1.5, 30, 0.5, 0, 0.5, function()
                                 v:Remove()
