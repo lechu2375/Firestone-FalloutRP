@@ -34,7 +34,7 @@ local function Toggle()
     local f_button = buttonHolder:Add("FS_Button_ESC")
     f_button:SetSize(buttonHolder:GetWide()*0.8,buttonHolder:GetTall()*0.1)
     f_button:SetText(v.Name)
-		f_button:SetPos(20,pos)
+	f_button:SetPos(20,pos)
     f_button.DoClick = v.Click
   end
 end
@@ -84,6 +84,7 @@ AddFalloutButton({
 AddFalloutButton({
 	Name = "KOLEKCJA",
 	Click = function()
+		mainDerma:Remove()
 		gui.OpenURL("dozrobienia")
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 	end
@@ -92,7 +93,8 @@ AddFalloutButton({
 AddFalloutButton({
 	Name = "STRONA",
 	Click = function()
-		gui.OpenURL("dozrobienia")
+		mainDerma:Remove()
+		gui.OpenURL("http://firestone-foundation.pl")
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
 	end
 })
