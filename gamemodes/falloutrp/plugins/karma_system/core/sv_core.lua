@@ -96,7 +96,6 @@ function PLUGIN:OnNPCKilled(npc, attacker)
     local action = "Zabojstwo"
 
     attacker:RemoveKarma(Firestone.Karma.BadActions[action])
-    print(attacker:GetKarma())
     attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
     attacker:LoadKarmaRank()
 end
