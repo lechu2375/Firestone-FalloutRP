@@ -27,7 +27,7 @@ function PLAYER:LoadKarmaRank()
         char:setData("karma", 0)
     end
 
-    for k, v in pairs(Firestone.Karma.Ranks) do 
+    for k, v in ipairs(Firestone.Karma.Ranks) do 
         if char:getData("karma") => v then 
             char:setData("karma_rank", k)
             break
