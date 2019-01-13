@@ -41,15 +41,37 @@ function PLAYER:LoadKarmaRank()
         char:setData("karma", 0)
     end
 
-    for k, v in ipairs(Firestone.Karma.Ranks) do 
-        if char:getData("karma") >= v then 
-            char:setData("karma_rank", k)
-            break
-        end
+    local karma = char:getData("karma")
+
+    if karma >= 200 then 
+        char:setData("karma_rank", "Przyjazny")
+        self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
+        return
     end
 
-    --self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
-    print(char:getData("karma_rank"))
+    if karma >= 100 then 
+        char:setData("karma_rank", "Dobry")
+        self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
+        return
+    end
+
+    if karma >= 0 then 
+        char:setData("karma_rank", "Neutralny")
+        self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
+        return
+    end
+
+    if karma >= -100 then 
+        char:setData("karma_rank", "Agreswyny")
+        self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
+        return
+    end
+
+    if karma >= -200 then 
+        char:setData("karma_rank", "Bandyta")
+        self:Notify("Twoja obecna ranga karmy to "..char:getData("karma_rank"))
+        return
+    end
 end
 
 function PLAYER:GetKarmaRank()
