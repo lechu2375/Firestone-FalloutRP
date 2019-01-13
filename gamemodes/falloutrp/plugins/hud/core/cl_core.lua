@@ -5,10 +5,10 @@ local width = ScrW()
 local height = ScrH()
 local lightColor = Color(17,255,31)
 local healthLerp = 100
-local armorLerp = 100
+local staminaLerp = 100
 
 local function DrawBar( x, y, side, text, lerp )
-	local textPos = nil
+local textPos = nil
   if side == "Left" then
   	textPos = x - 40
   elseif side == "Right" then
@@ -20,7 +20,7 @@ local function DrawBar( x, y, side, text, lerp )
 	surface.DrawRect(x + width*0.2 - 3, y - 10, 3, 10)
 	if lerp then
 		healthLerp = Lerp(4 * FrameTime(), healthLerp, LocalPlayer():Health())
-		armorLerp = Lerp(4 * FrameTime(), armorLerp, LocalPlayer():Armor())
+		staminaLerp = Lerp(12 * FrameTime(), staminaLerp, LocalPlayer():getLocalVar("stm", 0))
 		surface.DrawRect(x, y - 10,(lerp * (ScrW() * 0.2) )/100, 10)
 	end
 	if text then
@@ -28,14 +28,15 @@ local function DrawBar( x, y, side, text, lerp )
 	end
 end
 
+
 function PLUGIN:HUDPaint()
 
 	if !LocalPlayer():Alive() then return end
-
+	LocalPlayer():getLocalVar("stm", 0)
 	// HP, AP
 
 	DrawBar(width*0.07, height*0.93, "Left", "HP", healthLerp)
-  	DrawBar(width*0.73, height*0.93, "Right", "AP", armorLerp)
+  	DrawBar(width*0.73, height*0.93, "Right", "ST", staminaLerp)
 
 	// KOMPAS PO STARYM JEBANY
 
