@@ -23,8 +23,14 @@ net.Receive("FS_RunAdvert", function()
   advertText:SetFont("FS_Main_Small")
 
   local textPos = -length*10
+  local textSpeed = 0
+  if ScrW() < 1680 then
+    textSpeed = 0.6
+  else
+    textSpeed = 1
+  end
   advertText.Think = function()
-    textPos = textPos+1.5
+    textPos = textPos + textSpeed
     advertText:SetPos(textPos,height/2-advertText:GetTall()/2)
     if textPos > width + length then
       textPos = -length*10

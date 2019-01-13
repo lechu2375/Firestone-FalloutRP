@@ -13,6 +13,7 @@ Firestone.Util = {}
 Firestone.LightGreen = Color(15, 72, 34,215)
 Firestone.DarkGreen = Color(17,255,31)
 Firestone.Blur = Material("pp/blurscreen")
+Firestone.License = 'FS7AVM4ikg9A6FS'
 
 ------------------
 --[[ INCLUDES ]]--

@@ -35,7 +35,7 @@ function PLUGIN:HUDPaint()
 	// HP, AP
 
 	DrawBar(width*0.07, height*0.93, "Left", "HP", healthLerp)
-  DrawBar(width*0.73, height*0.93, "Right", "AP", armorLerp)
+  	DrawBar(width*0.73, height*0.93, "Right", "AP", armorLerp)
 
 	// KOMPAS PO STARYM JEBANY
 
@@ -44,32 +44,40 @@ function PLUGIN:HUDPaint()
 	local vector = LocalPlayer():GetPos() + Vector(500,0,0) - LocalPlayer():GetShootPos()
 	vector = vector:GetNormal()
 	local pos = ang:Right():Dot(vector)*-1
-	local alpha = 255 - math.abs(pos)*255
+
+	local alpha = 255 - math.abs(pos)*200
+	surface.SetDrawColor(17,255,31,alpha)
 
 	if ang.y > -90 and ang.y < 90 then
 		draw.SimpleText("N", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
+		surface.DrawRect(width/2 + pos*ScrW()/10 - 1,height*0.93,3,15)
 	end
+
 	local vector = LocalPlayer():GetPos() + Vector(0,500,0) - LocalPlayer():GetShootPos()
 	vector = vector:GetNormal()
 	local pos = ang:Right():Dot(vector)
-	local alpha = 255 - math.abs(pos)*255
+	local alpha = 255 - math.abs(pos)*200
+	surface.SetDrawColor(17,255,31,alpha)
 	if ang.y < 0 and ang.y > -180 then
 		draw.SimpleText("E", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
 	end
+
 	local vector = LocalPlayer():GetPos() + Vector(0,-500,0) - LocalPlayer():GetShootPos()
 	vector = vector:GetNormal()
 	local pos = ang:Right():Dot(vector)
-	local alpha = 255 - math.abs(pos)*255
+	local alpha = 255 - math.abs(pos)*200
+	surface.SetDrawColor(17,255,31,alpha)
 	if ang.y > 0 and ang.y < 180 then
 		draw.SimpleText("W", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
 	end
+
 	local vector = LocalPlayer():GetPos() + Vector(-500,0) - LocalPlayer():GetShootPos()
 	vector = vector:GetNormal()
 	local pos = ang:Right():Dot(vector)*-1
-	local alpha = 255 - math.abs(pos)*255
+	local alpha = 255 - math.abs(pos)*200
+	surface.SetDrawColor(17,255,31,alpha)
 	if (ang.y > 90 or ang.y < -90) then
 		draw.SimpleText("S", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
