@@ -6,7 +6,7 @@ function PLAYER:DamageBodyPart(strBodypPart, intDmg)
 end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
-   local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health")
+   local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health", 100)
     if BodyPartHP != nil then 
          return BodyPartHP
      else
@@ -15,7 +15,7 @@ function PLAYER:GetBodyPartHealth(strBodyPart)
 end
 
 function PLAYER:HealBodyPart(strBodyPart, intAmount)
-    local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health")
+    local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health", 100)
     if BodyPartHP >= 100 then return end 
     if intAmount + BodyPartHP <= 100 then
         self:SetNWInt("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
@@ -71,7 +71,7 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         ply:Notify("W wyniku postrzalu zaczales krwawic!")
         ply.WasNotified = true
     end
-    
+
     local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
     if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
         v.WasRagdolled = false
@@ -80,18 +80,20 @@ end
 
 function PLUGIN:EntityTakeDamage(ply, dmginfo)
     local bodyparts = {"Right Leg", "Left Leg"}
-    local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
-    if dmginfo:IsFallDamage() then
-        for _, v in ipairs(bodyparts) do
-            if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
-                ply:DamageBodyPart(v, math.Round(math.random(dmginfo:GetDamage()/1.5, dmginfo:GetDamage()*1.5) - ply:GetArmor()))
-            else
-                ply:DamageBodyPart(v, math.Round(math.random(dmginfo:GetDamage()/1.5, dmginfo:GetDamage()*1.5)))
-            end
-            if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
-                ply.WasRagdolled = false
-            end
-        end
+    if ply:IsPlayer() && IsValid(ply) then
+	    local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
+	    if dmginfo:IsFallDamage() then
+	        for _, v in ipairs(bodyparts) do
+	            if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
+	                ply:DamageBodyPart(v, math.Round(math.random(dmginfo:GetDamage()/1.5, dmginfo:GetDamage()*1.5) - ply:GetArmor()))
+	            else
+	                ply:DamageBodyPart(v, math.Round(math.random(dmginfo:GetDamage()/1.5, dmginfo:GetDamage()*1.5)))
+	            end
+	        end
+	        if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
+	            ply.WasRagdolled = false
+	        end
+	    end        
     end
 end
 
@@ -119,6 +121,7 @@ function PLUGIN:Think()
             end
         else v.WasNotified = false
         end
+        
         if v:GetBodyPartHealth("Right Leg") < 100 || v:GetBodyPartHealth("Left Leg") < 100 then
             local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
             v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
