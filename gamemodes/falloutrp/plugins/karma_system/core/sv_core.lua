@@ -28,7 +28,7 @@ function PLAYER:LoadKarmaRank()
     end
 
     for k, v in ipairs(Firestone.Karma.Ranks) do 
-        if char:getData("karma") => v then 
+        if char:getData("karma") >= v then 
             char:setData("karma_rank", k)
             break
         end
@@ -49,6 +49,16 @@ function PLUGIN:PlayerDeath(victim, attacker)
     attacker:RemoveKarma(Firestone.Karma.BadActions[action])
     attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
 end
+
+function PLUGIN:OnNPCKilled(attacker)
+    if !attacker:IsPlayer() then return end 
+
+    local action = "Zabojstwo"
+
+    attacker:RemoveKarma(Firestone.Karma.BadActions[action])
+    attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
+end
+
 
 
 
