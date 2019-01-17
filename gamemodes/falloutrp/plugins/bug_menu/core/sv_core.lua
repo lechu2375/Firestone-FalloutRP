@@ -60,7 +60,7 @@ net.Receive("fs_bug_info", function(len, ply)
                 },
 
                 thumbnail = {
-                    url = "http://api.saturdaysheroes.me/gmod/savatar/index.php/steamProfileByID?id="..ply:SteamID64()
+                    url = "http://api.saturdaysheroes.xyz/gmod/savatar/index.php/steamProfileByID?id="..ply:SteamID64()
                 },
 
                 color = priority_color
