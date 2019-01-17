@@ -110,10 +110,19 @@ local trujkont_zycia = {
 	{ x = 0, y = ScrH()/2 + 25 }
 }
 
+local trujkont_zycia_outline = {
+	{ x = 0, y = ScrH()/2 - 26 },
+	{ x = 26, y = ScrH()/2 },
+	{ x = 0, y = ScrH()/2 + 26 }
+}
+
 function PLUGIN:HUDPaint()
     if !pIsVisible then
-        surface.SetDrawColor( 15, 72, 34,235 )
         draw.NoTexture()
+        surface.SetDrawColor( 17,255,31 )
+        surface.DrawPoly( trujkont_zycia_outline )
+        --
+        surface.SetDrawColor( 15, 72, 34 )
         surface.DrawPoly( trujkont_zycia )
         draw.SimpleText("F4", "FS_Side_Small", 2, ScrH()/2-10, Color(17,255,31))
     end

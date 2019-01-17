@@ -8,6 +8,7 @@ end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
     local char = self:getChar()
+    if !char then return end
     local BodyPartHP = char:getData("Firestone."..strBodyPart.."Health")
     if BodyPartHP != nil then 
          return BodyPartHP
