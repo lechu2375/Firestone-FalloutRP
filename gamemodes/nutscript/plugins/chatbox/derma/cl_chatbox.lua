@@ -9,12 +9,12 @@ local PANEL = {}
 	function PANEL:Init()
 		local border = 32
 		local scrW, scrH = ScrW(), ScrH()
-		local w, h = scrW * 0.4, scrH * 0.375
+		local w, h = scrW * 0.35, scrH * 0.35
 
 		nut.gui.chat = self
 
 		self:SetSize(w, h)
-		self:SetPos(border, scrH - h - border)
+		self:SetPos(border, scrH - h - 96)
 
 		self.active = false
 
