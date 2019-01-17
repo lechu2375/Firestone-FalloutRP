@@ -4,23 +4,23 @@ local function initAMBIENCE()
 
   -- AMBIENT MUSIC
   ----------------------------------------------------------------------------------------------------
-  FO_AMB.RegisterTrack("Ambient1", "fs_map/ambient/sounds/fs_zwiedzanie_1.wav", 126, 100)
-  FO_AMB.RegisterTrack("Ambient2", "fs_map/ambient/sounds/fs_zwiedzanie_2.wav", 211, 100, {"Legion"})
-  FO_AMB.RegisterTrack("Ambient3", "fs_map/ambient/sounds/fs_zwiedzanie_3.wav", 270, 100)
-  FO_AMB.RegisterTrack("Ambient4", "fs_map/ambient/sounds/fs_zwiedzanie_4.wav", 210, 100, {"NCR"})
-  FO_AMB.RegisterTrack("Ambient5","fs_map/ambient/sounds/fs_zwiedzanie_5.wav",240, 100, {"Legion"})
-  FO_AMB.RegisterTrack("Ambient6","fs_map/ambient/sounds/fs_zwiedzanie_6.wav",270, 100, {"NCR"})  
-  FO_AMB.RegisterTrack("Ambient7","fs_map/ambient/sounds/fs_zwiedzanie_7.wav",246, 100, {"Legion"})
-  FO_AMB.RegisterTrack("Ambient8","fs_map/ambient/sounds/fs_zwiedzanie_8.wav",288, 100, {"NCR"})
+  FO_AMB.RegisterTrack("Ambient1", "fs_map/ambient/sounds/fs_zwiedzanie_1.mp3", 126, 100)
+  FO_AMB.RegisterTrack("Ambient2", "fs_map/ambient/sounds/fs_zwiedzanie_2.mp3", 211, 100, {"Legion"})
+  FO_AMB.RegisterTrack("Ambient3", "fs_map/ambient/sounds/fs_zwiedzanie_3.mp3", 270, 100)
+  FO_AMB.RegisterTrack("Ambient4", "fs_map/ambient/sounds/fs_zwiedzanie_4.mp3", 210, 100, {"NCR"})
+  FO_AMB.RegisterTrack("Ambient5","fs_map/ambient/sounds/fs_zwiedzanie_5.mp3",240, 100, {"Legion"})
+  FO_AMB.RegisterTrack("Ambient6","fs_map/ambient/sounds/fs_zwiedzanie_6.mp3",270, 100, {"NCR"})  
+  FO_AMB.RegisterTrack("Ambient7","fs_map/ambient/sounds/fs_zwiedzanie_7.mp3",246, 100, {"Legion"})
+  FO_AMB.RegisterTrack("Ambient8","fs_map/ambient/sounds/fs_zwiedzanie_8.mp3",288, 100, {"NCR"})
   ----------------------------------------------------------------------------------------------------
 
   -- RADIAL AMBIENCE
   --SKŁADNIA FO_AMB.RegisterTrack("NAZWA","ŚCIEŻKA",DŁUGOŚĆ TRACKU W SEKUNDACH, GŁOŚNOŚĆ, czy do bitki muza bool, "lokacja")--
- FO_AMB.RegisterTrack("Legion 1","fs_map/ambient/sounds/fs_cezar.wav",252, 100, nil, "Legion")  
- FO_AMB.RegisterTrack("NCR 1","fs_map/ambient/sounds/fs_miasto.wav",264, 100, nil, "NCR") 
- FO_AMB.RegisterTrack("Podziemia 1","fs_map/ambient/sounds/fs_podziemia.wav",264, 100, nil, "Schron")
+ FO_AMB.RegisterTrack("Legion 1","fs_map/ambient/sounds/fs_cezar.mp3",252, 100, nil, "Legion")  
+ FO_AMB.RegisterTrack("NCR 1","fs_map/ambient/sounds/fs_miasto.mp3",264, 100, nil, "NCR") 
+ FO_AMB.RegisterTrack("Podziemia 1","fs_map/ambient/sounds/fs_podziemia.mp3",264, 100, nil, "Schron")
 
- FO_AMB.RegisterTrack("BoS 1","fs_map/ambient/sounds/fs_bunkier.wav",187, 100, nil, "BoS")
+ FO_AMB.RegisterTrack("BoS 1","fs_map/ambient/sounds/fs_bunkier.mp3",187, 100, nil, "BoS")
 
   ---------------------------------------------------------------------------------------------------------
 
