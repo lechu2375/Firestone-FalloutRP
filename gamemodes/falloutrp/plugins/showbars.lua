@@ -4,7 +4,7 @@ PLUGIN.desc = "Shows you all bars while content menu is active."
 --# Configuration: true - show bar, false - don't show bar.
 -- stm = stamina bar, health = health bar, hunger = hunger bar (only for cookfood plugin)
 PLUGIN.wlist = {
-	health = true,
+	health = false,
 	stm = true, 
 	hunger = false
  }
