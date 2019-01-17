@@ -1,12 +1,14 @@
 local PLUGIN = PLUGIN
 local PLAYER = FindMetaTable("Player")
 
-function PLAYER:DamageBodyPart(strBodypPart, intDmg)
-   self:SetNWInt("Firestone."..strBodypPart.."Health", self:GetNWInt("Firestone."..strBodypPart.."Health", 100) - math.Clamp(intDmg, 0, self:GetNWInt("Firestone."..strBodypPart.."Health", 100))) 
+function PLAYER:DamageBodyPart(strBodyPart, intDmg)
+    local char = self:getChar()
+    char:setData("Firestone."..strBodyPart.."Health", char:getData("Firestone."..strBodyPart.."Health") - math.Clamp(intDmg, 0, char:getData("Firestone."..strBodyPart.."Health")))
 end
 
 function PLAYER:GetBodyPartHealth(strBodyPart)
-   local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health", 100)
+    local char = self:getChar()
+    local BodyPartHP = char:getData("Firestone."..strBodyPart.."Health")
     if BodyPartHP != nil then 
          return BodyPartHP
      else
@@ -15,12 +17,13 @@ function PLAYER:GetBodyPartHealth(strBodyPart)
 end
 
 function PLAYER:HealBodyPart(strBodyPart, intAmount)
-    local BodyPartHP = self:GetNWInt("Firestone."..strBodyPart.."Health", 100)
+    local char = self:getChar()
+    local BodyPartHP = char:getData("Firestone."..strBodyPart.."Health")
     if BodyPartHP >= 100 then return end 
     if intAmount + BodyPartHP <= 100 then
-        self:SetNWInt("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
+        char:setData("Firestone."..strBodyPart.."Health", BodyPartHP + intAmount)
     else
-        self:SetNWInt("Firestone."..strBodyPart.."Health", 100)
+        char:setData("Firestone."..strBodyPart.."Health", 100)
     end
 end
 
@@ -74,7 +77,7 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
 
     local LeftLegHealth, RightLegHealth = ply:GetBodyPartHealth("Left Leg"), ply:GetBodyPartHealth("Right Leg")
     if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
-        v.WasRagdolled = false
+        ply.WasRagdolled = false
     end
 end
 
@@ -97,18 +100,26 @@ function PLUGIN:EntityTakeDamage(ply, dmginfo)
     end
 end
 
+function PLUGIN:OnCharCreated(ply)
+    local char = ply:getChar()
+    for i, v in ipairs(DamageSys.BodyParts) do
+        char:setData("Firestone."..v.name.."Health", 100)
+    end
+end
+
 function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wyświetlać hp kończyn, aż do respawnu.
     ply.WasRagdolled = true
     ply:setRagdolled(false)
 end
 
-function PLUGIN:PlayerSpawn(ply) 
+function PLAYER:CharacterLoaded()
+    local char = self:getChar()
+    char:setData("Firestone.Bleeding", 0) 
+    self.WasNotified = false
+    self.WasRagdolled = false
     for i, v in ipairs(DamageSys.BodyParts) do 
-        ply:SetNWInt("Firestone."..v.name.."Health", 100)
-        ply:SetNWInt("Firestone.Bleeding", 0)
+        char:setData("Firestone."..v.name.."Health", 100)
     end
-    ply.WasNotified = false
-    ply.WasRagdolled = false
 end
 
 function PLUGIN:Think()
@@ -122,7 +133,7 @@ function PLUGIN:Think()
         else v.WasNotified = false
         end
         
-        if v:GetBodyPartHealth("Right Leg") < 100 || v:GetBodyPartHealth("Left Leg") < 100 then
+        if v:GetBodyPartHealth("Right Leg") <= 100 || v:GetBodyPartHealth("Left Leg") <= 100 then
             local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
             v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
             v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
@@ -136,5 +147,11 @@ function PLUGIN:Think()
                 v.WasRagdolled = false
             end
         end
+    end
+end
+
+function PLAYER:HealParts()
+    for _,bodypart in ipairs(DamageSys.BodyParts) do
+        self:getChar():setData("Firestone."..bodypart.name.."Health", 100)
     end
 end

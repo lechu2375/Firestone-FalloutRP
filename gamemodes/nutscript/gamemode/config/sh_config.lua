@@ -1,5 +1,5 @@
 -- You can change the default language here:
-nut.config.language = "english"
+nut.config.language = "polish"
 nut.config.itemFormat = "<font=nutGenericFont>%s</font>\n<font=nutSmallFont>%s</font>"
 
 --[[
