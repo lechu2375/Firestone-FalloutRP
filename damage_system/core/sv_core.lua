@@ -154,6 +154,10 @@ function PLUGIN:Think()
                     v.WasRagdolled = false
                 end
             end
+
+            if v:GetBodyPartHealth("Head") < 30 || v:GetBodyPartHealth("Chest") < 20 || v:GetBodyPartHealth("Stomach") < 15 then
+                v:Kill()
+            end
         end
     end
 end
