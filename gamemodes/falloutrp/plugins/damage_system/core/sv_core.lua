@@ -108,28 +108,33 @@ function PLUGIN:OnCharCreated(ply)
     end
 end
 
-function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wyświetlać hp kończyn, aż do respawnu.
-    ply.WasRagdolled = true
-    ply:setRagdolled(false)
-end
-
-function PLAYER:CharacterLoaded()
-    local char = self:getChar()
-    char:setData("Firestone.Bleeding", 0) 
-    self.WasNotified = false
-    self.WasRagdolled = false
+function PLUGIN:PlayerLoadedChar(ply, char, oldchar)
+    char:setData("Firestone.Bleeding", 0)
+    ply.WasNotified = false
+    ply.WasRagdolled = false
     for i, v in ipairs(DamageSys.BodyParts) do 
         char:setData("Firestone."..v.name.."Health", 100)
     end
 end
 
+function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wyświetlać hp kończyn, aż do respawnu.
+    local char = ply:getChar()
+    char:setData("Firestone.Bleeding", 0)
+    ply.WasNotified = false
+    ply.WasRagdolled = false
+    for i, v in ipairs(DamageSys.BodyParts) do 
+        char:setData("Firestone."..v.name.."Health", 100)
+    end    
+end
+
 function PLUGIN:Think()
+    if !char then return end
     for _, v in ipairs(player.GetAll()) do
         if v:IsBleeding() then
             if CurTime() > v.BleedingTimer + DamageSys.BleedingInterval then
                 v.BleedingTimer = CurTime()
                 v:TakeDamage(1, v, nil)
-                v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
+                v:setData("Firestone.Bleeding", v:GetBleeding() - 1)
             end
         else v.WasNotified = false
         end
@@ -148,11 +153,5 @@ function PLUGIN:Think()
                 v.WasRagdolled = false
             end
         end
-    end
-end
-
-function PLAYER:HealParts()
-    for _,bodypart in ipairs(DamageSys.BodyParts) do
-        self:getChar():setData("Firestone."..bodypart.name.."Health", 100)
     end
 end

@@ -80,26 +80,27 @@ end
 
 function PLUGIN:Think()
   // toggling
-    if !char then return end
-    if input.IsKeyDown(KEY_F4) && !pIsVisible then
-        ToggleDerma()
-        pIsVisible = true
-    elseif !input.IsKeyDown(KEY_F4) && pIsVisible && IsValid(basePanel) then
-        basePanel:MoveTo(-basePanel:GetWide() - 50,scale/2 - basePanel:GetTall()/2, 0.3, 0, 0.5)
-        basePanel:NewAnimation(0, 0.3, 0.5, function()
-            basePanel:Remove()
-            pIsVisible = false
-        end)
-    end
-    // bleeding
-    if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) > 0 then
-        if IsValid(basePanel) then
-            bleedingHolder:SetVisible(true)
+    if char then
+        if input.IsKeyDown(KEY_F4) && !pIsVisible then
+            ToggleDerma()
+            pIsVisible = true
+        elseif !input.IsKeyDown(KEY_F4) && pIsVisible && IsValid(basePanel) then
+            basePanel:MoveTo(-basePanel:GetWide() - 50,scale/2 - basePanel:GetTall()/2, 0.3, 0, 0.5)
+            basePanel:NewAnimation(0, 0.3, 0.5, function()
+                basePanel:Remove()
+                pIsVisible = false
+            end)
         end
-    end
-    if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) <= 0 || !LocalPlayer():Alive() then
-        if IsValid(basePanel) then
-          bleedingHolder:SetVisible(false)
+        // bleeding
+        if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) > 0 then
+            if IsValid(basePanel) then
+                bleedingHolder:SetVisible(true)
+            end
+        end
+        if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) <= 0 || !LocalPlayer():Alive() then
+            if IsValid(basePanel) then
+            bleedingHolder:SetVisible(false)
+            end
         end
     end
 end
