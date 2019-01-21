@@ -28,6 +28,12 @@ function PLAYER:HealBodyPart(strBodyPart, intAmount)
     end
 end
 
+function PLAYER:HealParts()
+    for _,v in ipairs(DamageSys.BodyParts) do
+        char:setData("Firestone."..v.name.."Health", 100)
+    end
+end
+
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart
     
