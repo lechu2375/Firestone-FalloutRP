@@ -143,7 +143,8 @@ function PLUGIN:Think()
                     v:TakeDamage(1, v, nil)
                     v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
                 end
-            else v.WasNotified = false
+            else 
+                v.WasNotified = false
             end
             
             if v:GetBodyPartHealth("Right Leg") <= 100 || v:GetBodyPartHealth("Left Leg") <= 100 then
@@ -152,7 +153,7 @@ function PLUGIN:Think()
                 v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
                 if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
                     if !v.WasRagdolled then
-                        v:setRagdolled(true)
+                        v:setRagdolled(true, 5)
                         v.WasRagdolled = true
                     end
                 else
@@ -161,8 +162,8 @@ function PLUGIN:Think()
                 end
             end
 
-            if v:GetBodyPartHealth("Head") < 30 || v:GetBodyPartHealth("Chest") < 20 || v:GetBodyPartHealth("Stomach") < 15 then
-                v:Kill()
+            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 25 || v:GetBodyPartHealth("Stomach") < 20 then
+                v:Kill() -- tu będzie bw elo benc
             end
         end
     end
