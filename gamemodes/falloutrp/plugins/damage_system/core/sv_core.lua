@@ -28,6 +28,12 @@ function PLAYER:HealBodyPart(strBodyPart, intAmount)
     end
 end
 
+function PLAYER:HealParts()
+    for _,v in ipairs(DamageSys.BodyParts) do
+        char:setData("Firestone."..v.name.."Health", 100)
+    end
+end
+
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart
     
@@ -109,7 +115,7 @@ function PLUGIN:OnCharCreated(ply)
 end
 
 function PLUGIN:PlayerLoadedChar(ply, char, oldchar)
-    char:setData("Firestone.Bleeding", 0)
+    ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
     for i, v in ipairs(DamageSys.BodyParts) do 
@@ -119,7 +125,7 @@ end
 
 function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wyświetlać hp kończyn, aż do respawnu.
     local char = ply:getChar()
-    char:setData("Firestone.Bleeding", 0)
+    ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
     for i, v in ipairs(DamageSys.BodyParts) do 
@@ -128,29 +134,36 @@ function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wy�
 end
 
 function PLUGIN:Think()
-    if !char then return end
     for _, v in ipairs(player.GetAll()) do
-        if v:IsBleeding() then
-            if CurTime() > v.BleedingTimer + DamageSys.BleedingInterval then
-                v.BleedingTimer = CurTime()
-                v:TakeDamage(1, v, nil)
-                v:setData("Firestone.Bleeding", v:GetBleeding() - 1)
-            end
-        else v.WasNotified = false
-        end
-        
-        if v:GetBodyPartHealth("Right Leg") <= 100 || v:GetBodyPartHealth("Left Leg") <= 100 then
-            local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
-            v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
-            v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
-            if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
-                if !v.WasRagdolled then
-                    v:setRagdolled(true)
-                    v.WasRagdolled = true
+        local char = v:getChar()
+        if char then
+            if v:IsBleeding() then
+                if CurTime() > v.BleedingTimer + DamageSys.BleedingInterval then
+                    v.BleedingTimer = CurTime()
+                    v:TakeDamage(1, v, nil)
+                    v:SetNWInt("Firestone.Bleeding", v:GetBleeding() - 1)
                 end
-            else
-                v:setRagdolled(false)
-                v.WasRagdolled = false
+            else 
+                v.WasNotified = false
+            end
+            
+            if v:GetBodyPartHealth("Right Leg") <= 100 || v:GetBodyPartHealth("Left Leg") <= 100 then
+                local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
+                v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
+                v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
+                if LeftLegHealth <= 10 || RightLegHealth <= 10 || (LeftLegHealth + RightLegHealth) <= 50 then
+                    if !v.WasRagdolled then
+                        v:setRagdolled(true, 5)
+                        v.WasRagdolled = true
+                    end
+                else
+                    v:setRagdolled(false)
+                    v.WasRagdolled = false
+                end
+            end
+
+            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 25 || v:GetBodyPartHealth("Stomach") < 20 then
+                v:Kill() -- tu będzie bw elo benc
             end
         end
     end

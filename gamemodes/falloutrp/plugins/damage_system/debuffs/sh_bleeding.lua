@@ -4,14 +4,12 @@ local PLAYER = FindMetaTable("Player")
 DamageSys.BleedingInterval = 3
 
 function PLAYER:ApplyBleeding(intAmount)
-    local char = self:getChar()
-    char:SetNWInt("Firestone.Bleeding", self:GetNWInt("Firestone.Bleeding", 0) + intAmount)
+    self:SetNWInt("Firestone.Bleeding", self:GetNWInt("Firestone.Bleeding", 0) + intAmount)
     self.BleedingTimer = CurTime()
 end
 
 function PLAYER:GetBleeding()
-    local char = self:getChar()
-    return char:getData("Firestone.Bleeding")
+    return self:GetNWInt("Firestone.Bleeding", 0)
 end
 
 function PLAYER:IsBleeding()
