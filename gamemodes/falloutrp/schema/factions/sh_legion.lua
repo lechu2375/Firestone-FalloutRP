@@ -9,3 +9,18 @@ FACTION.models = {
 FACTION.isGloballyRecognized = true
 FACTION.pay = 0
 FACTION_RUN = FACTION.index
+
+LEGION_RANGI = { 
+    "Rekrut",
+    "Weteran",
+    "Zwiadowca",
+    "Decanus",
+    "Centurion",
+    "Legat",
+    "Cezar",
+    "Furmentarii",
+    "Vexillarius",
+    "Pretorianin",
+    "Kowal",
+    "Instruktor"
+}
