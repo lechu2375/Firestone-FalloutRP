@@ -17,3 +17,20 @@ FACTION.isGloballyRecognized = false
 FACTION.pay = 0
 FACTION_RUN = FACTION.index
 
+BS_RANGI = {
+    "Nowicjusz",
+    "Kadet",
+    "Rycerz",
+    "Rycerz Sierżant",
+    "Rycerz Kapitan",
+    "Starszy Rycerz",
+    "Paladyn",
+    "Starszy Paladyn",
+    "Gwieździsty Paladyn",
+    "Wartownik",
+    "Starszy",
+    "Nowicjusz Skryba",
+    "Skryba",
+    "Starszy Skryba",
+    "Wysoki Skryba"
+}
