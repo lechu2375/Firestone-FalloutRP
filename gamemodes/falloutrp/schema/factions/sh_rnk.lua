@@ -16,3 +16,30 @@ FACTION.models = {
 FACTION.isGloballyRecognized = true
 FACTION.pay = 0
 FACTION_RUN = FACTION.index
+
+RNK_RANGI = {
+    "Szeregowy",
+    "Starszy Szeregowy",
+    "Kapral",
+    "Sierżant",
+    "Starszy Sierżant"
+    "Sierżant Sztabowy",
+    "Sierżant Major",
+    ---Oficerowie---
+    "Młodszy Porucznik",
+    "Porucznik",
+    "Kapitan",
+    "Major",
+    "Podpułkownik",
+    "Pułkownik",
+    "Brygadier",
+    "Major",
+    "Generał Dywizji",
+    "Generał",
+    ---straznicy--
+    "Rekrut",
+    "Strażnik",
+    "Strażnik Weteran",
+    --szefunio--
+    "Chief"
+}
