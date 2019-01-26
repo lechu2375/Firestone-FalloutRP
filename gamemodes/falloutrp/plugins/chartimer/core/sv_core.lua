@@ -12,7 +12,7 @@ function PLUGIN:PlayerLoadedChar( ply )
         for _,ply in pairs(player.GetAll()) do
             local char = ply:getChar()
             if !char then return end
-            char:setData("chartime", char:getData("chartime") + 600)
+            char:setData("chartime", char:getData("chartime") + 5)
         end
     end)
 end
