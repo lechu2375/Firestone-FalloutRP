@@ -11,3 +11,10 @@ function SCHEMA:PlayerFootstep(client, position, foot, soundName, volume)
 		end
 	end
 end
+
+
+
+function SCHEMA:PlayerLoadedChar(client, character)
+	client:PrintMessage(HUD_PRINTTALK,"Wybrałeś postać "..character:getName())
+	client:PrintMessage(HUD_PRINTTALK,"Przegrano na postaci "..firestone_util_timeconvert(character:getData("chartime")))
+end
