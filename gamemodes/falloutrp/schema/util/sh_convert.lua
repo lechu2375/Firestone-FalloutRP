@@ -1,9 +1,7 @@
-function firestone_util_timeconvert(time)
-    local minuty = math.floor((time/60))
-    local godziny = math.floor((minuty/60))
-    if godziny < 1 then
-        return "Minuty: "..minuty
-    else
-        return "Godziny: "..godziny.." Minuty: "..minuty
-    end
+function FS_ConvertTime( timeGiven )
+    local time = string.NiceTime( timeGiven )
+    time = string.Replace(time, "minutes", "minut")
+    time = string.Replace(time, "hour", "godzinę")
+    time = string.Replace(time, "hours", "godziny")
+    return time
 end

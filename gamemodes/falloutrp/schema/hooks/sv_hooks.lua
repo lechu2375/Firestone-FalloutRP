@@ -12,9 +12,11 @@ function SCHEMA:PlayerFootstep(client, position, foot, soundName, volume)
 	end
 end
 
-
-
 function SCHEMA:PlayerLoadedChar(client, character)
 	client:PrintMessage(HUD_PRINTTALK,"Wybrałeś postać "..character:getName())
-	client:PrintMessage(HUD_PRINTTALK,"Przegrano na postaci "..firestone_util_timeconvert(character:getData("chartime")))
+	if character:getData("chartime") > 600 then
+		client:PrintMessage(HUD_PRINTTALK,"Przegrano na postaci "..FS_ConvertTime(character:getData("chartime")))
+	else
+		client:PrintMessage(HUD_PRINTTALK,"Dopiero rozpoczęto przygodę na Firestone FalloutRP!")
+	end
 end
