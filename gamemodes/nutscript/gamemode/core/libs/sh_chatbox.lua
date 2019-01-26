@@ -220,7 +220,7 @@ do
 				chat.AddText(nut.config.get("chatColor"), "**"..text)
 			end,
 			onCanHear = nut.config.get("chatRange", 280),
-			prefix = {"/it"},
+			prefix = {"/it", "/do"},
 			font = "nutChatFontItalics",
 			filter = "actions",
 			deadCanChat = true
