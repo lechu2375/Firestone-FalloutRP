@@ -26,6 +26,7 @@ vgui.Create("FS_Blur")
 
 -- Utility Library 
 PLAYER:Notify(strText, intLength)
+firestone_util_timeconver(time) 
 
 -- Damage System 
 PLAYER:DamageBodyPart(strBodypPart, intDmg)
