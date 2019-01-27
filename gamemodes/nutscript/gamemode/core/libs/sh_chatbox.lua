@@ -206,7 +206,9 @@ do
 		-- Actions and such.
 		nut.chat.register("me", {
 			format = "**%s %s",
-			onGetColor = nut.chat.classes.ic.onGetColor,
+			onChatAdd = function(speaker, text)
+				chat.AddText(Color(147,112,219),speaker:Name().."** "..text)
+			end, 
 			onCanHear = nut.config.get("chatRange", 280),
 			prefix = {"/me", "/action"},
 			font = "nutChatFontItalics",
@@ -217,7 +219,7 @@ do
 		-- Actions and such.
 		nut.chat.register("it", {
 			onChatAdd = function(speaker, text)
-				chat.AddText(Color(194,162,218), "(("..speaker:Name().."**)) "..text)
+				chat.AddText(Color(194,162,218), "(("..speaker:Name()..")) "..text)
 			end, 
 			onCanHear = nut.config.get("chatRange", 280),
 			prefix = {"/it", "/do"},

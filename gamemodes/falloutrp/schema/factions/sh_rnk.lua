@@ -22,7 +22,7 @@ RNK_RANGI = {
     "Starszy Szeregowy",
     "Kapral",
     "Sierżant",
-    "Starszy Sierżant"
+    "Starszy Sierżant",
     "Sierżant Sztabowy",
     "Sierżant Major",
     ---Oficerowie---
