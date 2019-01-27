@@ -6,3 +6,11 @@ PLUGIN.WebhookURL = "https://discordapp.com/api/webhooks/508739433202188335/WJBu
 
 local dir = PLUGIN.folder.."/"
 nut.util.includeDir(dir.."core", true, true)
+
+nut.command.add("bugmenu", {
+	onRun = function(ply, arg)
+        net.Start("FS_RunAdvert")
+        net.Start("fs_bug_ui")
+        net.Send(ply)
+	end
+})

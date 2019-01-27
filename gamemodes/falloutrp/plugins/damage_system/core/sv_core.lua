@@ -30,8 +30,10 @@ end
 
 function PLAYER:HealParts()
     for _,v in ipairs(DamageSys.BodyParts) do
+        local char = self:getChar()
         char:setData("Firestone."..v.name.."Health", 100)
     end
+    self:SetHealth(100)
 end
 
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
@@ -118,6 +120,7 @@ function PLUGIN:PlayerLoadedChar(ply, char, oldchar)
     ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
+    char:setData("Firestone.BW", false)
     for i, v in ipairs(DamageSys.BodyParts) do 
         char:setData("Firestone."..v.name.."Health", 100)
     end
@@ -128,6 +131,7 @@ function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wy�
     ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
+    char:setData("Firestone.BW", false)
     for i, v in ipairs(DamageSys.BodyParts) do 
         char:setData("Firestone."..v.name.."Health", 100)
     end    
@@ -162,8 +166,16 @@ function PLUGIN:Think()
                 end
             end
 
-            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 25 || v:GetBodyPartHealth("Stomach") < 20 then
-                v:Kill() -- tu będzie bw elo benc
+            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 30 || v:GetBodyPartHealth("Stomach") < 25 then
+                if v:GetBW() == false then 
+                    v:BW(180)
+                end
+            end
+
+            if v:GetBW() == true then
+                if CurTime() > v.BWCurTime + v.BWTime then
+                    char:setData("Firestone.BW", false)
+                end
             end
         end
     end
