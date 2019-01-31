@@ -108,7 +108,7 @@ AddFalloutButton({
 })
 
 AddFalloutButton({
-	Name = "WYJDZ",
+	Name = "WYJDŹ",
 	Click = function()
 		RunConsoleCommand("disconnect")
 		surface.PlaySound("fs_ui/ui_menu_ok.wav")
