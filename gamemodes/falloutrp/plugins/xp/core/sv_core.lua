@@ -26,27 +26,3 @@ function PLAYER:GetXP()
 
     return char:getData("xp")
 end
-
-function PLAYER:SetLevel(intNumber)
-    local char = self:getChar()
-
-    char:setData("level", intNumber)
-end
-
-function PLAYER:AddLevel(intAmount)
-    local char = self:getChar()
-
-    char:setData("level", char:getData("level") + intAmount)
-end
-
-function PLAYER:RemoveLevel(intAmount)
-    local char = self:getChar()
-
-    char:setData("level", char:getData("level") - intAmount)
-end
-
-function PLAYER:GetLevel()
-    local char = self:getChar()
-
-    return char:getData("level")
-end
