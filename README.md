@@ -48,6 +48,16 @@ PLAYER:GetPowerArmor()
 PLAYER:AddKarma(intAmount)
 PLAYER:RemoveKarma(intAmount)
 PLAYER:GetKarma()
+
+-- XP System 
+PLAYER:AddXP(intAmount)
+PLAYER:SetXP(intAmount)
+PLAYER:RemoveXP(intAmount)
+PLAYER:GetXP()
+PLAYER:AddLevel(intAmount)
+PLAYER:SetLevel(intAmount)
+PLAYER:RemoveXP(intAmount)
+PLAYER:GetLevel()
 ```
 
 ### Credits
