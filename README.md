@@ -54,10 +54,6 @@ PLAYER:AddXP(intAmount)
 PLAYER:SetXP(intAmount)
 PLAYER:RemoveXP(intAmount)
 PLAYER:GetXP()
-PLAYER:AddLevel(intAmount)
-PLAYER:SetLevel(intAmount)
-PLAYER:RemoveXP(intAmount)
-PLAYER:GetLevel()
 ```
 
 ### Credits
