@@ -80,7 +80,7 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         ply:ApplyBleeding(math.Round(math.random(dmginfo:GetDamage()/2, dmginfo:GetDamage())))
     end
     if ply:IsBleeding() && !ply.WasNotified then
-        ply:Notify("W wyniku postrzalu zaczales krwawic!")
+        ply:Notify("W wyniku postrzału zacząłeś krwawić")
         ply.WasNotified = true
     end
 

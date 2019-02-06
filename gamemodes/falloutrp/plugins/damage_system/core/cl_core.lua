@@ -132,13 +132,12 @@ local trujkont_zycia_outline = {
 }
 
 function PLUGIN:HUDPaint()
-    if !pIsVisible then
-        draw.NoTexture()
-        surface.SetDrawColor( 17,255,31 )
-        surface.DrawPoly( trujkont_zycia_outline )
-        --
-        surface.SetDrawColor( 15, 72, 34 )
-        surface.DrawPoly( trujkont_zycia )
-        draw.SimpleText("F4", "FS_Side_Small", 2, ScrH()/2-10, Color(17,255,31))
-    end
+    if pIsVisible then return end
+    draw.NoTexture()
+     surface.SetDrawColor( 17,255,31 )
+     surface.DrawPoly( trujkont_zycia_outline )
+     --
+    surface.SetDrawColor( 15, 72, 34 )
+    surface.DrawPoly( trujkont_zycia )
+    draw.SimpleText("F4", "FS_Side_Small", 2, ScrH()/2-10, Color(17,255,31))
 end

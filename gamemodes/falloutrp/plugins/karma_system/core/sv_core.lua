@@ -86,7 +86,7 @@ function PLUGIN:PlayerDeath(victim, attacker)
     local action = "Zabojstwo"
 
     attacker:RemoveKarma(Firestone.Karma.BadActions[action])
-    attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
+    attacker:Notify("Straciłeś "..Firestone.Karma.BadActions[action].." karmy za "..action)
     attacker:LoadKarmaRank()
 end
 
@@ -96,6 +96,6 @@ function PLUGIN:OnNPCKilled(npc, attacker)
     local action = "Zabojstwo"
 
     attacker:RemoveKarma(Firestone.Karma.BadActions[action])
-    attacker:Notify("Straciles "..Firestone.Karma.BadActions[action].." karmy za "..action)
+    attacker:Notify("Straciłeś "..Firestone.Karma.BadActions[action].." karmy za "..action)
     attacker:LoadKarmaRank()
 end

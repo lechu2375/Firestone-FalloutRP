@@ -4,12 +4,12 @@ PLUGIN.desc = "Pozwala na komunikację z innymi."
 local RADIO_CHATCOLOR = Color(100, 255, 50)
 
 -- This is how initialize Language in Single File.
-local langkey = "english"
+local langkey = "polisgh"
 local langTable = {
-	radioFreq = "Frequency",
-	radioSubmit = "Submit",
-	radioNoRadio = "You don't have any radio to adjust.",
-	radioNoRadioComm = "You don't have any radio to communicate",
+	radioFreq = "Częstotliwość",
+	radioSubmit = "Wyślij",
+	radioNoRadio = "Nie masz żadnego radia do dostrojenia.",
+	radioNoRadioComm = "Nie posiadasz żadnego radia do którego możesz mówić",
 	radioFormat = "%s radios in \"%s\"",
 }
 

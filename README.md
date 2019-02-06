@@ -43,6 +43,11 @@ PLAYER:RemoveArmor(intAmount)
 -- Power Armor
 PLAYER:SetPowerArmor(bState)
 PLAYER:GetPowerArmor()
+
+-- Karma System
+PLAYER:AddKarma(intAmount)
+PLAYER:RemoveKarma(intAmount)
+PLAYER:GetKarma()
 ```
 
 ### Credits
