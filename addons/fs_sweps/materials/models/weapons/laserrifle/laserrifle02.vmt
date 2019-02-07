@@ -1,0 +1,17 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/weapons/laserrifle/laserrifle02"
+	"$normalmap"     "models/weapons/laserrifle/laserrifle02_n"
+
+	"$model" "1"
+	"$halflambert" 1
+	"$nocull" "1"
+       	"$phong" "1"
+	"$phongexponenttexture" "models/weapons/laserrifle/laserrifle02_n"
+	"$phongboost"	"3"
+	"$phongfresnelranges"	"[0.05 0.5 1]"
+	"$rimlight" "0"
+	"$rimlightexponenttexture" "models/weapons/laserrifle/laserrifle2l_n"									
+	"$rimlightexponent" "0.5"								
+	"$rimlightboost" "0.5"
+}

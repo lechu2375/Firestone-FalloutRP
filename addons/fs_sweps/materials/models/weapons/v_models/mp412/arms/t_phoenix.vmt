@@ -1,0 +1,15 @@
+VertexLitGeneric
+{
+	"$basetexture"	"models\player\t_phoenix\t_phoenix"
+	 "$envmap" 			"env_cubemap"
+	 "$bumpmap" "models/player/t_phoenix\t_phoenix_normal"
+	"$normalmapalphaenvmapmask" "1"
+	"$phong" 		"1"
+	"$phongexponent" 	"40"
+	"$phongboost" "0.25"
+	"$phongfresnelranges" "[1 3 6]"
+//	"$phongalbedotint" "1"
+	"$envmapcontrast" 0.3
+	"$envmapsaturation" 0.7
+	"$envmaptint" "[ 0.36 0.36 0.36 ]"
+}

@@ -1,0 +1,12 @@
+VertexLitGeneric
+{
+	"$baseTexture" "models\weapons\v_models\mp412\diffuse"
+	"$bumpmap" 	"models\weapons\v_models\mp412\normals"
+	"$normalmapalphaenvmapmask" 1
+	"$halflambert" 	"1"
+ 	"$phong" "1"
+	"$phongexponent" "32"
+	"$phongboost" "0.25"
+	"$phongfresnelranges"	"[1 6 12]"
+	"$phongalbedotint" "1"
+}

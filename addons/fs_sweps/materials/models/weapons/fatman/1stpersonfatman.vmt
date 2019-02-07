@@ -1,0 +1,19 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/weapons/fatman/1stpersonfatman"
+	"$normalmap"     "models/weapons/fatman/1stpersonfatman_n"
+
+	"$translucent" "1"
+
+	"$model" "1"
+	"$halflambert" 1
+	"$alphatest" "1"
+       		"$phong" "1"
+	"$phongexponenttexture" "models/weapons/fatman/1stpersonfatman_n"
+	"$phongboost""3"
+	"$phongfresnelranges""[0.05 0.5 1]"
+	"$rimlight" "0"
+	"$rimlightexponenttexture" "models/weapons/fatman/1stpersonfatman_n"
+	"$rimlightexponent" "0.5"
+	"$rimlightboost" "0.5"
+}
