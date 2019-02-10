@@ -172,7 +172,7 @@ function PLUGIN:Think()
                 end
             end
 
-            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 30 || v:GetBodyPartHealth("Stomach") < 25 || (v:GetBodyPartHealth("Head") + v:GetBodyPartHealth("Chest") + v:GetBodyPartHealth("Stomach")) <= 170  then
+            if v:Health() <= 20 || v:GetBodyPartHealth("Head") <= 40 || v:GetBodyPartHealth("Chest") <= 30 || v:GetBodyPartHealth("Stomach") <= 20 || (v:GetBodyPartHealth("Head") + v:GetBodyPartHealth("Chest") + v:GetBodyPartHealth("Stomach")) <= 170  then
                 v:BW(180)
             end
             if v:GetBW() then
