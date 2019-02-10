@@ -39,6 +39,8 @@ PLAYER:SetArmor(intAmount)
 PLAYER:GetArmor()
 PLAYER:AddArmor(intAmount)
 PLAYER:RemoveArmor(intAmount)
+PLAYER:BW(intLength)
+PLAYER:GetBW()
 
 -- Power Armor
 PLAYER:SetPowerArmor(bState)
