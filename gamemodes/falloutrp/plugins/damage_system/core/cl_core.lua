@@ -1,5 +1,6 @@
 local PLUGIN = PLUGIN
 local pIsVisible = false
+local wasTabPressed = false
 local bwPanel = false
 local scale = ScrH()
 
@@ -100,22 +101,10 @@ function PLUGIN:Think()
         end
         if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) <= 0 || !LocalPlayer():Alive() then
             if IsValid(basePanel) then
-            bleedingHolder:SetVisible(false)
+                bleedingHolder:SetVisible(false)
             end
         end
         // overriding character changing
-        if LocalPlayer():KeyDown(IN_SCORE) then
-            if char:getData("Firestone.BW") == true then
-                if !bwPanel then
-                    Firestone_Override = vgui.Create("DFrame")
-                    Firestone_Override:SetSize(ScrW(), ScrH())
-                    Firestone_Override:Center()
-                    Firestone_Override:ShowCloseButton(false)
-                    Firestone_Override:SetVisible(true)
-                    Firestone_Override.Paint = function(s, w, h) end
-                end
-            end
-        end
     end
 end
 

@@ -38,6 +38,9 @@ end
 
 function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
     local bodypart
+    local char = ply:getChar()
+
+    if !char then return end
     
     if  hitgroup == HITGROUP_HEAD then
        dmginfo:ScaleDamage(2)
@@ -67,6 +70,8 @@ function PLUGIN:ScalePlayerDamage(ply, hitgroup, dmginfo)
         dmginfo:ScaleDamage(0.75)
         bodypart = "Left Leg"
     end
+
+    if !bodypart then return end
     
     if ply:GetPowerArmor() && ply:GetArmor() != nil && ply:GetArmor() != 0 then
         ply:DamageBodyPart(bodypart, math.Round(dmginfo:GetDamage()*5 - ply:GetArmor()))
@@ -120,7 +125,8 @@ function PLUGIN:PlayerLoadedChar(ply, char, oldchar)
     ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
-    char:setData("Firestone.BW", false)
+    ply:SetNWBool("BW", false)
+    ply:SetNWBool("wasBW", false)
     for i, v in ipairs(DamageSys.BodyParts) do 
         char:setData("Firestone."..v.name.."Health", 100)
     end
@@ -131,7 +137,8 @@ function PLUGIN:PlayerDeath(ply) -- potrzebne, bo po śmierci gracza ma się wy�
     ply:SetNWInt("Firestone.Bleeding", 0)
     ply.WasNotified = false
     ply.WasRagdolled = false
-    char:setData("Firestone.BW", false)
+    ply:SetNWBool("BW", false)
+    ply:SetNWBool("wasBW", false)
     for i, v in ipairs(DamageSys.BodyParts) do 
         char:setData("Firestone."..v.name.."Health", 100)
     end    
@@ -151,7 +158,7 @@ function PLUGIN:Think()
                 v.WasNotified = false
             end
             
-            if v:GetBodyPartHealth("Right Leg") <= 100 || v:GetBodyPartHealth("Left Leg") <= 100 then
+            if v:GetBodyPartHealth("Right Leg") < 100 || v:GetBodyPartHealth("Left Leg") < 100 then
                 local LeftLegHealth, RightLegHealth = v:GetBodyPartHealth("Left Leg"), v:GetBodyPartHealth("Right Leg")
                 v:SetWalkSpeed(math.Clamp((LeftLegHealth + RightLegHealth) - 30, 7, 130))
                 v:SetRunSpeed(math.Clamp((LeftLegHealth + RightLegHealth + 60), 7, 240))
@@ -161,20 +168,17 @@ function PLUGIN:Think()
                         v.WasRagdolled = true
                     end
                 else
-                    v:setRagdolled(false)
                     v.WasRagdolled = false
                 end
             end
 
-            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 30 || v:GetBodyPartHealth("Stomach") < 25 then
-                if v:GetBW() == false then 
-                    v:BW(180)
-                end
+            if v:GetBodyPartHealth("Head") < 40 || v:GetBodyPartHealth("Chest") < 30 || v:GetBodyPartHealth("Stomach") < 25 || (v:GetBodyPartHealth("Head") + v:GetBodyPartHealth("Chest") + v:GetBodyPartHealth("Stomach")) <= 150  then
+                v:BW(180)
             end
-
-            if v:GetBW() == true then
-                if CurTime() > v.BWCurTime + v.BWTime then
-                    char:setData("Firestone.BW", false)
+            if v:GetBW() then
+                if CurTime() > v.BWCurtime + v.BWTime then
+                    v:SetNWBool("BW", false)
+                    v.BWCurtime = CurTime()
                 end
             end
         end

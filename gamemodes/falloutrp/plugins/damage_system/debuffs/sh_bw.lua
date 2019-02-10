@@ -1,14 +1,16 @@
+local PLUGIN = PLUGIN
 local PLAYER = FindMetaTable("Player")
 
 function PLAYER:BW(intLength)
-    local char = self:getChar()
-    self.BWCurTime = CurTime()
+    if self:GetBW() then return end
+    if self:GetNWBool("wasBW") then return end
+    self:SetNWBool("BW", true)
+    self:SetNWBool("wasBW", true)
+    self.BWCurtime = CurTime()
     self.BWTime = intLength
     self:setRagdolled(true, intLength)
-    char:setData("Firestone.BW", true)
 end
 
 function PLAYER:GetBW()
-    local char = self:getChar()
-    return char:getData("Firestone.BW")
+    return self:GetNWBool("BW", false)
 end
