@@ -1,8 +1,10 @@
 local PLUGIN = PLUGIN
 local pIsVisible = false
-local wasTabPressed = false
-local bwPanel = false
 local scale = ScrH()
+local tab = {
+	["$pp_colour_colour"] = 0.2,
+	["$pp_colour_contrast"] = 0.8,
+}
 
 function PLUGIN:CharacterLoaded()
     char = LocalPlayer():getChar()
@@ -104,7 +106,20 @@ function PLUGIN:Think()
                 bleedingHolder:SetVisible(false)
             end
         end
-        // overriding character changing
+        // head low hp motion blur
+        if char:getData("Firestone.HeadHealth") <= 70 then
+            hook.Add("RenderScreenspaceEffects", "Firestone.MotionBlur", function()
+                DrawMotionBlur((0.3 + char:getData("Firestone.HeadHealth")/1000), 0.8, 0.01 )  
+            end)
+            if char:getData("Firestone.HeadHealth") <= 50 then
+                hook.Add("RenderScreenspaceEffects", "Firestone.MotionBlur", function()
+                    DrawMotionBlur((0.3 + char:getData("Firestone.HeadHealth")/1000), 0.8, 0.01 )
+                    DrawColorModify(tab)  
+                end)
+            end
+        else
+            hook.Remove("RenderScreenspaceEffects", "Firestone.MotionBlur")
+        end
     end
 end
 
