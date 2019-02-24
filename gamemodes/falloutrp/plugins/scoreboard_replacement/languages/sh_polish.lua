@@ -1,4 +1,4 @@
-NAME = "English"
+NAME = "Polski"
 
 LANGUAGE = {
 	scoreboard = "Tablica",

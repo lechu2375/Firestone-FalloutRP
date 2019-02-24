@@ -127,9 +127,10 @@ surface.CreateFont( "F4_Ammo_Font", {
 } )
 
 
-local toHide = {
-}
+hook.Add( "ShouldHideBars", "Hiding NS Hud", function()
+	return true
+end)
 
-hook.Add( "HUDShouldDraw", "HidingDefaultHud", function( name )
-	if (toHide[name]) then return false end
+hook.Add( "CanDrawAmmoHUD", "Hiding NS Hud", function()
+	return false
 end)

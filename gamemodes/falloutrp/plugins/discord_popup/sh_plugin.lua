@@ -2,6 +2,8 @@ local PLUGIN = PLUGIN
 PLUGIN.name = "Discord"
 PLUGIN.author = "SaturdaysHeroes"
 
+if !CLIENT then return end
+
 function PLUGIN:InitPostEntity()
     local f = vgui.Create("DFrame")
     f:SetSize(ScrW()/2, ScrH()/2)

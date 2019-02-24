@@ -3,6 +3,7 @@
 --------------
 SCHEMA.name = "Fallout Roleplay"
 SCHEMA.author = "Firestone Development"
+SCHEMA.desc = "frx to gej"
 
 ----------------
 --[[ GLOBAL ]]--

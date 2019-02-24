@@ -66,26 +66,6 @@ local PANEL = {}
 		self.subTitle:AlphaTo(255, 4 * fadeSpeed, 3 * fadeSpeed)
 		self.subTitle:SetExpensiveShadow(2, Color(0, 0, 0, 200))
 
-		self.icon = self:Add("DHTML")
-		self.icon:SetPos(ScrW() - 96, 8)
-		self.icon:SetSize(86, 86)
-		self.icon:SetHTML([[
-			<html>
-				<body style="margin: 0; padding: 0; overflow: hidden;">
-					<img src="]]..nut.config.get("logo", "https://static.miraheze.org/nutscriptwiki/2/26/Nutscript.png")..[[" width="86" height="86" />
-				</body>
-			</html>
-		]])
-		self.icon:SetToolTip(nut.config.get("logoURL", "http://nutscript.net"))
-	
-		self.icon.click = self.icon:Add("DButton")
-		self.icon.click:Dock(FILL)
-		self.icon.click.DoClick = function(this)
-			gui.OpenURL(nut.config.get("logoURL", "http://nutscript.net"))
-		end
-		self.icon.click:SetAlpha(0)
-		self.icon:SetAlpha(150)
-
 		local x, y = ScrW() * 0.1, ScrH() * 0.3
 		local i = 1
 
@@ -98,6 +78,7 @@ local PANEL = {}
 			local label = parent:Add("nutMenuButton")
 			label:SetPos(x, y)
 			label:setText(text, noTranslation)
+			label:SetFont("nutMenuButtonFont")
 			label:SetAlpha(0)
 			label:AlphaTo(255, 0.3, (fadeSpeed * 6) + 0.15 * i, function()
 				if (isLast) then
@@ -318,7 +299,7 @@ local PANEL = {}
 
 						self.choose = self.model:Add("nutMenuButton")
 						self.choose:SetWide(self.model:GetWide() * 0.45)
-						self.choose:setText("choose")
+						self.choose:setText("Wybierz")
 						self.choose:Dock(LEFT)
 						self.choose.DoClick = function()
 							if ((self.nextUse or 0) < CurTime()) then
@@ -374,7 +355,7 @@ local PANEL = {}
 
 						self.delete = self.model:Add("nutMenuButton")
 						self.delete:SetWide(self.model:GetWide() * 0.45)
-						self.delete:setText("delete")
+						self.delete:setText("Usuń")
 						self.delete:Dock(RIGHT)
 						self.delete.DoClick = function()
 							local menu = DermaMenu()

@@ -14,7 +14,7 @@ local PANEL = {}
 	function PANEL:setText(text, noTranslation)
 		surface.SetFont("nutMenuButtonFont")
 
-		self:SetText(noTranslation and text:upper() or L(text):upper())
+		self:SetText(noTranslation and text or L(text) )
 
 		if (!noTranslation) then
 			self:SetToolTip(L(text.."Tip"))

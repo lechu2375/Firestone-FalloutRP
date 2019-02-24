@@ -66,7 +66,9 @@ nut.command.add("ulecz", {
 	adminOnly = true,
 	onRun = function( ply, arg )
 		local target = nut.command.findPlayer(ply, arg[1])
+    if !target then return end
     target:HealParts()
-    ply:Notify("Gracz "..target:Nick().." zostal uleczony")
+    target:Notify( ply:Nick().." uleczył cię." )
+    ply:Notify("Gracz "..target:Nick().." został uleczony.")
 	end
 })

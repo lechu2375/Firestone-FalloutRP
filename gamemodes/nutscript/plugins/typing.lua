@@ -34,7 +34,7 @@ if (CLIENT) then
 					if (alpha > 0) then
 						local screen = (position + (v:Crouching() and TYPE_OFFSET_CROUCHED or TYPE_OFFSET)):ToScreen()
 
-						nut.util.drawText("(Typing)", screen.x, screen.y - 18, ColorAlpha(TYPE_COLOR, alpha), 1, 1, "nutChatFontItalics", alpha)
+						nut.util.drawText("(Pisze)", screen.x, screen.y - 18, ColorAlpha(TYPE_COLOR, alpha), 1, 1, "nutChatFontItalics", alpha)
 					end
 				end
 			end

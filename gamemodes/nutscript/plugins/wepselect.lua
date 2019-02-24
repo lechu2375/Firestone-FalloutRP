@@ -80,10 +80,6 @@ if (CLIENT) then
 	end
 
 	local weaponInfo = {
-		"Author",
-		"Contact",
-		"Purpose",
-		"Instructions"
 	}
 
 	function PLUGIN:onIndexChanged()
