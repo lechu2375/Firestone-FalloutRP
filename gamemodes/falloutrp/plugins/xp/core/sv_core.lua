@@ -3,7 +3,6 @@ if !SERVER then return end
 local PLUGIN = PLUGIN 
 local PLAYER = FindMetaTable("Player")
 
--- How many XP should players receive per hour?
 PLUGIN.HourlyBonus = 100
 
 function PLAYER:SetXP(intNumber)
@@ -15,8 +14,12 @@ end
 
 function PLAYER:AddXP(intAmount, strReason)
     local char = self:getChar()
-
-    char:setData("xp", char:getData("xp") + intAmount)
+    
+    if self:IsPrime() then 
+        char:setData("xp", char:getData("xp") + intAmount * 0.10)
+    else
+        char:setData("xp", char:getData("xp") + intAmount)
+    end
     self:Notify("Otrzymałeś "..intAmount.." XP za "..strReason)
 end
 
