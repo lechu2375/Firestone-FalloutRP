@@ -1,6 +1,10 @@
 if !CLIENT then return end
 local PLUGIN = PLUGIN
 
+function PLUGIN:CharacterLoaded()
+	lchar = LocalPlayer():getChar()
+end
+
 local width = ScrW()
 local height = ScrH()
 local lightColor = Color(17,255,31)
@@ -20,7 +24,7 @@ local textPos = nil
 	surface.DrawRect(x + width*0.2 - 3, y - 10, 3, 10)
 	if lerp then
 		healthLerp = Lerp(4 * FrameTime(), healthLerp, LocalPlayer():Health())
-		staminaLerp = Lerp(12 * FrameTime(), staminaLerp, LocalPlayer():getLocalVar("stm", 0))
+		staminaLerp = Lerp(8 * FrameTime(), staminaLerp, lchar:getVar("stm"))
 		surface.DrawRect(x, y - 10,(lerp * (ScrW() * 0.2) )/100, 10)
 	end
 	if text then
@@ -31,8 +35,7 @@ end
 
 function PLUGIN:HUDPaint()
 
-	if !LocalPlayer():Alive() then return end
-	LocalPlayer():getLocalVar("stm", 0)
+	if !LocalPlayer():Alive() or lchar == nil then return end
 	// HP, AP
 
 	DrawBar(width*0.07, height*0.93, "Left", "HP", healthLerp)
@@ -117,6 +120,7 @@ surface.CreateFont( "F4_Hud_Font", {
 	size = 36,
 	antialias = true,
 	shadow = true,
+	extended = true,
 } )
 
 surface.CreateFont( "F4_Ammo_Font", {
@@ -124,6 +128,7 @@ surface.CreateFont( "F4_Ammo_Font", {
 	size = 40,
 	antialias = true,
 	shadow = true,
+	extended = true,
 } )
 
 
@@ -131,6 +136,6 @@ hook.Add( "ShouldHideBars", "Hiding NS Hud", function()
 	return true
 end)
 
-hook.Add( "CanDrawAmmoHUD", "Hiding NS Hud", function()
+hook.Add( "CanDrawAmmoHUD", "Hiding NS Ammo Hud", function()
 	return false
 end)
