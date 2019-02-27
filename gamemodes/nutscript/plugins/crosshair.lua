@@ -77,7 +77,7 @@ if (CLIENT) then
 		curGap = Lerp(ft * 2, curGap, crossGap)
 		curAlpha = Lerp(ft * 2, curAlpha, (!client:isWepRaised() and 255 or 150))
 		curAlpha = hook.Run("GetCrosshairAlpha", curAlpha) or curAlpha
-		colors[2] = Color(255, curAlpha, curAlpha, curAlpha)
+		colors[2] = Color(17,255,31, curAlpha)
 
 		drawdot( {math_round(screen.x), math_round(screen.y)}, crossSize, colors)
 		drawdot( {math_round(screen.x + curGap), math_round(screen.y)}, crossSize, colors)

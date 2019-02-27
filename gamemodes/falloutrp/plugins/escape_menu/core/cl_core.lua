@@ -28,13 +28,13 @@ local function Toggle()
 	buttonHolder:SetSize(scale*0.22,scale*0.4)
 	buttonHolder:SetPos(scale*0.4,scale*0.4)
 
-  local pos = 7
+  local pos = 0
   for _,v in ipairs(escTable) do
-    pos = pos+45
+    pos = pos+buttonHolder:GetTall()/9
     local f_button = buttonHolder:Add("FS_Button_ESC")
     f_button:SetSize(buttonHolder:GetWide()*0.8,buttonHolder:GetTall()*0.1)
     f_button:SetText(v.Name)
-	f_button:SetPos(20,pos)
+	f_button:SetPos((buttonHolder:GetWide() - f_button:GetWide())/2, pos)
     f_button.DoClick = v.Click
   end
 end

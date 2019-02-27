@@ -26,7 +26,7 @@ net.Receive("fs_bug_ui", function()
   headerText:SetSize(width,height*0.4)
   headerText:SetFont("FS_Main")
   headerText:SetContentAlignment(5)
-  headerText:SetPos(0,-50)
+  headerText:SetPos(0, -height*0.07)
 
   local descText = mainBugFrame:Add("FS_Label")
   descText:SetText("OPISZ PROBLEM")

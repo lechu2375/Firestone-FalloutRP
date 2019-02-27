@@ -10,7 +10,7 @@ net.Receive("fs_bug_info", function(len, ply)
     local priority = net.ReadInt(3)
 
     if string.len(problem) < 10 then
-      ply:Notify("Minimalna ilosc znakow wynosi 10!", 5)
+      ply:Notify("Minimalna ilość znaków wynosi 10!", 5)
       return
     end
 
@@ -69,6 +69,6 @@ net.Receive("fs_bug_info", function(len, ply)
     }
 
     http.Post(PLUGIN.WebhookURL, {payload_json = util.TableToJSON(payload)})
-    ply:Notify("Otrzymalismy zgloszenie, dziekujemy!", 5)
+    ply:Notify("Otrzymaliśmy zgłoszenie, dziękujemy!", 5)
 
 end)

@@ -17,47 +17,23 @@ local function ToggleDerma()
 
     local infoHolder = basePanel:Add("DPanel")
     infoHolder:SetSize(width-20,height-20)
-    infoHolder:SetPos(10,10)
+    infoHolder:SetPos(10,30)
     infoHolder.Paint = function(self, w, h)
       draw.RoundedBox(0,0,0,w,h,Color(0,0,0,0))
     end
+    local lw = infoHolder:GetWide()
+    local lh = infoHolder:GetTall()
+    infoHolder:AddIndicator("Head", lw/2, lh * 0.12, lw/2, 0)
+    infoHolder:AddIndicator("Chest", lw/2-10, lh * 0.4, lw/2-10, lh * 0.45)
+    infoHolder:AddIndicator("Left Arm", lw * 0.2, lh * 0.35, lw*0.2, lh * 0.45)
+    infoHolder:AddIndicator("Right Arm", lw * 0.8, lh * 0.35, lw*0.8, lh * 0.45)
+    infoHolder:AddIndicator("Left Leg", lw * 0.325, lh * 0.7, lw*0.3, lh * 0.85)
+     infoHolder:AddIndicator("Right Leg", lw * 0.625, lh * 0.7, lw*0.65, lh * 0.85)
 
     local boyImg = infoHolder:Add("DImage")
-    boyImg:SetSize(290,300)
-    boyImg:SetPos(0,35)
+    boyImg:SetSize( infoHolder:GetWide() , infoHolder:GetTall() * 0.8)
+    boyImg:SetPos(0, infoHolder:GetTall()*0.04)
     boyImg:SetImage("fs_damagesystem/vault_boy.png")
-
-    local color = Color(255,255,255)
-    local pos = -25
-
-    for _,v in ipairs(DamageSys.BodyParts) do
-        pos = pos + 50
-        local partIndicator = infoHolder:Add("DPanel")
-        partIndicator:SetSize(12,12)
-        partIndicator:SetPos(v.xPos,v.yPos)
-        partIndicator.Paint = function(self, w, h)
-            local state = char:getData("Firestone."..v.name.."Health")
-            if state < 25 then
-                color = Color(234, 32, 39)
-            elseif state < 50 then
-                color = Color(230, 126, 34)
-            elseif state < 75 then
-                color = Color(241, 196, 15)
-            else
-                color = Color(17,255,31)
-            end
-            draw.RoundedBox(32, 0, 0, w, h, color)
-        end
-
-        local hpText = infoHolder:Add("DLabel")
-        hpText:SetSize(70,24)
-        hpText:SetPos(v.xTextPos,v.yTextPos)
-        hpText:SetFont("FS_Side_Small")
-        hpText.Think = function()
-          local state = char:getData("Firestone."..v.name.."Health")
-          hpText:SetText(state.."/"..100)
-        end
-    end
 
     bleedingHolder = basePanel:Add("DPanel")
     bleedingHolder:SetSize(width-20,height/10)

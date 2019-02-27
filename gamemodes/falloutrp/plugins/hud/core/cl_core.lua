@@ -54,7 +54,7 @@ function PLUGIN:HUDPaint()
 
 	if ang.y > -90 and ang.y < 90 then
 		draw.SimpleText("N", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width/2 + pos*ScrW()/10 - 1,height*0.93,3,15)
+		surface.DrawRect(width/2 + pos*ScrW()/10 - 1,height*0.93,3,ScrH()/70)
 	end
 
 	local vector = LocalPlayer():GetPos() + Vector(0,500,0) - LocalPlayer():GetShootPos()
@@ -64,7 +64,7 @@ function PLUGIN:HUDPaint()
 	surface.SetDrawColor(17,255,31,alpha)
 	if ang.y < 0 and ang.y > -180 then
 		draw.SimpleText("E", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
+		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,ScrH()/70)
 	end
 
 	local vector = LocalPlayer():GetPos() + Vector(0,-500,0) - LocalPlayer():GetShootPos()
@@ -74,7 +74,7 @@ function PLUGIN:HUDPaint()
 	surface.SetDrawColor(17,255,31,alpha)
 	if ang.y > 0 and ang.y < 180 then
 		draw.SimpleText("W", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
+		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,ScrH()/70)
 	end
 
 	local vector = LocalPlayer():GetPos() + Vector(-500,0) - LocalPlayer():GetShootPos()
@@ -84,7 +84,7 @@ function PLUGIN:HUDPaint()
 	surface.SetDrawColor(17,255,31,alpha)
 	if (ang.y > 90 or ang.y < -90) then
 		draw.SimpleText("S", "F4_Hud_Font", width*0.5 + pos*ScrW()/10 -1,height*0.96,Color(17,255,31,alpha), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,15)
+		surface.DrawRect(width/2 + pos*ScrW()/10 -1,height*0.93,3,ScrH()/70)
 	end
 
 	// AMMO
@@ -117,7 +117,7 @@ end
 
 surface.CreateFont( "F4_Hud_Font", {
 	font = "Roboto Condensed",
-	size = 36,
+	size = ScreenScale (14),
 	antialias = true,
 	shadow = true,
 	extended = true,
@@ -125,7 +125,7 @@ surface.CreateFont( "F4_Hud_Font", {
 
 surface.CreateFont( "F4_Ammo_Font", {
 	font = "Roboto Condensed",
-	size = 40,
+	size = ScreenScale(15),
 	antialias = true,
 	shadow = true,
 	extended = true,
