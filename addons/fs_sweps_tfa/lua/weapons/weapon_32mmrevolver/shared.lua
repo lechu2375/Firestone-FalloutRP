@@ -11,7 +11,7 @@ SWEP.Spawnable              = true --Can you, as a normal user, spawn this?
 SWEP.AdminSpawnable         = false --Can an adminstrator spawn this?  Does not tie into your admin mod necessarily, unless its coded to allow for GMod's default ranks somewhere in its code.  Evolve and ULX should work, but try to use weapon restriction rather than these.
 SWEP.DrawCrosshair          = false      -- Draw the crosshair?
 SWEP.DrawCrosshairIS = false --Draw the crosshair in ironsights?
-SWEP.PrintName              = "Pistolet .45 unikat"       -- Weapon name (Shown on HUD)
+SWEP.PrintName              = "Revolver .32"       -- Weapon name (Shown on HUD)
 SWEP.Slot               = 2             -- Slot in the weapon selection menu.  Subtract 1, as this starts at 0.
 SWEP.SlotPos                = 73            -- Position in the slot
 SWEP.AutoSwitchTo           = true      -- Auto switch to if we pick it up
@@ -21,10 +21,10 @@ SWEP.Weight             = 6            -- This controls how "good" the weapon is
 
 
 --[[WEAPON HANDLING]]--
-SWEP.Primary.Sound = Sound("weapons/pistol_9mm/wpn_9mm_fire_2d.wav") -- This is the sound of the weapon, when you shoot.
+SWEP.Primary.Sound = Sound("weapons/pistol32/wpn_pistol32_fire.wav") -- This is the sound of the weapon, when you shoot.
 SWEP.Primary.SilencedSound = nil -- This is the sound of the weapon, when silenced.
 SWEP.Primary.PenetrationMultiplier = 1 --Change the amount of something this gun can penetrate through
-SWEP.Primary.Damage = 34 -- Damage, in standard damage points.
+SWEP.Primary.Damage = 21 -- Damage, in standard damage points.
 SWEP.Primary.DamageTypeHandled = true --true will handle damagetype in base
 SWEP.Primary.DamageType = DMG_BULLET --See DMG enum.  This might be DMG_SHOCK, DMG_BURN, DMG_BULLET, etc.  Leave nil to autodetect.  DMG_AIRBOAT opens doors.
 SWEP.Primary.Force = nil --Force value, leave nil to autocalc
@@ -39,14 +39,14 @@ SWEP.Primary.DryFireDelay = nil --How long you have to wait after firing your la
 SWEP.Primary.BurstDelay = nil -- Delay between bursts, leave nil to autocalculate
 
 SWEP.CanJam = true -- whenever weapon cam jam
-SWEP.JamChance = 0.2 -- the (maximal) chance the weapon will jam. Newly spawned weapon will never jam on first shot for example.
+SWEP.JamChance = 0.17 -- the (maximal) chance the weapon will jam. Newly spawned weapon will never jam on first shot for example.
 -- Default value is 0.04 (4%)
 -- Maxmial value is 1, means weapon will always jam when factor become 100
 -- Also remember that there is a minimal factor before weapon can jam
 -- This number is not treated "as-is" but as basic value that needs to be concluded as chance
 -- You don't really need to cry over it and trying to balance it, TFA Base will do the job for you
 -- (TFA Base will calculate the best value between 0 and JamChance based on current JamFactor of the weapon)
-SWEP.JamFactor = 0.14 -- How to increase jam factor after each shot.
+SWEP.JamFactor = 0.50 -- How to increase jam factor after each shot.
 -- When factor reach 100 it will mean that on each shot there will be SWEP.Primary.JamChance chance to jam
 -- When factor reach 50 it will mean that on each shot there will be SWEP.Primary.JamChance / 2 chance to jam
 -- and so on
@@ -121,7 +121,7 @@ SWEP.FireSoundAffectedByClipSize = true -- Whenever adjuct pitch (and proably ot
 --Ammo Related
 SWEP.Primary.ClipSize = 7 -- This is the size of a clip
 SWEP.Primary.DefaultClip = 0 -- This is the number of bullets the gun gives you, counting a clip as defined directly above.
-SWEP.Primary.Ammo = "45Auto" -- What kind of ammo.  Options, besides custom, include pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, and AirboatGun.
+SWEP.Primary.Ammo = "32" -- What kind of ammo.  Options, besides custom, include pistol, 357, smg1, ar2, buckshot, slam, SniperPenetratedRound, and AirboatGun.
 SWEP.Primary.AmmoConsumption = 1 --Ammo consumed per shot
 --Pistol, buckshot, and slam like to ricochet. Use AirboatGun for a light metal peircing shotgun pellets
 SWEP.DisableChambering = false --Disable round-in-the-chamber
@@ -129,7 +129,7 @@ SWEP.DisableChambering = false --Disable round-in-the-chamber
 SWEP.Primary.KickUp = .2 -- This is the maximum upwards recoil (rise)
 SWEP.Primary.KickDown = .14 -- This is the maximum downwards recoil (skeet)
 SWEP.Primary.KickHorizontal = .03 -- This is the maximum sideways recoil (no real term)
-SWEP.Primary.StaticRecoilFactor = .6 --Amount of recoil to directly apply to EyeAngles.  Enter what fraction or percentage (in decimal form) you want.  This is also affected by a convar that defaults to 0.5.
+SWEP.Primary.StaticRecoilFactor = .7 --Amount of recoil to directly apply to EyeAngles.  Enter what fraction or percentage (in decimal form) you want.  This is also affected by a convar that defaults to 0.5.
 --Firing Cone Related
 SWEP.Primary.Spread = .06 --This is hip-fire acuracy.  Less is more (1 is horribly awful, .0001 is close to perfect)
 SWEP.Primary.IronAccuracy = .007 -- Ironsight accuracy, should be the same for shotguns
@@ -153,7 +153,7 @@ SWEP.ProjectileEntity = nil --Entity to shoot
 SWEP.ProjectileVelocity = 0 --Entity to shoot's velocity
 SWEP.ProjectileModel = nil --Entity to shoot's model
 --[[VIEWMODEL]]--
-SWEP.ViewModel          = "models/visualitygaming/fallout/weapons/v_9mm_45auto_pistol_unique.mdl" --Viewmodel path
+SWEP.ViewModel          = "models/visualitygaming/fallout/weapons/v_rev_32.mdl" --Viewmodel path
 SWEP.ViewModelFOV           = 67        -- This controls how big the viewmodel looks.  Less is more.
 SWEP.ViewModelFlip          = false     -- Set this to true for CSS models, or false for everything else (with a righthanded viewmodel.)
 SWEP.UseHands = false --Use gmod c_arms system.
@@ -162,7 +162,7 @@ SWEP.VMAng = Vector(0,0,0) --The viewmodel angular offset, constantly.   Subtrac
 SWEP.VMPos_Additive = true --Set to false for an easier time using VMPos. If true, VMPos will act as a constant delta ON TOP OF ironsights, run, whateverelse
 SWEP.AllowIronSightsDoF = false 
 SWEP.WorldModel         = "models/f_anm.mdl" 
-SWEP.HoldType = "pistol" 
+SWEP.HoldType = "revolver" 
 SWEP.Offset = {
 	Pos = {
 		Up = 0,
@@ -350,7 +350,7 @@ SWEP.EventTable = {} --Event Table, used for custom events when an action is pla
 SWEP.EventTable = {
   [ACT_VM_RELOAD] = {
       { ["time"] = 0.1, ["type"] = "lua", ["value"] = function( wep, viewmodel ) end, ["client"] = true, ["server"] = true},
-      { ["time"] = 0.1, ["type"] = "sound", ["value"] = Sound("weapons/pistol_9mm/wpn_9mm_reload.wav") }
+      { ["time"] = 0.1, ["type"] = "sound", ["value"] = Sound("weapons/pistol32/wpn_pistol32_reload.wav") }
   }
 }
 
@@ -373,7 +373,7 @@ SWEP.AttachmentTableOverride = {} --[[{ -- overrides WeaponTable for attachments
 	}
 }]]
 SWEP.WElements = {
-	["pistol"] = { type = "Model", model = "models/Halokiller38/fallout/weapons/Pistols/45autopistolunique.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(11, 2, -4.25), angle = Angle(180, 90, -90), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["model"] = { type = "Model", model = "models/halokiller38/fallout/weapons/pistols/32pistol.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(1.557, 1.557, 0.518), angle = Angle(180, -90, 0), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
 DEFINE_BASECLASS( SWEP.Base )
 

@@ -347,13 +347,12 @@ SWEP.ImpactEffect = nil--Impact Effect
 SWEP.ImpactDecal = nil--Impact Decal
 --[[EVENT TABLE]]--
 SWEP.EventTable = {} --Event Table, used for custom events when an action is played.  This can even do stuff like playing a pump animation after shooting.
---example:
---SWEP.EventTable = {
---  [ACT_VM_RELOAD] = {
---      { ["time"] = 0.1, ["type"] = "lua", ["value"] = function( wep, viewmodel ) end, ["client"] = true, ["server"] = true},
---      { ["time"] = 0.1, ["type"] = "sound", ["value"] = Sound("x") }
---  }
---}
+SWEP.EventTable = {
+  [ACT_VM_RELOAD] = {
+      { ["time"] = 0.1, ["type"] = "lua", ["value"] = function( wep, viewmodel ) end, ["client"] = true, ["server"] = true},
+      { ["time"] = 0.3, ["type"] = "sound", ["value"] = Sound("weapons/22smgsil/weapon_127mm_reload.wav") }
+  }
+}
 
 --[[ATTACHMENTS]]--
 SWEP.VElements = nil --Export from SWEP Creation Kit.  For each item that can/will be toggled, set active=false in its individual table
