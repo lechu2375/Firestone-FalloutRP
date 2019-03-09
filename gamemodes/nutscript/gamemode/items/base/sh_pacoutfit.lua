@@ -113,8 +113,10 @@ ITEM.functions.Equip = {
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
 		if item.mask then
-			char:setData("ognick",char:getName())
-			char:setName("Nieznajomy "..randomskladka())
+			if not string.StartWith(char:getData("ognick"), "Nieznajomy") then
+				char:setData("ognick",char:getName())	
+			end
+				char:setName("Nieznajomy "..randomskladka())
 		end
 		for k, v in pairs(items) do
 			if (v.id != item.id) then
