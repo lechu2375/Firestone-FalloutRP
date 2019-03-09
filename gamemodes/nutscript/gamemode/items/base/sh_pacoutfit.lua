@@ -6,7 +6,6 @@ ITEM.width = 1
 ITEM.height = 1
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {}
-
 --[[
 ITEM.pacData = {
 	[1] = {
@@ -90,11 +89,17 @@ ITEM.functions.EquipUn = { -- sorry, for name order.
 	tip = "equipTip",
 	icon = "icon16/cross.png",
 	onRun = function(item)
+		local char = item.player:getChar()
 		item:removePart(item.player)
-		
+		if item.mask then
+			char:setName(char:getData("ognick"))
+		end
 		return false
+		
+		
 	end,
 	onCanRun = function(item)
+	
 		return (!IsValid(item.entity) and item:getData("equip") == true)
 	end
 }
@@ -107,7 +112,10 @@ ITEM.functions.Equip = {
 	onRun = function(item)
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
-
+		if item.mask then
+			char:setData("ognick",char:getName())
+			char:setName("Nieznajomy "..randomskladka())
+		end
 		for k, v in pairs(items) do
 			if (v.id != item.id) then
 				local itemTable = nut.item.instances[v.id]
