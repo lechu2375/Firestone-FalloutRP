@@ -30,7 +30,7 @@ function PLUGIN:EntityTakeDamage(target,dmg)
 			    	może ktoś naprawi, na razie to działa chociaż względem optymalizacji, wiem, że jest to złe rozwiązanie.]]--
 				else if (dmg:GetDamage()<damagetreshold and ( attacker:IsNPC() or attacker:IsPlayer() )) then 
 					print("dmgtype:"..dmg:GetDamageType())
-					print("drugi warunek".."dt:"..char:getData("dt").."dr:"..char:getData("dr")
+					print("drugi warunek".."dt:"..char:getData("dt").."dr:"..char:getData("dr"))
 					target:PrintMessage(HUD_PRINTTALK, "drugi warunek" )
 					dmg:SetDamage(0)
 				end 
