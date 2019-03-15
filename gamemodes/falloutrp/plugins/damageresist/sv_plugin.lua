@@ -15,6 +15,8 @@ function PLUGIN:EntityTakeDamage(target,dmg)
 				else if (dmg:GetDamage()<dt) then 
 					dmg:SetDamage(0)
 					dmg:SetDamageForce(dmg:GetDamageForce()+dmg:GetDamageForce()*0.2)
+					target:EmitSound( "physics/body/body_medium_impact_hard1.wav",40)
+					ParticleEffect("bomb_explosion_huge", dmg:GetReportedPosition(), target:GetAngles(), target )
 				end
         end
     end
