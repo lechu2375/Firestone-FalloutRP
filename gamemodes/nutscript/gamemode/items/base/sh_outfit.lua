@@ -27,6 +27,13 @@ ITEM.bodyGroups = {
 }
 */
 
+function ITEM:getDesc()
+	if (self.entity and IsValid(self.entity)) then
+		return (self.desc.."\nPróg obrażeń:"..(self.dt or 0).."\nRedukcja obrażeń:"..(self.reduction or 0))
+	end
+	return (self.desc.."\nPróg obrażeń:"..(self.dt or 0).."\nRedukcja obrażeń:"..(self.reduction or 0))
+end
+
 -- Inventory drawing
 if (CLIENT) then
 	-- Draw camo if it is available.
