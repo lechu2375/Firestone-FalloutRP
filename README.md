@@ -7,7 +7,7 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 - Discord: https://discord.gg/vgfGyEs
 - Dokumentacja: https://nutscript.miraheze.org/wiki/Main_Page
 - Stara Dokumentacja: https://github.com/Chessnut/NutScript/wiki
-- Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP
+- Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP 
 
 ### Dokumentacja
 ```lua
