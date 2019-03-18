@@ -9,7 +9,7 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 - Stara Dokumentacja: https://github.com/Chessnut/NutScript/wiki
 - Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP
 
-### Dokumentacja 
+### Dokumentacja
 ```lua
 -- Fallout UI Library 
 vgui.Create("FS_Button")
