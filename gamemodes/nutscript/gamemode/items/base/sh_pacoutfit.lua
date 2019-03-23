@@ -113,7 +113,8 @@ ITEM.functions.Equip = {
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
 		if item.mask then
-			if not string.StartWith(char:getData("ognick"), "Nieznajomy") then
+		local ognick = char:getData("ognick") or ""
+			if not string.StartWith(ognick, "Nieznajomy") then
 				char:setData("ognick",char:getName())	
 			end
 				char:setName("Nieznajomy "..randomskladka())
