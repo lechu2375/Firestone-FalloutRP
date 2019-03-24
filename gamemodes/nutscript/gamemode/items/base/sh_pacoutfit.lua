@@ -126,9 +126,9 @@ ITEM.functions.Equip = {
 		end
 
 		item:setData("equip", true)
-		item.player:Say("/me zakłada "..item.name)
+		item.player:Say("/me zakłada "..item.name)--Reszte funkcji wrzucam pod tym wyżej ifem, który sprawdza czy można to ubrać.
 		if item.mask then
-			if not string.StartWith(char:getData("ognick"), "Nieznajomy") then 
+			if  !(string.StartWith(char:getName(), "Nieznajomy")) then --jak już ma nick Nieznajomy to nie zmienia na nowo.
 				char:setName("Nieznajomy "..randomskladka())
 			end
 
