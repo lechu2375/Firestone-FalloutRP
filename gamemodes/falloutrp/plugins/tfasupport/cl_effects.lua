@@ -25,12 +25,15 @@
 		end
 
 
+	
+
 		function EFFECT:FixedParticle()
+		
 			local function maxLife(min, max)
 				return math.Rand(math.min(min, self.lifeTime), math.min(max or self.lifeTime, self.lifeTime)) * 1
 			end	
 
-			local p = self.emitter:Add("particle/smokesprites_000"..math.random(4,9), Vector(3, 0, 0))
+			local p = WORLDEMITTER:Add("particle/smokesprites_000"..math.random(4,9), Vector(3, 0, 0))
 			p:SetVelocity(222*Vector(1, 0, 0)*self.scale)
 			p:SetDieTime(maxLife(.1, .2))
 			p:SetStartAlpha(math.Rand(22,44))
@@ -42,7 +45,7 @@
 			p:SetColor(150,150,150)
 			p:SetGravity( Vector( 0, 0, 100 )*math.Rand( .2, 1 ) )
 			
-			local p = self.emitter:Add(muzzleMaterials[math.random(1, 4)], Vector(-5, 0, 0))
+			local p = WORLDEMITTER:Add(muzzleMaterials[math.random(1, 4)], Vector(-5, 0, 0))
 			p:SetVelocity(math.Rand(60, 80)*Vector(1, 0, 0)*(self.scale))
 			p:SetDieTime(maxLife(.06, .02))
 			p:SetStartAlpha(155)
@@ -62,7 +65,7 @@
 			p:SetColor(255,255,222 )
 			p:SetRollDelta(math.Rand(-3,3))
 			
-			local p = self.emitter:Add(muzzleMaterials[math.random(1, 8)], Vector(3, 0, 0))
+			local p = WORLDEMITTER:Add(muzzleMaterials[math.random(1, 8)], Vector(3, 0, 0))
 			p:SetVelocity(math.Rand(333, 444)*Vector(1, 0, 0)*(self.scale*2))
 			p:SetDieTime(maxLife(.06, .02))
 			p:SetStartAlpha(155)
@@ -73,7 +76,7 @@
 			p:SetColor(255,255,222 )
 			p:SetRollDelta(math.Rand(-3,3))
 		
-			local p = self.emitter:Add("particle/Particle_Glow_04_Additive", Vector(3, 0, 0))
+			local p = WORLDEMITTER:Add("particle/Particle_Glow_04_Additive", Vector(3, 0, 0))
 			p:SetVelocity(888*Vector(1, 0, 0)*self.scale)
 			p:SetDieTime(maxLife(.02, .05))
 			p:SetStartAlpha(math.Rand(61,99))
@@ -87,7 +90,7 @@
 
 			self.daz = {}
 			for i = 1, math.random( 1, 2 ) do
-				local smoke = self.emitter:Add( "effects/yellowflare", Vector(3, 0, 0))
+				local smoke = WORLDEMITTER:Add( "effects/yellowflare", Vector(3, 0, 0))
 				self.daz[i] = smoke
 				
 				smoke:SetVelocity(1*Vector(math.Rand(0, 5), math.Rand(-25, 25), math.Rand(-25, 25))*self.scale)
