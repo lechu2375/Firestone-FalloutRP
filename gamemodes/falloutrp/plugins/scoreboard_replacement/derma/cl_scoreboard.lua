@@ -27,8 +27,8 @@ local PANEL = {}
 		self.title:SizeToContentsY()
 		self.title:SetTall(self.title:GetTall() + 16)
 		self.title.Paint = function(this, w, h)
-			surface.SetDrawColor(0, 0, 0, 150)
-			surface.DrawRect(0, 0, w, h)
+			surface.SetDrawColor(17,255,31,255)
+			surface.DrawOutlinedRect(0, 0, w, h)
 		end
 
 		self.scroll = self:Add("DScrollPanel")
@@ -294,12 +294,12 @@ local PANEL = {}
 	end
 
 	function PANEL:Paint(w, h)
-		nut.util.drawBlur(self, 10)
+		nut.util.drawBlur(self, 3)
 
-		surface.SetDrawColor(30, 30, 30, 100)
+		surface.SetDrawColor(15, 72, 34, 80)
 		surface.DrawRect(0, 0, w, h)
 
-		surface.SetDrawColor(0, 0, 0, 150)
+		surface.SetDrawColor(17,255,31)
 		surface.DrawOutlinedRect(0, 0, w, h)
 	end
 vgui.Register("nutScoreboard", PANEL, "EditablePanel")

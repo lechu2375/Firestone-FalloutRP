@@ -12,12 +12,12 @@ function PLUGIN:Think()
     for _,ply in pairs( player.GetAll() ) do
         local char = ply:getChar()
         if ( char == nil or ply:GetMoveType() == MOVETYPE_NOCLIP or !ply:OnGround() ) then return end
-        if ( ply:KeyDown( IN_FORWARD ) and ply:KeyDown( IN_SPEED ) and !ply:Crouching() ) then
+        if ( ( ply:KeyDown( IN_FORWARD ) or ply:KeyDown( IN_BACK ) or ply:KeyDown( IN_MOVELEFT ) or ply:KeyDown( IN_MOVERIGHT) ) and ply:KeyDown( IN_SPEED ) and !ply:Crouching() ) then
             if ( char:getVar( "stm" ) > 0 ) then 
-                ply:SetRunSpeed( 300 + char:getAttrib("stamina", 0) )
-                char:setVar( "stm", MasnyCiul( char:getVar("stm") - nut.config.get("staminaDrainSpeed")/100 ) )
+                ply:SetRunSpeed( nut.config.get("runSpeed") )
+                char:setVar( "stm", MasnyCiul( char:getVar("stm") - nut.config.get("staminaDrainSpeed")/100 + char:getAttrib("stamina", 0)/100 ) )
             else
-                ply:SetRunSpeed( ply:GetWalkSpeed() )
+                ply:SetRunSpeed( nut.config.get("walkSpeed") )
             end
          else
             char:setVar( "stm", MasnyCiul( char:getVar("stm") + nut.config.get("staminaRestoreSpeed")/100 ) )
@@ -30,7 +30,7 @@ function PLUGIN:KeyPress( ply, key )
     if ( char == nil or ply:GetMoveType() == MOVETYPE_NOCLIP or ply:Crouching() or !ply:OnGround() ) then return end
     if ( key == IN_JUMP ) then
         if ( char:getVar( "stm" ) >= 10 ) then 
-            char:setVar( "stm", MasnyCiul( char:getVar("stm") - nut.config.get("staminaTakenOnJump") ) )
+            char:setVar( "stm", MasnyCiul( char:getVar("stm") - nut.config.get("staminaTakenOnJump") + char:getAttrib("stamina", 0)/5 ) )
         end
     end
 end

@@ -1,9 +1,16 @@
 if !SERVER then return end 
 
+util.AddNetworkString("FS:ShowXP")
 local PLUGIN = PLUGIN 
 local PLAYER = FindMetaTable("Player")
 
+-- How many XP should players receive per hour?
 PLUGIN.HourlyBonus = 100
+
+function PLUGIN:OnCharCreated( ply )
+    local char = ply:getChar()
+    char:setData("xp", 0)
+end
 
 function PLAYER:SetXP(intNumber)
     local char = self:getChar()
@@ -14,13 +21,15 @@ end
 
 function PLAYER:AddXP(intAmount, strReason)
     local char = self:getChar()
-    
-    if self:IsPrime() then 
-        char:setData("xp", char:getData("xp") + intAmount * 0.10)
-    else
-        char:setData("xp", char:getData("xp") + intAmount)
-    end
+    local oldXP = char:getData("xp")
+    char:setData("xp", char:getData("xp") + intAmount)
+    local newXP = char:getData("xp")
     self:Notify("Otrzymałeś "..intAmount.." XP za "..strReason)
+
+    net.Start("FS:ShowXP")
+    net.WriteInt(oldXP, 16)
+    net.WriteInt(newXP, 16)
+    net.Send( self )
 end
 
 function PLAYER:RemoveXP(intAmount)
@@ -43,3 +52,12 @@ function PLUGIN:InitPostEntity()
         end
     end)
 end
+
+concommand.Add("xp", function( ply )
+    ply:AddXP(33, "test")
+end)
+
+concommand.Add("xp2", function( ply )
+    ply:SetXP(0)
+end)
+

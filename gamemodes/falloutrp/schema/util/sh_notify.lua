@@ -17,27 +17,27 @@ if (CLIENT) then
         local notice = vgui.Create("FS_PanelH")
         --
         local noticeText = notice:Add("DLabel")
-        noticeText:SetPos(60,15)
+        noticeText:SetPos(45,15)
         noticeText:SetFont("FS_Notify")
         noticeText:SetText(noticeString)
         noticeText:SizeToContents()
         noticeText:SetColor(Color(17,255,31))
         --
-        notice:SetSize(80+noticeText:GetWide(),50)
+        notice:SetSize(60+noticeText:GetWide(), 50)
 	    notice:SetPos(-notice:GetWide()*1.5, 30)
         --
         table.insert(notifsOnScreen, notice)
         --
         local noticeImage = notice:Add("DImage")
-        noticeImage:SetSize(32,40)
-        noticeImage:SetPos(15, 3)
-        noticeImage:SetImage("fs_notifs/vaultboy.png")
+        noticeImage:SetSize(8, 30)
+        noticeImage:SetPos(20, 10)
+        noticeImage:SetImage("fs_notifs/info.png")
         --
         local function showNotice()
             for k, v in ipairs(notifsOnScreen) do
                 v:MoveTo(10, 30, 0.5, 0, 0.3, function()
                     surface.PlaySound("buttons/button14.wav")
-                    timer.Simple(8, function()
+                    timer.Simple(4, function()
                         if IsValid(v) then
                             v:MoveTo(-v:GetWide()*1.5, 30, 0.5, 0, 0.5, function()
                                 v:Remove()

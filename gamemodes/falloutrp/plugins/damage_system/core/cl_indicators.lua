@@ -17,7 +17,7 @@ function PANEL:AddIndicator( part, pos1, pos2, pos3, pos4)
         else
             color = Color(17,255,31)
         end
-    draw.RoundedBox(32, 0, 0, w, h, color)
+    draw.RoundedBox(100, 0, 0, w, h, color)
     end
 
     local hpText = self:Add("DLabel")

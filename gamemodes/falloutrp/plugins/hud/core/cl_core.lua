@@ -89,6 +89,7 @@ function PLUGIN:HUDPaint()
 
 	// AMMO
 
+	surface.SetDrawColor(17, 255, 31, 255)
 	local weapon = LocalPlayer():GetActiveWeapon()
 	if !IsValid(weapon) then return end
 	local clipAmmo = tonumber(weapon:Clip1()) or -1
@@ -109,7 +110,7 @@ function PLUGIN:HUDPaint()
 			restOfAmmo = "00"..restOfAmmo
 		end
 		draw.SimpleText(clipAmmo,"F4_Ammo_Font",width*0.94,height*0.84, lightColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		surface.DrawRect(width*0.923, height*0.86, 60, 3 )
+		surface.DrawRect(width*0.923, height*0.86, width*0.035, 3 )
 		draw.SimpleText(restOfAmmo,"F4_Ammo_Font",width*0.94,height*0.88, lightColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	end
 
