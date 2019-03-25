@@ -122,8 +122,6 @@ ITEM.functions.Equip = {
 	onRun = function(item)
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
-		char:setData("dt",(item.dt or 0))
-		char:setData("dr",(item.reduction or 0))
 		for k, v in pairs(items) do
 			if (v.id != item.id) then
 				local itemTable = nut.item.instances[v.id]
