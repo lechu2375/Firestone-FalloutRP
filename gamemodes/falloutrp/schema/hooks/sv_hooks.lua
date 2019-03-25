@@ -19,4 +19,16 @@ function SCHEMA:PlayerLoadedChar(client, character)
 	else
 		client:PrintMessage(HUD_PRINTTALK,"Dopiero rozpoczęto przygodę na Firestone FalloutRP!")
 	end
+	----------------------------
+	
+	if not character:getData("firstentry") then
+		character:setData("ognick", character:getName())
+		character:setData("firstentry", true)
+	
+	end 
+
+	if not (character:getData("ognick") == character:getName())  then  -- zabezpieczenie gdyby ktoś imię zmienił postaci po wbiciu
+		character:setData("ognick", character:getName())
+	end
 end
+

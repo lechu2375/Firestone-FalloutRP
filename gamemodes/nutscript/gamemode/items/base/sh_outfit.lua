@@ -34,6 +34,8 @@ function ITEM:getDesc()
 	return (self.desc.."\nPróg obrażeń:"..(self.dt or 0).."\nRedukcja obrażeń:"..(self.reduction or 0))
 end
 
+
+
 -- Inventory drawing
 if (CLIENT) then
 	-- Draw camo if it is available.
@@ -47,9 +49,13 @@ end
 
 function ITEM:removeOutfit(client)
 	local character = client:getChar()
-	
+	client:Say("/me ściąga "..self.name)
+	if self.faction then
+			client:Notify("Nie nosisz już ubrania członka frakcji "..self.faction, 1)
+	end
 	self:setData("equip", false)
-
+	character:setData("dt",0)
+	character:setData("dr",0)
 	if (character:getData("oldMdl")) then
 		character:setModel(character:getData("oldMdl"))
 		character:setData("oldMdl", nil)
@@ -116,7 +122,6 @@ ITEM.functions.Equip = {
 	onRun = function(item)
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
-
 		for k, v in pairs(items) do
 			if (v.id != item.id) then
 				local itemTable = nut.item.instances[v.id]
@@ -128,8 +133,14 @@ ITEM.functions.Equip = {
 				end
 			end
 		end
-
+		item.player:Say("/me zakłada "..item.name)
+		
+		char:setData("dt",(item.dt or 0))
+		char:setData("dr",(item.reduction or 0))
 		item:setData("equip", true)
+		if item.faction then
+			item.player:Notify("Nosisz teraz ubranie członka frakcji "..item.faction, 1)
+		end
 		
 		if (type(item.onGetReplacement) == "function") then
 			char:setData("oldMdl", char:getData("oldMdl", item.player:GetModel()))

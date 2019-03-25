@@ -65,7 +65,7 @@ end
 
 function ITEM:removePart(client)
 	local char = client:getChar()
-	
+	client:Say("/me zdejmuje "..self.name)
 	self:setData("equip", false)
 	client:removePart(self.uniqueID)
 
@@ -112,12 +112,6 @@ ITEM.functions.Equip = {
 	onRun = function(item)
 		local char = item.player:getChar()
 		local items = char:getInv():getItems()
-		if item.mask then
-			if not string.StartWith(char:getData("ognick"), "Nieznajomy") then
-				char:setData("ognick",char:getName())	
-			end
-				char:setName("Nieznajomy "..randomskladka())
-		end
 		for k, v in pairs(items) do
 			if (v.id != item.id) then
 				local itemTable = nut.item.instances[v.id]
@@ -127,10 +121,18 @@ ITEM.functions.Equip = {
 
 					return false
 				end
+				
 			end
 		end
 
 		item:setData("equip", true)
+		item.player:Say("/me zakłada "..item.name)--Reszte funkcji wrzucam pod tym wyżej ifem, który sprawdza czy można to ubrać.
+		if item.mask then
+			if  !(string.StartWith(char:getName(), "Nieznajomy")) then --jak już ma nick Nieznajomy to nie zmienia na nowo.
+				char:setName("Nieznajomy "..randomskladka())
+			end
+
+		end
 		item.player:addPart(item.uniqueID, item)
 
 		if (item.attribBoosts) then
