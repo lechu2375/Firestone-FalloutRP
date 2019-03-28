@@ -346,12 +346,12 @@ function SWEP:PrimaryAttack()
 	local staminaUse = nut.config.get("punchStamina")
 
 	if (staminaUse > 0) then
-		local value = self.Owner:getLocalVar("stm", 0) - staminaUse
+		local value = self.Owner:getChar():getVar("stm", 0) - staminaUse
 
 		if (value < 0) then
 			return
 		elseif (SERVER) then
-			self.Owner:setLocalVar("stm", value)
+			self.Owner:getChar():setVar("stm", value)
 		end
 	end
 

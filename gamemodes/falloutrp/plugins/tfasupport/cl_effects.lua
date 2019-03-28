@@ -28,7 +28,7 @@
 	
 
 		function EFFECT:FixedParticle()
-		
+			self.emitter = self.emitter or ParticleEmitter(Vector(0,0,0))
 			local function maxLife(min, max)
 				return math.Rand(math.min(min, self.lifeTime), math.min(max or self.lifeTime, self.lifeTime)) * 1
 			end	
