@@ -9,12 +9,12 @@ local PANEL = {}
 	function PANEL:Init()
 		local border = 32
 		local scrW, scrH = ScrW(), ScrH()
-		local w, h = scrW * 0.35, scrH * 0.35
+		local w, h = scrW * 0.30, scrH * 0.275
 
 		nut.gui.chat = self
 
 		self:SetSize(w, h)
-		self:SetPos(border, scrH - h - 96)
+		self:SetPos(border, scrH - ( h * 1.5 ))
 
 		self.active = false
 
@@ -42,9 +42,6 @@ local PANEL = {}
 					local command = string.PatternSafe(arguments[1] or ""):lower()
 
 					nut.util.drawBlur(this)
-
-					surface.SetDrawColor(0, 0, 0, 200)
-					surface.DrawRect(0, 0, w, h)
 
 					local i = 0
 					local color = nut.config.get("color")
@@ -102,12 +99,12 @@ local PANEL = {}
 
 	function PANEL:Paint(w, h)
 		if (self.active) then
-			nut.util.drawBlur(self, 10)
+			nut.util.drawBlur(self, 3)
 
-			surface.SetDrawColor(250, 250, 250, 2)
+			surface.SetDrawColor(15, 72, 34, 160)
 			surface.DrawRect(0, 0, w, h)
 
-			surface.SetDrawColor(0, 0, 0, 240)
+			surface.SetDrawColor(17,255,31, 180)
 			surface.DrawOutlinedRect(0, 0, w, h)
 		end
 	end
@@ -136,6 +133,7 @@ local PANEL = {}
 			self.text:SetHistoryEnabled(true)
 			self.text:DockMargin(3, 3, 3, 3)
 			self.text:SetFont("nutChatFont")
+			self.text:SetDrawLanguageID( false )
 			self.text.OnEnter = function(this)
 				local text = this:GetText()
 
@@ -156,10 +154,8 @@ local PANEL = {}
 			end
 			self.text:SetAllowNonAsciiCharacters(true)
 			self.text.Paint = function(this, w, h)
-				surface.SetDrawColor(0, 0, 0, 100)
-				surface.DrawRect(0, 0, w, h)
 
-				surface.SetDrawColor(0, 0, 0, 200)
+				surface.SetDrawColor(17,255,31)
 				surface.DrawOutlinedRect(0, 0, w, h)
 
 				this:DrawTextEntryText(TEXT_COLOR, nut.config.get("color"), TEXT_COLOR)
@@ -199,16 +195,16 @@ local PANEL = {}
 
 	local function PaintFilterButton(this, w, h)
 		if (this.active) then
-			surface.SetDrawColor(40, 40, 40)
+			surface.SetDrawColor(17,255,31,60)
 		else
 			local alpha = 120 + math.cos(RealTime() * 5) * 10
 
-			surface.SetDrawColor(ColorAlpha(nut.config.get("color"), alpha))
+			surface.SetDrawColor(15, 72, 34,180)
 		end
 
 		surface.DrawRect(0, 0, w, h)
 
-		surface.SetDrawColor(0, 0, 0, 200)
+		surface.SetDrawColor(17,255,31)
 		surface.DrawOutlinedRect(0, 0, w, h)
 	end
 

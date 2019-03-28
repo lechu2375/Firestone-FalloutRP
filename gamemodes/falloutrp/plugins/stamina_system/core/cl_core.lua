@@ -4,5 +4,4 @@ function PLUGIN:PlayerBindPress( ply, bind )
 			return true
 		end
 	end
-	print(ply:GetMoveType())
 end

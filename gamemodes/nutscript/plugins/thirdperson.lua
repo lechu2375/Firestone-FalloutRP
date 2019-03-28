@@ -10,9 +10,9 @@ nut.config.add("thirdperson", false, "Allow Thirdperson in the server.", nil, {
 if (CLIENT) then
 	local NUT_CVAR_THIRDPERSON = CreateClientConVar("nut_tp_enabled", "0", true)
 	local NUT_CVAR_TP_CLASSIC = CreateClientConVar("nut_tp_classic", "0", true)
-	local NUT_CVAR_TP_VERT = CreateClientConVar("nut_tp_vertical", 10, true)
-	local NUT_CVAR_TP_HORI = CreateClientConVar("nut_tp_horizontal", 0, true)
-	local NUT_CVAR_TP_DIST = CreateClientConVar("nut_tp_distance", 50, true)
+	local NUT_CVAR_TP_VERT = CreateClientConVar("nut_tp_vertical", 15, true)
+	local NUT_CVAR_TP_HORI = CreateClientConVar("nut_tp_horizontal", 15, true)
+	local NUT_CVAR_TP_DIST = CreateClientConVar("nut_tp_distance", 65, true)
 
 	local PANEL = {}
 
