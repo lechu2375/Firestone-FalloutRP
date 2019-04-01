@@ -22,3 +22,9 @@ nut.config.add("staminaTakenOnJump", 10, "Ile punktów kondycji zabiera skok?", 
 	data = {min=10, max=100},
 	category = "Firestone Foundation - Stamina"
 })
+
+nut.config.add("jumpPower", 200, "Jak wysoko skaczemy", nil, {
+	form = "Float",
+	data = {min=100, max=300},
+	category = "Firestone Foundation - Stamina"
+})

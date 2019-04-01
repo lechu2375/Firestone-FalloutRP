@@ -25,10 +25,10 @@ local function ToggleDerma()
     local lh = infoHolder:GetTall()
     infoHolder:AddIndicator("Head", lw/2, lh * 0.12, lw/2, 0)
     infoHolder:AddIndicator("Chest", lw/2-5, lh * 0.4, lw/2-5, lh * 0.45)
-    infoHolder:AddIndicator("Left Arm", lw * 0.2, lh * 0.35, lw*0.2, lh * 0.45)
-    infoHolder:AddIndicator("Right Arm", lw * 0.8, lh * 0.35, lw*0.8, lh * 0.45)
-    infoHolder:AddIndicator("Left Leg", lw * 0.325, lh * 0.7, lw*0.3, lh * 0.825)
-     infoHolder:AddIndicator("Right Leg", lw * 0.625, lh * 0.7, lw*0.65, lh * 0.825)
+    infoHolder:AddIndicator("LeftArm", lw * 0.2, lh * 0.35, lw*0.2, lh * 0.45)
+    infoHolder:AddIndicator("RightArm", lw * 0.8, lh * 0.35, lw*0.8, lh * 0.45)
+    infoHolder:AddIndicator("LeftLeg", lw * 0.325, lh * 0.7, lw*0.3, lh * 0.825)
+     infoHolder:AddIndicator("RightLeg", lw * 0.625, lh * 0.7, lw*0.65, lh * 0.825)
 
     local boyImg = infoHolder:Add("DImage")
     boyImg:SetSize( infoHolder:GetWide() , infoHolder:GetTall() * 0.8)
@@ -68,25 +68,25 @@ function PLUGIN:Think()
             end)
         end
         // bleeding
-        if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) > 0 then
+        if char:getData("FS.Bleeding") > 0 then
             if IsValid(basePanel) then
                 bleedingHolder:SetVisible(true)
             end
         end
-        if LocalPlayer():GetNWInt("Firestone.Bleeding", 0) <= 0 || !LocalPlayer():Alive() then
+        if char:getData("FS.Bleeding") <= 0 || !LocalPlayer():Alive() then
             if IsValid(basePanel) then
                 bleedingHolder:SetVisible(false)
             end
         end
         // low headhp/hp effects
         local tab = {
-            ["$pp_colour_colour"] = (0.3 + (char:getData("Firestone.HeadHealth") + LocalPlayer():Health())/400), 
+            ["$pp_colour_colour"] = (0.3 + (char:getData("BodyPart.Head") + LocalPlayer():Health())/400), 
             ["$pp_colour_contrast"] = 0.8,
         }
 
-        if char:getData("Firestone.HeadHealth") <= 60 || LocalPlayer():Health() <= 40 then
+        if char:getData("BodyPart.Head") <= 60 || LocalPlayer():Health() <= 20 then
             hook.Add("RenderScreenspaceEffects", "Firestone.MotionBlur", function()
-                DrawMotionBlur((0.3 + (char:getData("Firestone.HeadHealth") + LocalPlayer():Health())/2000), 0.8, 0.01 )
+                DrawMotionBlur((0.3 + (char:getData("BodyPart.Head") + LocalPlayer():Health())/2000), 0.8, 0.01 )
                 DrawColorModify(tab)  
             end)
         else

@@ -7,7 +7,7 @@ function PANEL:AddIndicator( part, pos1, pos2, pos3, pos4)
     damageIndicator:SetPos(pos1, pos2)
     damageIndicator:SetZPos(9999)
     damageIndicator.Paint = function(self, w, h)
-        local state = char:getData("Firestone."..part.."Health")
+        local state = char:getData("BodyPart."..part)
         if state < 25 then
             color = Color(234, 32, 39)
          elseif state < 50 then
@@ -26,7 +26,7 @@ function PANEL:AddIndicator( part, pos1, pos2, pos3, pos4)
     hpText:SetZPos(9999)
     hpText:SetFont("FS_Side_Small")
     hpText.Think = function()
-        local state = char:getData("Firestone."..part.."Health")
+        local state = char:getData("BodyPart."..part)
         hpText:SetText(state.."/"..100)
     end
 end

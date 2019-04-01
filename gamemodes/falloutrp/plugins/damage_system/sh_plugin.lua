@@ -1,29 +1,43 @@
 local PLUGIN = PLUGIN
 PLUGIN.name = "Damage System"
-PLUGIN.author = "FrX & Djuk"
+PLUGIN.author = "Djuk"
 
 DamageSys = DamageSys or {}
-DamageSys.BodyParts = { // potem se przerób na same valuesy!!
+DamageSys.BodyParts = {
   [1] = {
     name = "Head",
+    hitgroup = HITGROUP_HEAD,
+    damageScale = 2,
   },
   [2] = {
     name = "Chest",
+    hitgroup = HITGROUP_CHEST,
+    damageScale = 1.25,
   },
   [3] = {
     name = "Stomach",
+    hitgroup = HITGROUP_STOMACH,
+    damageScale = 1,
   },
   [4] = {
-    name = "Right Arm",
+    name = "RightArm",
+    hitgroup = HITGROUP_RIGHTARM,
+    damageScale = 0.5,
   },
   [5] = {
-    name = "Left Arm",
+    name = "LeftArm",
+    hitgroup = HITGROUP_LEFTARM,
+    damageScale = 0.5,
   },
   [6] = {
-    name = "Right Leg",
+    name = "RightLeg",
+    hitgroup = HITGROUP_RIGHTLEG,
+    damageScale = 0.75,    
   },
   [7] = {
-    name = "Left Leg",
+    name = "LeftLeg",
+    hitgroup = HITGROUP_LEFTLEG,
+    damageScale = 0.75,    
   },
 }
 
@@ -42,4 +56,16 @@ nut.command.add("ulecz", {
     target:Notify( ply:Nick().." uleczył cię." )
     ply:Notify("Gracz "..target:Nick().." został uleczony.")
 	end
+})
+
+nut.config.add("bleedingTimer", 3, "Co ile sekund jest zabieranie HP?", nil, {
+	form = "Float",
+	data = {min=1, max=10},
+	category = "Firestone Foundation - Damage System"
+})
+
+nut.config.add("bleedingDamage", 6, "HP zabierane co kilka sekund", nil, {
+	form = "Float",
+	data = {min=1, max=20},
+	category = "Firestone Foundation - Damage System"
 })
