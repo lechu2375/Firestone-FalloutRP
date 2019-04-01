@@ -57,100 +57,6 @@ self:SetWeaponHoldType( self.HoldType )
 end
 
 
-
-
-
-
-
-
-
-
-local LaserHitImpact = function(attacker, tr, dmginfo)
-
-	local laserhit = EffectData()
-	laserhit:SetOrigin(tr.HitPos)
-	laserhit:SetNormal(tr.HitNormal)
-	laserhit:SetScale(30)
-	util.Effect("effect_fo3_laserhit", laserhit)
-
-	return true
-end
-
-
-if (CLIENT) then
-SWEP.VElements = {
-	["alien"] = { type = "Model", model = "models/Halokiller38/fallout/weapons/Energy Weapons/laserrifle.mdl", bone = "v_weapon.Right_Arm", rel = "", pos = Vector(8.1, 1.809, 1.638), angle = Angle(152, -90.296, 1.475), size = Vector(1.001, 1.001, 1.001), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
-SWEP.WElements = {
-	["alien"] = { type = "Model", model = "models/Halokiller38/fallout/weapons/Energy Weapons/laserrifle.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(0.456, 0.764, 2.724), angle = Angle(180, -90.001, 6.765), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-}
-end
-
-SWEP.Base 				= "weapon_stef_base"
-SWEP.Category			= "Fallout Sweps - Energy Weapons"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
-
-SWEP.HoldType = "ar2"
-SWEP.ViewModelFOV = 56
-SWEP.ViewModelFlip = false
-SWEP.ViewModel = "models/weapons/v_rif_galil.mdl"
-SWEP.WorldModel = "models/Halokiller38/fallout/weapons/Energy Weapons/laserrifle.mdl"
-SWEP.ShowViewModel = true
-SWEP.ShowWorldModel = false
-SWEP.ViewModelBoneMods = {
-	["v_weapon.Right_Arm"] = { scale = Vector(1, 1, 1), pos = Vector(-0.953, -0.772, -0.917), angle = Angle(0, 0, 0) },
-	["v_weapon.Left_Arm"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0.136), angle = Angle(0, 0, 0) },
-	["v_weapon.galil"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
-}
-
-
-SWEP.Primary.Sound 		= Sound("weapons/laserrifle/wpn_rifle_laser_fire_2d.wav")
-SWEP.Primary.Recoil 		= .3
-SWEP.Primary.Damage 		= 40
-SWEP.Primary.NumShots 		= 1
-SWEP.Primary.Cone 			= .0125
-SWEP.Primary.ClipSize 		= 24
-SWEP.Primary.Delay 			= 0.3
-SWEP.Primary.DefaultClip 	= 0
-SWEP.Primary.Automatic 		= false
-SWEP.Primary.Ammo			= "MicrofusionCell"
-
-SWEP.Secondary.ClipSize 	= -1
-SWEP.Secondary.DefaultClip 	= -1
-SWEP.Secondary.Automatic 	= false
-SWEP.Secondary.Ammo 		= "none"
-
-/*---------------------------------------------------------
-Muzzle Effect + Shell Effect
----------------------------------------------------------*/
-SWEP.MuzzleEffect			= "rg_muzzle_rifle" -- This is an extra muzzleflash effect
--- Available muzzle effects: rg_muzzle_grenade, rg_muzzle_highcal, rg_muzzle_hmg, rg_muzzle_pistol, rg_muzzle_rifle, rg_muzzle_silenced, none
-
-SWEP.ShellEffect			= "rg_shelleject" -- This is a shell ejection effect
--- Available shell eject effects: rg_shelleject, rg_shelleject_rifle, rg_shelleject_shotgun, none
-
-SWEP.MuzzleAttachment		= "1" -- Should be "1" for CSS models or "muzzle" for hl2 models
-SWEP.ShellEjectAttachment	= "0" -- Should be "2" for CSS models or "1" for hl2 models
-
-SWEP.EjectDelay			= 0
-/*-------------------------------------------------------*/
-SWEP.MuzzleEffect			= "fo3_muzzle_laserrifle" -- This is an extra muzzleflash effect
-SWEP.MuzzleAttachment		= "1" -- Should be "1" for CSS models or "muzzle" for hl2 models
-SWEP.ShellEjectAttachment	= "0" -- Should be "2" for CSS models or "1" for hl2 models
-
-SWEP.RunSightsPos  = Vector (-2.6657, 0, 3.5)
-SWEP.RunSightsAng   = Vector (-20.0824, -20.5693, 0)
-SWEP.IronSightsPos = Vector(0, 0, 0)
-SWEP.IronSightsAng = Vector(0, 0, 0)
-
-/*---------------------------------------------------------
-Think
----------------------------------------------------------*/
-
-
-
-
 function SWEP:SetWeaponHoldType( t )
 	local index = ActIndex[ t ]
 	if (index == nil) then
@@ -185,164 +91,96 @@ function SWEP:SetWeaponHoldType( t )
 end
 
 
-
-
-
-function SWEP:PrimaryAttack()
-
-	self.Weapon:SetNextSecondaryFire( CurTime() + self.Primary.Delay )
-	self.Weapon:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
-	
-	if ( !self:CanPrimaryAttack() ) then return end
-	
-
-		timer.Create( "laser_timer", 0.05, 1, function()
-	self:RecoilPower()
-		self:SendWeaponAnim(ACT_VM_PRIMARYATTACK)
-end )
-
-	self:TakePrimaryAmmo(1)
-	
-	self.Weapon:EmitSound(self.Primary.Sound)
-	
-	self.Owner:ViewPunch( Angle( math.Rand(-0.2,-0.1) * self.Primary.Recoil, math.Rand(-0.1,0.1) *self.Primary.Recoil, 0 ) )
-
-	if ((game.SinglePlayer() and SERVER) or CLIENT) then
-		self.Weapon:SetNetworkedFloat("LastShootTime", CurTime())
-	end
-end
-
-function SWEP:CSShootBullet(dmg, recoil, numbul, cone)
-
-	numbul 		= numbul or 1
-	cone 			= cone or 0.01
-
-	local bullet 	= {}
-	bullet.Num  	= numbul
-	bullet.Src 		= self.Owner:GetShootPos()       					-- Source
-	bullet.Dir 		= self.Owner:GetAimVector()      					-- Dir of bullet
-	bullet.Spread 	= Vector(cone, cone, 0)     						-- Aim Cone
-	bullet.Tracer 	= 1       									-- Show a tracer on every x bullets
-	bullet.TracerName 	= "effect_fo3_laser"
-	bullet.Force 	= 0.5 * dmg     								-- Amount of force to give to phys objects
-	bullet.Damage 	= dmg										-- Amount of damage to give to the bullets
-	bullet.Callback 	= LaserHitImpact
--- 	bullet.Callback	= function ( a, b, c ) BulletPenetration( 0, a, b, c ) end 	-- CALL THE FUNCTION BULLETPENETRATION
-
-	self.Owner:FireBullets(bullet)					-- Fire the bullets
-	self.Weapon:SendWeaponAnim(ACT_VM_PRIMARYATTACK)      	-- View model animation
-	self.Owner:MuzzleFlash()        					-- Crappy muzzle light
-
-	self.Owner:SetAnimation(PLAYER_ATTACK1)       			-- 3rd Person Animation
-
-	local fx 		= EffectData()
-	fx:SetEntity(self.Weapon)
-	fx:SetOrigin(self.Owner:GetShootPos())
-	fx:SetNormal(self.Owner:GetAimVector())
-	fx:SetAttachment(self.MuzzleAttachment)
-	util.Effect(self.MuzzleEffect,fx)					-- Additional muzzle effects
-	
-	timer.Simple( self.EjectDelay, function()
-		if  not IsFirstTimePredicted() then 
-			return
-		end
-
-			local fx 	= EffectData()
-			fx:SetEntity(self.Weapon)
-			fx:SetNormal(self.Owner:GetAimVector())
-			fx:SetAttachment(self.ShellEjectAttachment)
-
-			util.Effect(self.ShellEffect,fx)				-- Shell ejection
-	end)
-
-	if ((game.SinglePlayer() and SERVER) or (not game.SinglePlayer() and CLIENT)) then
-		local eyeang = self.Owner:EyeAngles()
-		eyeang.pitch = eyeang.pitch - recoil
-		self.Owner:SetEyeAngles(eyeang)
-	end
-end
-
-function SWEP:Reload()
-
-	     
-	-- If you're firering, you can't reload
-
-	self.Weapon:DefaultReload(ACT_VM_RELOAD) 
-	-- Animation when you're reloading
-
-	if ( self.Weapon:Clip1() < self.Primary.ClipSize ) and self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
-	-- When the current clip < full clip and the rest of your ammo > 0, then
-
-		self.Owner:SetFOV( 0, 0.5 )
-		-- Zoom = 0
-	self:EmitSound( "weapons/laserrifle/wpn_riflelaser_reloadinout.wav" )
-		self:SetIronsights(false)
-		-- Set the ironsight to false
-	end
-end
-
-
-function SWEP:RecoilPower()
-
-	if not self.Owner:IsOnGround() then
-		if (self:GetIronsights() == true) then
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil, self.Primary.NumShots, self.Primary.Cone)
-			-- Put normal recoil when you're in ironsight mod
-			
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil), math.Rand(-2.5,2.5) * (self.Primary.Recoil), 0))
-			-- Punch the screen 1x less hard when you're in ironsigh mod
-		else
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil * math.Rand(-2.5,2.5), self.Primary.NumShots, self.Primary.Cone)
-			-- Recoil * 2.5
-			
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil * math.Rand(-2.5,2.5)), math.Rand(-2.5,2.5) * (self.Primary.Recoil), 0))
-			-- Punch the screen * 2.5
-		end
-
-	elseif self.Owner:KeyDown(IN_FORWARD, IN_BACK, IN_MOVELEFT, IN_MOVERIGHT) then
-		if (self:GetIronsights() == true) then
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil / 2, self.Primary.NumShots, self.Primary.Cone)
-			-- Put recoil / 2 when you're in ironsight mod
-			
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil / 1.5), math.Rand(-2.5,2.5) * (self.Primary.Recoil / 1.5), 0))
-			-- Punch the screen 1.5x less hard when you're in ironsigh mod
-		else
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil * 1.5, self.Primary.NumShots, self.Primary.Cone)
-			-- Recoil * 1.5
-		
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil * 1.5), math.Rand(-2.5,2.5) * (self.Primary.Recoil * 1.5), 0))
-			-- Punch the screen * 1.5
-		end
-
-	elseif self.Owner:Crouching() then
-		if (self:GetIronsights() == true) then
-			self:CSShootBullet(self.Primary.Damage, 0, self.Primary.NumShots, self.Primary.Cone)
-			-- Put 0 recoil when you're in ironsight mod
-	
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil / 3), math.Rand(-2.5,2.5) * (self.Primary.Recoil / 3), 0))
-			-- Punch the screen 3x less hard when you're in ironsigh mod
-		else
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil / 2, self.Primary.NumShots, self.Primary.Cone)
-			-- Recoil / 2
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil / 2), math.Rand(-2.5,2.5) * (self.Primary.Recoil / 2), 0))
-			-- Punch the screen / 2
-		end
+function SWEP:Think()
+	if self.Owner:KeyDown(IN_SPEED) then
+				self:SetWeaponHoldType("normal")
 	else
-		if (self:GetIronsights() == true) then
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil / 6, self.Primary.NumShots, self.Primary.Cone)
-			-- Put recoil / 4 when you're in ironsight mod
-
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * (self.Primary.Recoil / 2), math.Rand(-2.5,2.5) * (self.Primary.Recoil / 2), 0))
-			-- Punch the screen 2x less hard when you're in ironsigh mod
-		else
-			self:CSShootBullet(self.Primary.Damage, self.Primary.Recoil, self.Primary.NumShots, self.Primary.Cone)
-			-- Put normal recoil when you're not in ironsight mod
-	
-			self.Owner:ViewPunch(Angle(math.Rand(-2.5,2.5) * self.Primary.Recoil, math.Rand(-2.5,2.5) *self.Primary.Recoil, 0))
-			-- Punch the screen
-		end
+			self:SetWeaponHoldType(self.HoldType)
+	end
+	if self.MoveTime and self.MoveTime < CurTime() and SERVER then
+		self.MoveTime = nil
 	end
 end
+
+
+
+
+
+
+
+
+
+
+if (CLIENT) then
+SWEP.VElements = {
+	["heavyweapons"] = { type = "Model", model = "models/halokiller38/fallout/weapons/heavy weapons/minigun.mdl", bone = "v_weapon.Right_Hand", rel = "", pos = Vector(-4.712, -7.299, -0.392), angle = Angle(90, -90, 0.002), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+}
+SWEP.WElements = {
+	["heavyweapons"] = { type = "Model", model = "models/halokiller38/fallout/weapons/heavy weapons/minigun.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(-3.22, -1.593, -8.268), angle = Angle(163.604, -90, 0.001), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+}
+end
+
+SWEP.Base 				= "kermite_base_rifle"
+SWEP.Category			= "Fallout Sweps - Heavy Weapons"
+SWEP.Spawnable			= true
+SWEP.AdminSpawnable		= false
+
+SWEP.HoldType = "physgun"
+SWEP.ViewModelFOV = 69.698795180723
+SWEP.ViewModelFlip = false
+SWEP.ViewModel = "models/weapons/v_mach_m249para.mdl"
+SWEP.WorldModel = "models/halokiller38/fallout/weapons/heavy weapons/minigun.mdl"
+SWEP.ShowViewModel = true
+SWEP.ShowWorldModel = false
+SWEP.ViewModelBoneMods = {
+	["v_weapon.Right_Arm"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0.231, 0), angle = Angle(6.947, -5.831, 0) },
+	["v_weapon.handle"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) },
+	["v_weapon.Left_Arm"] = { scale = Vector(1, 1, 1), pos = Vector(1.113, 2.845, 3.236), angle = Angle(5.478, 64.306, -138.877) },
+	["v_weapon.m249"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) },
+	["v_weapon.receiver"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) },
+	["v_weapon.trigger"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) },
+	["v_weapon.ammobox"] = { scale = Vector(0.009, 0.009, 0.009), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0) }
+}
+
+SWEP.Primary.Sound 			= Sound("weapons/minigun/wpn_minigun_fire.wav")
+SWEP.Primary.Recoil			= .4
+SWEP.Primary.Damage			= 14 
+SWEP.Primary.NumShots		= 1
+SWEP.Primary.Cone			= 0.02
+SWEP.Primary.Delay 			= 0.04
+
+SWEP.Primary.ClipSize		= 240					// Size of a clip
+SWEP.Primary.DefaultClip	= 0					// Default number of bullets in a clip
+SWEP.Primary.Automatic		= true				// Automatic/Semi Auto
+SWEP.Primary.Ammo			= "5mm"
+
+SWEP.Secondary.ClipSize		= -1					// Size of a clip
+SWEP.Secondary.DefaultClip	= -1					// Default number of bullets in a clip
+SWEP.Secondary.Automatic	= false				// Automatic/Semi Auto
+SWEP.Secondary.Ammo		= "none"
+
+/*---------------------------------------------------------
+Muzzle Effect + Shell Effect
+---------------------------------------------------------*/
+SWEP.MuzzleEffect			= "rg_muzzle_rifle" -- This is an extra muzzleflash effect
+-- Available muzzle effects: rg_muzzle_grenade, rg_muzzle_highcal, rg_muzzle_hmg, rg_muzzle_pistol, rg_muzzle_rifle, rg_muzzle_silenced, none
+
+SWEP.ShellEffect			= "rg_shelleject" -- This is a shell ejection effect
+-- Available shell eject effects: rg_shelleject, rg_shelleject_rifle, rg_shelleject_shotgun, none
+
+SWEP.MuzzleAttachment		= "1" -- Should be "1" for CSS models or "muzzle" for hl2 models
+SWEP.ShellEjectAttachment	= "0" -- Should be "2" for CSS models or "1" for hl2 models
+
+SWEP.EjectDelay			= 0
+/*-------------------------------------------------------*/
+
+SWEP.RunSightsPos  = Vector (-2.6657, 0, 3.5)
+SWEP.RunSightsAng   = Vector (-20.0824, -20.5693, 0)
+SWEP.IronSightsPos = Vector(1.266, -4.105, 3.022)
+SWEP.IronSightsAng = Vector(0, 2.782, 0)
+
+
+
 
 
 /*---------------------------------------------------------
