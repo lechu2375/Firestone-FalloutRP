@@ -12,6 +12,8 @@ function SCHEMA:PlayerFootstep(client, position, foot, soundName, volume)
 	end
 end
 
+
+
 function SCHEMA:PlayerLoadedChar(client, character)
 	client:PrintMessage(HUD_PRINTTALK,"Wybrałeś postać "..character:getName())
 	if character:getData("chartime") > 600 then
@@ -19,16 +21,27 @@ function SCHEMA:PlayerLoadedChar(client, character)
 	else
 		client:PrintMessage(HUD_PRINTTALK,"Dopiero rozpoczęto przygodę na Firestone FalloutRP!")
 	end
-	----------------------------
-	
-	if not character:getData("firstentry") then
-		character:setData("ognick", character:getName())
-		character:setData("firstentry", true)
-	
-	end 
 
-	if not (character:getData("ognick") == character:getName())  then  -- zabezpieczenie gdyby ktoś imię zmienił postaci po wbiciu
+	
+	if not character:getData("ognick") then
 		character:setData("ognick", character:getName())
 	end
+
+	if  not (character:getData("ognick") == character:getName()) then
+		character:setData("ognick", character:getName())
+	end 
 end
 
+
+function SCHEMA:PlayerDisconnected(ply)
+	local char = ply:getChar()
+	if char then
+		local items = char:getInv():getItems()
+		for k, v in pairs(items) do
+			if v.mask == true then
+				v:removePart(ply)
+			end
+		end
+		
+	end
+end
