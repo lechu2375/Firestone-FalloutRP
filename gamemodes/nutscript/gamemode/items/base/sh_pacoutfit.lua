@@ -122,6 +122,7 @@ ITEM.functions.Equip = {
 					return false
 				end
 				
+				
 			end
 		end
 
@@ -131,7 +132,6 @@ ITEM.functions.Equip = {
 			if  !(string.StartWith(char:getName(), "Nieznajomy")) then --jak już ma nick Nieznajomy to nie zmienia na nowo.
 				char:setName("Nieznajomy "..randomskladka())
 			end
-
 		end
 		item.player:addPart(item.uniqueID, item)
 
