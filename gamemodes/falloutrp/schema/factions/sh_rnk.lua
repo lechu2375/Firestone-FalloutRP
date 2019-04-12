@@ -15,9 +15,9 @@ FACTION.models = {
 }
 FACTION.isGloballyRecognized = true
 FACTION.pay = 0
-FACTION_RUN = FACTION.index
+FACTION_RNK = FACTION.index
 
-RNK_RANGI = {
+FACTION.rangi = {
     "Szeregowy",
     "Starszy Szeregowy",
     "Kapral",

@@ -31,4 +31,4 @@ FACTION.models = {
 }
 FACTION.isGloballyRecognized = true
 FACTION.pay = 0
-FACTION_RUN = FACTION.index
+FACTION_WASTELANDERS = FACTION.index

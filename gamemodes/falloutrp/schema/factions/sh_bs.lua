@@ -17,7 +17,7 @@ FACTION.isGloballyRecognized = false
 FACTION.pay = 0
 FACTION_RUN = FACTION.index
 
-BS_RANGI = {
+FACTION.rangi = {
     "Nowicjusz",
     "Kadet",
     "Rycerz",

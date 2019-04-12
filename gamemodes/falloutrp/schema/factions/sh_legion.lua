@@ -8,9 +8,9 @@ FACTION.models = {
 }
 FACTION.isGloballyRecognized = true
 FACTION.pay = 0
-FACTION_RUN = FACTION.index
+FACTION_LEGION = FACTION.index
 
-LEGION_RANGI = { 
+FACTION.rangi = { 
     "Rekrut",
     "Weteran",
     "Zwiadowca",
