@@ -6,7 +6,6 @@ local function SetRank_SV(char,rangaID)
     char:getPlayer():Notify("Twoja ranga została zmieniona na: "..char:getData("ranga"))
     local charid = tonumber(char:getID())
     TABELA_RANG[charid] = char:getData("ranga")
-    PrintTable(TABELA_RANG)
 end
 
 
@@ -22,5 +21,13 @@ function PLUGIN:CharacterRestored(char)
     
     local id = tonumber(char:getID())
     TABELA_RANG[id] = char:getData("ranga")
-    PrintTable(TABELA_RANG)
+
 end
+
+util.AddNetworkString( "tabela_rang" )
+
+timer.Create("tabela_networking", 10, 0, function()
+    net.Start("tabela_rang")
+    net.WriteTable(TABELA_RANG)
+    net.Broadcast()
+end)
