@@ -1,4 +1,5 @@
 
+TABELA_RANG_cl = {}
 
 net.Receive("tabela_rang", function()
      TABELA_RANG_cl = net.ReadTable()
