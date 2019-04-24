@@ -18,15 +18,13 @@ function PLUGIN:OnCharCreated(client, id)
 end
 
 function PLUGIN:CharacterRestored(char)
-    
     local id = tonumber(char:getID())
     TABELA_RANG[id] = char:getData("ranga")
-
 end
 
 util.AddNetworkString( "tabela_rang" )
 
-timer.Create("tabela_networking", 10, 0, function()
+timer.Create("tabela_networking", 6, 0, function() --prosty networking, nie w thinku bo sie tak nie robi
     net.Start("tabela_rang")
     net.WriteTable(TABELA_RANG)
     net.Broadcast()

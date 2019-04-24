@@ -18,18 +18,23 @@ function SetRank(char,rangaID)
     TABELA_RANG[charid] = char:getData("ranga")
 end
 
-function GetRank(char)
-	if char then
-		return TABELA_RANG[tonumber(char:getID())]
-	end
-end
 
---[[function IsOfficer(char)
+
+function IsOfficer(char)
 	if char then
 		local frakcja = char:getFaction()
 		local ranga = char:getData("ranga")	
+		if IsValid(nut.faction.indices[frakcja].oficerowie) then
+			if nut.faction.indices[frakcja].oficerowie[ranga] then
+				return true
+			else
+				return false
+			end
+		else 
+			return false
+		end	
 	end
-end--]]
+end
 
 
 
@@ -68,9 +73,13 @@ nut.command.add("spisrang", {
 		if IsValid(client) and client:getChar() then
 			local char = client:getChar()
 			local frakcja = char:getFaction()
-			client:PrintMessage(HUD_PRINTTALK,"Sprawdź konsolę.")
-			for k,v in SortedPairs(nut.faction.indices[frakcja].rangi) do
-				client:PrintMessage(HUD_PRINTCONSOLE,(k.."."..v.."\n"))
+			if nut.faction.indices[frakcja].rangi then
+				client:PrintMessage(HUD_PRINTTALK,"Sprawdź konsolę.")
+				for k,v in SortedPairs(nut.faction.indices[frakcja].rangi) do
+					client:PrintMessage(HUD_PRINTCONSOLE,(k.."."..v.."\n"))
+				end
+			else
+				client:PrintMessage(HUD_PRINTTALK,"W twojej frakcji nie ma żadnych rang.")
 			end
 		end
 	end
@@ -78,6 +87,16 @@ nut.command.add("spisrang", {
 
 
 
-
+nut.command.add("isofficer", {
+	adminOnly = true,
+	syntax = "<chuj>",
+	onRun = function(client)
+		if IsValid(client) and client:getChar() then
+			local char = client:getChar()
+			local frakcja = char:getFaction()
+			client:PrintMessage(HUD_PRINTTALK,tostring(IsOfficer(char)))
+		end
+	end
+})
 
 
