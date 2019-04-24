@@ -2,7 +2,7 @@ print("SV FRAKCJE LOADED :)")
 
 local function SetRank_SV(char,rangaID)
     local frakcja = char:getFaction() 
-    char:setData("ranga",nut.faction.indices[frakcja].rangi[rangaID].name,false,player.GetAll())
+    char:setData("ranga",nut.faction.indices[frakcja].rangi[rangaID],false,player.GetAll())
     char:getPlayer():Notify("Twoja ranga została zmieniona na: "..char:getData("ranga"))
     local charid = tonumber(char:getID())
     TABELA_RANG[charid] = char:getData("ranga")
