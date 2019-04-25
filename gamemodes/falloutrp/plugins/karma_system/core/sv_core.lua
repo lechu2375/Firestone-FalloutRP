@@ -12,7 +12,6 @@ function PLAYER:AddKarma(intAmount)
     end
 
     char:setData("karma", char:getData("karma")+intAmount)
-    char:save()
 end
 
 function PLAYER:RemoveKarma(intAmount)
@@ -23,7 +22,6 @@ function PLAYER:RemoveKarma(intAmount)
     end
 
     char:setData("karma", char:getData("karma")-intAmount)
-    char:save()
 end
 
 function PLAYER:GetKarma()

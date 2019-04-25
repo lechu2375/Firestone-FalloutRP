@@ -117,19 +117,3 @@ function PLUGIN:HUDPaint()
     surface.DrawPoly( trujkont_zycia )
     draw.SimpleText("F4", "FS_Side_Small", 2, ScrH()/2-10, Color(17,255,31))
 end
-
-
-local lastMove = CurTime()
-hook.Add("CalcView", "test", function( ply, pos, angles, fov )
-    local view = {}
-    local randomValue = math.random( -5, 5 )
-
-    if char:getData("BodyPart.RightArm") < 50 or char:getData("BodyPart.LeftArm") < 50 then
-        if CurTime() > lastMove + 0.1 then
-            view.angles = angles + Angle( randomValue, randomValue ) 
-            lastMove = CurTime()
-        end
-    end
-
-	return view
-end)
