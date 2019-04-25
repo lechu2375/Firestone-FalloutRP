@@ -7,15 +7,16 @@ local PLAYER = FindMetaTable("Player")
 -- How many XP should players receive per hour?
 PLUGIN.HourlyBonus = 100
 
-function PLUGIN:OnCharCreated( ply )
-    local char = ply:getChar()
+function PLUGIN:OnCharCreated( ply, char )
     char:setData("xp", 0)
+    char:save()
 end
 
 function PLAYER:SetXP(intNumber)
     local char = self:getChar()
 
     char:setData("xp", intNumber)
+    char:save()
     self:Notify("Twoje XP aktualnie wynosi "..intNumber)
 end
 
@@ -23,6 +24,7 @@ function PLAYER:AddXP(intAmount, strReason)
     local char = self:getChar()
     local oldXP = char:getData("xp")
     char:setData("xp", char:getData("xp") + intAmount)
+    char:save()
     local newXP = char:getData("xp")
     self:Notify("Otrzymałeś "..intAmount.." XP za "..strReason)
 
@@ -36,6 +38,7 @@ function PLAYER:RemoveXP(intAmount)
     local char = self:getChar()
 
     char:setData("xp", char:getData("xp") - intAmount)
+    char:save()
     self:Notify("Straciłeś "..intAmount.." XP!")
 end
 
@@ -47,7 +50,7 @@ end
 
 function PLUGIN:InitPostEntity()
     timer.Create("Firestone.DailyXP", 3600, 0, function()
-        for _, v in pairs(player.GetAll()) do
+        for _, v in pairs( player.GetAll() ) do
             v:AddXP(PLUGIN.HourlyBonus, "przeżycie godziny na pustkowiu.")
         end
     end)

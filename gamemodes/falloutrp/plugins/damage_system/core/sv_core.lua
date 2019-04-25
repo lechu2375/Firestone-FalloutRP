@@ -1,14 +1,16 @@
 local PLUGIN = PLUGIN
 local PLAYER = FindMetaTable("Player")
+local damageTypes = { DMG_BULLET, DMG_SLASH, DMG_CLUB, DMG_AIRBOAT, DMG_BUCKSHOT, DMG_SNIPER }
 
 -- Player Metatables
 
 function PLAYER:HealParts()
+    local char = self:getChar()
     for _,bodyPart in ipairs(DamageSys.BodyParts) do
-        local char = self:getChar()
         char:setData("BodyPart."..bodyPart.name, 100)
     end
     self:SetHealth(100)
+    char:save()
 end
 
 function PLAYER:GetBodyPartCondition( bodyPart )
@@ -21,6 +23,7 @@ end
 function PLAYER:DamageBodyPart( bodyPart, dmg )
     local char = self:getChar()
     char:setData( "BodyPart."..bodyPart, math.Clamp( self:GetBodyPartCondition( bodyPart ) - math.Round( dmg ), 0, 100 ) )
+    char:save()
 end
 
 -- Hooks needed to properly work
@@ -31,6 +34,7 @@ function PLUGIN:OnCharCreated( ply, char )
     end
     char:setData("FS.Bleeding", 0)
     char:setData("isBW", false)
+    char:save()
 end
 
 function PLUGIN:PlayerLoadedChar( ply, char )
@@ -40,11 +44,14 @@ end
 function PLUGIN:ScalePlayerDamage( ply, hitGroup, dmgInfo )
     local bodyPart
     local char = ply:getChar()
-    
-    for _,part in ipairs( DamageSys.BodyParts ) do
-        if  ( hitGroup == part.hitgroup ) then
-            dmgInfo:ScaleDamage( part.damageScale )
-            bodyPart = part.name
+    local damageType = dmgInfo:GetDamageType()
+            print(damageType)
+    if damageTypes[ damageType ] then
+        for _,part in ipairs( DamageSys.BodyParts ) do
+            if  ( hitGroup == part.hitgroup ) then
+                dmgInfo:ScaleDamage( part.damageScale )
+                bodyPart = part.name
+            end
         end
     end
 
@@ -64,7 +71,6 @@ function PLUGIN:EntityTakeDamage( ply, dmgInfo )
             ply:DamageBodyPart( bodyPart, math.Round( math.random( dmgInfo:GetDamage()/1.25, dmgInfo:GetDamage()*1.25 ) ) )
         end
     end
-
 end
 
 function PLUGIN:PlayerDeath( ply )
@@ -74,6 +80,7 @@ function PLUGIN:PlayerDeath( ply )
     end 
     char:setVar("nextBleedingNotify", 0)
     char:setData("FS.Bleeding", 0)
+    char:save()
 end
 
 function PLUGIN:Think()
@@ -83,11 +90,11 @@ function PLUGIN:Think()
         -- Legs
         for _,leg in ipairs( {"RightLeg", "LeftLeg"} ) do
             if ply:GetBodyPartCondition( leg ) < 50 then
-                if char:getVar("brokenLeg") then return end
                 char:setVar("brokenLeg", true)
-            end
+            else 
+                char:setVar("brokenLeg", false)
         end
-    
+
     -- BW [ nie działa ]
         /*
         if char:getData("isBW") then return end
