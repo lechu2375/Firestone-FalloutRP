@@ -10,7 +10,7 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 - Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP 
 
 ### Dokumentacja
-```lua
+```lua 
 -- Fallout UI Library 
 vgui.Create("FS_Button")
 vgui.Create("FS_Button_S")
