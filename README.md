@@ -1,6 +1,6 @@
 ﻿# Firestone Foundation - FalloutRP
-Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatywą Lecha mający na celu stworzenie najlepszego w Polsce serwera opartego o serię gier Fallout. Projekt w całości działa na silnku Nutscript, jest on jednak wspomagany autorskimi skryptami oraz innowacyjnymi rozwiązaniami. Projekt jest aktualnie w fazie Alpha podczas której nasz zespół aktywnie pracuje nad wprowadzaniem nowych mechanik oraz  udoskonalaniem starych. 
-
+Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatywą Lecha mający na celu stworzenie najlepszego w Polsce serwera opartego o serię gier Fallout. Projekt w całości działa na silnku Nutscript, jest on jednak wspomagany autorskimi skryptami oraz innowacyjnymi rozwiązaniami. Projekt jest aktualnie w  fazie Alpha podczas której nasz zespół aktywnie pracuje nad wprowadzaniem nowych mechanik oraz  udoskonalaniem starych.
+ 
 ### Informacje
 - GitHub: https://github.com/rebel1324/NutScript
 - FalloutRP (dla inspiracji): https://github.com/NutScript/falloutrp
@@ -10,7 +10,7 @@ Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatyw�
 - Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP 
 
 ### Dokumentacja
-```lua
+```lua 
 -- Fallout UI Library 
 vgui.Create("FS_Button")
 vgui.Create("FS_Button_S")
