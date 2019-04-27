@@ -5,7 +5,7 @@ local chuj = PLUGIN.folder
 nut.util.include("sv_frakcje.lua")
 nut.util.include("cl_frakcje.lua")
 nut.util.includeDir(chuj.."/frakcje")
-
+nut.flag.add("o", "Uprawnienia oficera we frakcji.")
 TABELA_RANG = {}
 
 
@@ -18,23 +18,20 @@ function SetRank(char,rangaID)
     TABELA_RANG[charid] = char:getData("ranga")
 end
 
-
-
-function IsOfficer(char)
-	if char then
-		local frakcja = char:getFaction()
-		local ranga = char:getData("ranga")	
-		if IsValid(nut.faction.indices[frakcja].oficerowie) then
-			if nut.faction.indices[frakcja].oficerowie[ranga] then
-				return true
-			else
-				return false
-			end
-		else 
-			return false
-		end	
-	end
+function getPermissions(char)
+    if char then
+        if nut.faction.indices[char:getFaction()].permissions then
+            return nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] --zwracam tabele
+        else
+            print("Get_Permissions dla "..char:getName().." nie powiodla sie, ranga nie posiada uprawnien lub tabela jest zle skonfigurowana.")
+            local tabelka = {}
+            return tabelka
+        end
+    end
 end
+
+
+
 
 
 
@@ -85,18 +82,30 @@ nut.command.add("spisrang", {
 	end
 })
 
-
-
-nut.command.add("isofficer", {
+nut.command.add("uprawnienia", {
 	adminOnly = true,
-	syntax = "<chuj>",
+	syntax = "<brak, komenda wyświetla uprawnienia twojej postaci>",
 	onRun = function(client)
 		if IsValid(client) and client:getChar() then
 			local char = client:getChar()
-			local frakcja = char:getFaction()
-			client:PrintMessage(HUD_PRINTTALK,tostring(IsOfficer(char)))
+			local uprawnienia = getPermissions(char)
+			if table.Count(uprawnienia) == 0 then
+				PrintMessage(HUD_PRINTTALK,"Brak uprawnień")
+			else
+				local text = ""
+				for k,v in pairs(uprawnienia) do
+					text = text.." "..k
+				end 
+				PrintMessage(HUD_PRINTTALK,"Posiadasz następujące uprawnienia: "..text)
+			end
 		end
 	end
 })
+
+
+
+
+
+
 
 
