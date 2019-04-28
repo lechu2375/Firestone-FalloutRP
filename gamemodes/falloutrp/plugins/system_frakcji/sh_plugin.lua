@@ -48,7 +48,30 @@ nut.command.add("jakaranga", {
 })
 
 nut.command.add("awans", {
-	adminOnly = true,
+	adminOnly = false,
+	syntax = "<postac> <numer rangi>",
+	onRun = function(client, arguments)
+	local target = nut.command.findPlayer(client, arguments[1])
+		if IsValid(target) and target:getChar() then
+			local char = target:getChar()
+			local uprawnienia = getPermissions(client:getChar()) 
+			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
+			local pos1 = client:GetPos()
+			local pos2 = char:getPlayer():GetPos()
+			if uprawnienia.awans and math.Distance(pos1.x, pos1.y, pos2.x, pos2.x)<100 then
+				client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
+				SetRank(char,id)
+			elseif math.Distance(pos1.x, pos1.y, pos2.x, pos2.x)>100 then
+				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować")
+			elseif IsValid(uprawnienia.awans) == false then
+				client:Notify("Nie posiadasz uprawnień by awansować.")
+			end
+		end
+	end
+})
+
+nut.command.add("adminawans", {
+	adminOnly = false,
 	syntax = "<postac> <numer rangi>",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
