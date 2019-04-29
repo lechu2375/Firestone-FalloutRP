@@ -21,7 +21,16 @@ end
 function getPermissions(char)
     if char then
         if nut.faction.indices[char:getFaction()].permissions then
-            return nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] --zwracam tabele
+			if nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] then
+
+            	return nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] --zwracam tabele
+			
+			else
+				print("Get_Permissions dla "..char:getName().." nie powiodla sie, ranga nie posiada uprawnien lub tabela jest zle skonfigurowana.")
+            	local tabelka = {}
+            	return tabelka
+			end
+
         else
             print("Get_Permissions dla "..char:getName().." nie powiodla sie, ranga nie posiada uprawnien lub tabela jest zle skonfigurowana.")
             local tabelka = {}
@@ -38,7 +47,7 @@ end
 
 nut.command.add("jakaranga", {
 	adminOnly = true,
-	syntax = "<nazwa typa>",
+	syntax = "<nazwa postaci>",
 	onRun = function(client, arguments)
 		local target = nut.command.findPlayer(client, arguments[1])
 		if(IsValid(target) and target:getChar()) then
@@ -49,7 +58,7 @@ nut.command.add("jakaranga", {
 
 nut.command.add("awans", {
 	adminOnly = false,
-	syntax = "<postac> <numer rangi>",
+	syntax = "[postac] [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -58,11 +67,11 @@ nut.command.add("awans", {
 			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
 			local pos1 = client:GetPos()
 			local pos2 = char:getPlayer():GetPos()
-			if uprawnienia.awans and math.Distance(pos1.x, pos1.y, pos2.x, pos2.x)<100 then
+			if uprawnienia.awans and pos1:Distance(pos2)<300 then
 				client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
 				SetRank(char,id)
-			elseif math.Distance(pos1.x, pos1.y, pos2.x, pos2.x)>100 then
-				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować")
+			elseif pos1:Distance(pos2)>300 then
+				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować.")
 			elseif IsValid(uprawnienia.awans) == false then
 				client:Notify("Nie posiadasz uprawnień by awansować.")
 			end
@@ -70,9 +79,23 @@ nut.command.add("awans", {
 	end
 })
 
+nut.command.add("odleglosc", {
+	adminOnly = true,
+	syntax = "<postac> ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
+	onRun = function(client, arguments)
+	local target = nut.command.findPlayer(client, arguments[1])
+		if IsValid(target) and target:getChar() then
+			local char = target:getChar()
+			local pos1 = client:GetPos()
+			local pos2 = char:getPlayer():GetPos()
+			client:Notify(pos1:Distance(pos2))	
+		end
+	end
+})
+
 nut.command.add("adminawans", {
 	adminOnly = false,
-	syntax = "<postac> <numer rangi>",
+	syntax = "<postac> [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -88,7 +111,7 @@ nut.command.add("adminawans", {
 
 nut.command.add("spisrang", {
 	adminOnly = true,
-	syntax = "<brak, komenda wyświetla wszystkie rangi z frakcji postaci>",
+	syntax = "<brak, komenda wyswietla wszystkie rangi z frakcji postaci>",
 	onRun = function(client)
 		if IsValid(client) and client:getChar() then
 			local char = client:getChar()
@@ -107,12 +130,12 @@ nut.command.add("spisrang", {
 
 nut.command.add("uprawnienia", {
 	adminOnly = true,
-	syntax = "<brak, komenda wyświetla uprawnienia twojej postaci>",
+	syntax = "<brak, komenda wyswietla uprawnienia twojej postaci>",
 	onRun = function(client)
 		if IsValid(client) and client:getChar() then
 			local char = client:getChar()
 			local uprawnienia = getPermissions(char)
-			if table.Count(uprawnienia) == 0 then
+			if table.Count(uprawnienia) == 0 then 
 				PrintMessage(HUD_PRINTTALK,"Brak uprawnień")
 			else
 				local text = ""
