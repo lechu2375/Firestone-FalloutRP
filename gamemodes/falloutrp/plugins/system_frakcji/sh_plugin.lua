@@ -10,18 +10,22 @@ TABELA_RANG = {}
 
 
 
-function SetRank(char,rangaID)
+function SetRank(char,rankID,caller)
 	local faction = char:getFaction()
-	local rankid = tonumber(rankid)
-
+	if rankID == 0 then
+		return false
+	elseif rankID<0 then
+		rankID = (rankID*(-1))
+	end
 	if nut.faction.indices[faction].rangi then
 
-		if rankid > #nut.faction.indices[faction].rangi then
+		if rankID > #nut.faction.indices[faction].rangi then
+			caller:Notify("Podałeś zbyt duże ID rangi, nie ma tyle rang w tabeli.")
 			print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-			return 
+			return false
 		end
 
-		local newrank = nut.faction.indices[faction].rangi[rankid]
+		local newrank = nut.faction.indices[faction].rangi[rankID]
 		char:setData("ranga",newrank,false,player.GetAll())
 		char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
 		local charid = tonumber(char:getID())
@@ -80,8 +84,11 @@ nut.command.add("awans", {
 			local pos1 = client:GetPos()
 			local pos2 = char:getPlayer():GetPos()
 			if uprawnienia.awans and pos1:Distance(pos2)<300 then
-				client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
-				SetRank(char,id)
+				local id = tonumber(arguments[2])
+				SetRank(char,id,client)
+				if nowa_ranga then
+					client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
+				end
 			elseif pos1:Distance(pos2)>300 then
 				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować.")
 			elseif IsValid(uprawnienia.awans) == false then
