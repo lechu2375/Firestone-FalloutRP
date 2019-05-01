@@ -11,11 +11,22 @@ TABELA_RANG = {}
 
 
 function SetRank(char,rangaID)
-    local frakcja = char:getFaction() 
-    char:setData("ranga",nut.faction.indices[frakcja].rangi[rangaID],false,player.GetAll())
-    char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
-    local charid = tonumber(char:getID())
-    TABELA_RANG[charid] = char:getData("ranga")
+	local faction = char:getFaction()
+	local rankid = tonumber(rankid)
+
+	if nut.faction.indices[faction].rangi then
+
+		if rankid > #nut.faction.indices[faction].rangi then
+			print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
+			return 
+		end
+
+		local newrank = nut.faction.indices[faction].rangi[rankid]
+		char:setData("ranga",newrank,false,player.GetAll())
+		char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
+		local charid = tonumber(char:getID())
+    	TABELA_RANG[charid] = char:getData("ranga")
+	end
 end
 
 function getPermissions(char)
@@ -38,6 +49,7 @@ function getPermissions(char)
         end
     end
 end
+
 
 
 
