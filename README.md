@@ -56,8 +56,11 @@ PLAYER:AddXP(intAmount)
 PLAYER:SetXP(intAmount)
 PLAYER:RemoveXP(intAmount)
 PLAYER:GetXP()
-```
 
+--System frakcji
+ getPermissions(char) Returnuje tabelę z uprawnieniami
+ SetRank(char,rankID,caller) 
+```
 ### Credits
 - SaturdaysHeroes (wypierdolony)
 - Djuk (Developer)
