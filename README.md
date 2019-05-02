@@ -59,7 +59,7 @@ PLAYER:GetXP()
 ```
 
 ### Credits
-- SaturdaysHeroes (Lead Developer)
+- SaturdaysHeroes (wypierdolony)
 - Djuk (Developer)
 - Lechu (Developer, Mapper)
 - FrX (Developer) - [ Wydalony dnia 17.03.2019r ]
