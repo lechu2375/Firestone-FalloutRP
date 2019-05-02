@@ -62,7 +62,7 @@ PLAYER:GetXP()
  SetRank(char,rankID,caller) 
 ```
 ### Credits
-- SaturdaysHeroes (wypierdolony)
 - Djuk (Developer)
 - Lechu (Developer, Mapper)
 - FrX (Developer) - [ Wydalony dnia 17.03.2019r ]
+- SaturdaysHeroes (wypierdolony)
