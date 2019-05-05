@@ -1,10 +1,10 @@
 PLUGIN.name = "System frakcji"
 PLUGIN.author = "Lechu2375"
 PLUGIN.desc = "Rozwija funkcjonalność frakcji."
-local chuj = PLUGIN.folder
+local dir = PLUGIN.folder
 nut.util.include("sv_frakcje.lua")
 nut.util.include("cl_frakcje.lua")
-nut.util.includeDir(chuj.."/frakcje")
+nut.util.includeDir(dir.."/frakcje")
 nut.flag.add("o", "Uprawnienia oficera we frakcji.")
 TABELA_RANG = {}
 
@@ -20,9 +20,14 @@ function SetRank(char,rankID,caller)
 	if nut.faction.indices[faction].rangi then
 
 		if rankID > #nut.faction.indices[faction].rangi then
-			caller:Notify("Podałeś zbyt duże ID rangi, nie ma tyle rang w tabeli.")
-			print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-			return false
+			if caller then
+				caller:Notify("Podałeś zbyt duże ID rangi, nie ma tyle rang w tabeli.")
+				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
+				return false
+			else
+				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
+				return false
+			end
 		end
 
 		local newrank = nut.faction.indices[faction].rangi[rankID]
@@ -100,7 +105,7 @@ nut.command.add("awans", {
 
 nut.command.add("odleglosc", {
 	adminOnly = true,
-	syntax = "<postac> ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
+	syntax = "[postac] ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -113,8 +118,8 @@ nut.command.add("odleglosc", {
 })
 
 nut.command.add("adminawans", {
-	adminOnly = false,
-	syntax = "<postac> [numer rangi]",
+	adminOnly = true,
+	syntax = "[postac] [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -167,10 +172,42 @@ nut.command.add("uprawnienia", {
 	end
 })
 
+nut.command.add("zapros", {
+	adminOnly = false,
+	syntax = "<Postać którą chcesz zaprosic do frakcji]",
+	onRun = function(client, arguments)
+	local target = nut.command.findPlayer(client, arguments[1])
+		if IsValid(target) and target:getChar() then
+			if client then
+				if timer.Exists( "CMD_Delay" ) then
+						if math.Round(timer.TimeLeft("CMD_Delay")) == 1 then
+							client:Notify("Odczekaj sekundę zanim znów zaprosisz gracza.")
+						elseif math.Round(timer.TimeLeft("CMD_Delay")) == 0 then
+							client:Notify("Spróbuj ponownie zaprosić gracza.")
+						else
+							client:Notify("Odczekaj "..math.Round(timer.TimeLeft("CMD_Delay")).." sekundy zanim znów zaprosisz gracza.")
+						end
+					return false
+				else	
+					timer.Create("CMD_Delay", 5, 0, function()
+						timer.Destroy("CMD_Delay")
+					end)
+				end
+			end
+				local inviter_char = client:getChar()
+				local char = target:getChar()
+				local uprawnienia = getPermissions(inviter_char)
+				local faction = inviter_char:getFaction()
+				local info_table = {
+					["inviter"] = client,
+					["faction"] = faction
+				}
 
-
-
-
-
+			net.Start( "FS:FactionInvite" )
+				net.WriteTable(info_table) 
+	 		net.Send(target)
+		end
+	end
+})
 
 

@@ -22,7 +22,8 @@ function PLUGIN:CharacterRestored(char)
     TABELA_RANG[id] = ranga --Od razu wrzuca do tabeli, żeby każdy gracz odczytał rangę postaci. 
 end
 
-util.AddNetworkString( "tabela_rang" )
+util.AddNetworkString("tabela_rang")
+util.AddNetworkString("FS:FactionInvite")
 
 timer.Create("tabela_networking", 6, 0, function() --prosty networking, nie w thinku bo sie tak nie robi
     net.Start("tabela_rang")
