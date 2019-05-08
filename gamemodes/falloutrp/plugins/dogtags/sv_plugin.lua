@@ -42,7 +42,13 @@ function PLUGIN:OnCharCreated( client, id )
         dogtagsTable[dogtagnumber] = id:getID() --KEY w tabeli to numer niesmiertelnika, a wartość to ID postaci
         print("Przypisano numer nieśmiertelnika: "..dogtagnumber.." dla postaci "..id:getName())
         dogtagsSave()
-        PrintTable(util.JSONToTable(file.Read( "dogtags.txt", "DATA" )))
+        local inv = id:getInv()
+        inv:add("dogtag")
+        local dogtag = inv:getItemsByUniqueID("dogtag")
+        for k,v in pairs(dogtag) do
+            v:setData("owner",string.upper(id:getName()))
+            v:setData("dogtagnumber",dogtagnumber)
+        end
     end
 end
 print("DogTags: Plugin loaded.")
