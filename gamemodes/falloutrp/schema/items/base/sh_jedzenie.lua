@@ -48,8 +48,23 @@ ITEM.functions.use = {
 				end
 			else
 				item.player:Notify(table.Random(item.eatTable))
-				item:remove()
-				return false
+				local rand = math.random(0, 3)
+				if rand == 3 then
+					local maxhp = item.player:GetMaxHealth()
+					local hp = item.player:Health()
+					local newhp = hp + (item.health*0.3)
+					item.player:SetHealth(hp + item.health)
+					item.player:Notify("Twój brzuch mimo zepsucia jedzenia postanowił bez problemów przetrawić spożyty posiłek.")
+				else
+					item.player:Notify(table.Random(item.eatTable))
+					local hp = item.player:Health()
+					for i=1, 3 do
+						timer.Simple(1, function () 
+							item.player:SetHealth(item.player:Health()-10)
+						)
+					end
+				end
+				
 			end	
 		end
 	end
