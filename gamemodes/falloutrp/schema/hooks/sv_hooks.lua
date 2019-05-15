@@ -54,7 +54,6 @@ function SCHEMA:invAddItem(item)
 		if not item:getData("Call") then
 			item:setData("Call",1)
 			local time = os.time()
-			item:setData("spawnTime",time)
 			item:setData("lifeTime",(time+item.lifeTime))
 		end	
 	end
