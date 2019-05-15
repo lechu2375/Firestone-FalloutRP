@@ -458,7 +458,7 @@ if (SERVER) then
 					nut.item.instance(targetInv:getID(), uniqueID, data, x, y, function(item)
 						item.gridX = x
 						item.gridY = y
-
+					
 						for x2 = 0, item.width - 1 do
 							for y2 = 0, item.height - 1 do
 								targetInv.slots[x + x2] = targetInv.slots[x + x2] or {}
@@ -469,6 +469,7 @@ if (SERVER) then
 						if (!noReplication) then
 							targetInv:sendSlot(x, y, item)
 						end
+						hook.Run("invAddItem", item)
 					end)
 
 					return x, y, targetInv:getID()

@@ -48,3 +48,15 @@ end
 function SCHEMA:OnCharCreated( ply, char )
 	char:save()
 end
+
+function SCHEMA:invAddItem(item)
+	if item and item.category == "Jedzenie" then
+		if not item:getData("Call") then
+			item:setData("Call",1)
+			local time = os.time()
+			item:setData("spawnTime",time)
+			item:setData("lifeTime",(time+item.lifeTime))
+		end	
+	end
+end
+
