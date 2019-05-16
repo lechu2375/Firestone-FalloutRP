@@ -11,11 +11,15 @@ ITEM.lifeTime = 67
 
 
 
-
-
 function ITEM:getDesc()
-	local str = (os.time().."\n"..self:getData("lifeTime"))
-	return str
+	local lifeTime = self:getData("lifeTime")
+	local desc = self.desc
+	if lifeTime>os.time() then
+		desc = desc.."\n Nadaje się do jedzenia!"
+	else
+		desc = desc.."\n Nieprzyjemnie pachnie, ale można spróbować to zjeść.."
+	end
+	return desc
 end
 
 ITEM:hook("use", function(item)
@@ -47,7 +51,6 @@ ITEM.functions.use = {
 					item.player:SetHealth(toadd)
 				end
 			else
-				item.player:Notify(table.Random(item.eatTable))
 				local rand = math.random(0, 3)
 				if rand == 3 then
 					local maxhp = item.player:GetMaxHealth()
@@ -59,13 +62,17 @@ ITEM.functions.use = {
 					item.player:Notify(table.Random(item.eatTable))
 					local hp = item.player:Health()
 					for i=1, 3 do
-						timer.Simple(1, function () 
-							item.player:SetHealth(item.player:Health()-10)
-						)
-					end
-				end
-				
+					local ply = item.player
+						timer.Simple(i, function () 
+							local hp = ply:Health()
+							ply:SetHealth(hp-10)
+							ply:ScreenFade(16,Color(113, 128, 147,75),1,0.01)
+						end)
+					end	
+				end 
 			end	
 		end
 	end
-}
+}		
+
+
