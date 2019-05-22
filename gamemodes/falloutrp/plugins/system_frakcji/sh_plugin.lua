@@ -172,11 +172,12 @@ nut.command.add("uprawnienia", {
 	end
 })
 
+
 nut.command.add("zapros", {
 	adminOnly = false,
 	syntax = "<Postać którą chcesz zaprosic do frakcji]",
 	onRun = function(client, arguments)
-	local target = nut.command.findPlayer(client, arguments[1])
+		local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
 			if client then
 				if timer.Exists( "CMD_Delay" ) then
@@ -194,20 +195,8 @@ nut.command.add("zapros", {
 					end)
 				end
 			end
-				local inviter_char = client:getChar()
-				local char = target:getChar()
-				local uprawnienia = getPermissions(inviter_char)
-				local faction = inviter_char:getFaction()
-				local info_table = {
-					["inviter"] = client,
-					["faction"] = faction
-				}
-
-			net.Start( "FS:FactionInvite" )
-				net.WriteTable(info_table) 
-	 		net.Send(target)
+			factionInvite(client,target)	
 		end
 	end
 })
-
 
