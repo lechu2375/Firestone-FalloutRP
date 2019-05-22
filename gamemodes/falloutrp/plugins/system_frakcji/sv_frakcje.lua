@@ -58,7 +58,6 @@ function factionInvite(client,target)
 end
 
 net.Receive("FS:FactionInviteD", function(len,ply)
-    if
     local id = ply:AccountID()
     local c = player.GetByAccountID(invList[id])
     c:Notify("Gracz odrzucił zaproszenie.")

@@ -75,10 +75,6 @@ local function ShowMenu(recive)
 end
 
 net.Receive("FS:FactionInvite", function (infoTable)
-    if ShowMenu() then 
-        net.Start("FS:FactionInviteD")
-        net.SendToServer()
-    end
     local infoTable = net.ReadTable()
     ShowMenu(infoTable)
 end)
