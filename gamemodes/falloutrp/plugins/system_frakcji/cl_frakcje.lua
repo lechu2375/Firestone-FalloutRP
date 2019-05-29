@@ -60,6 +60,9 @@ local function ShowMenu(recive)
     yes:SetFont("FS_Main")
     yes:SetText("Akceptuj")
     yes.DoClick = function()
+        basePanel:AlphaTo( 0, 0.15, 0, function() basePanel:Remove() end )
+        net.Start("FS:FactionInviteA")
+        net.SendToServer()
     end
 
     no = basePanel:Add("FS_Button_S")

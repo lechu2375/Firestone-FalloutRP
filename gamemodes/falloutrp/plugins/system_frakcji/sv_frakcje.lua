@@ -34,7 +34,17 @@ timer.Create("tabela_networking", 6, 0, function() --prosty networking, nie w th
     net.Broadcast()
 end)
 --INVITE SYSTEM CODE
+
+
 local invList = {}
+function PLUGIN:PlayerDisconnected(ply) --Deleting dynamic table if exists
+    local id = ply:AccountID()
+    if invList[id] then
+        invList[id] = nil
+    end
+end
+
+
 
 function factionInvite(client,target)
     local clientChar = client:getChar()
@@ -47,21 +57,31 @@ function factionInvite(client,target)
         client:Notify("Gracz już posiada otwarte okno propozycji.")
         return false
     end
-    
+    local faction = clientChar:getFaction()
     local infotable = {}
     infotable["inviterName"] = clientChar:getName()
-    infotable["faction"] = nut.faction.indices[clientChar:getFaction()].name
+    infotable["faction"] = nut.faction.indices[faction].name
     net.Start("FS:FactionInvite")
         net.WriteTable(infotable)
     net.Send(target)
-    invList[targetID] = clientID
+    invList[targetID] = {
+    [1]=clientID,
+    [2]=faction
+    }
 end
 
-net.Receive("FS:FactionInviteD", function(len,ply)
+net.Receive("FS:FactionInviteD", function(len,ply) --Odrzucenie
     local id = ply:AccountID()
-    local c = player.GetByAccountID(invList[id])
+    if not invList[id] then return end
+    local c = player.GetByAccountID(invList[id][1])
     c:Notify("Gracz odrzucił zaproszenie.")
-    table.remove(invList,id)
+    invList[id]=nil
+end)
+net.Receive("FS:FactionInviteA", function(len,ply) --Akceptacja
+    local id = ply:AccountID()
+    if not invList[id] then return end
+    local faction = invList[id][2]  
+    invList[id]=nil
 end)
 --INVITE SYSTEM CODE END
 print("SV FRAKCJE LOADED :)")
