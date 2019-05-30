@@ -48,7 +48,6 @@ end
 
 function factionInvite(client,target)
     local clientChar = client:getChar()
-    local clientID = client:AccountID()
     local targetID = target:AccountID()
     if not getPermissions(clientChar).invite then
         client:Notify("Nie posiadasz uprawnień do zapraszania!")
@@ -58,6 +57,11 @@ function factionInvite(client,target)
         return false
     end
     local faction = clientChar:getFaction()
+    if target:hasWhitelist(faction) then 
+        client:Notify("Ten gracz już posiada whitelistę!")
+        return
+    end
+    local clientID = client:AccountID()
     local infotable = {}
     infotable["inviterName"] = clientChar:getName()
     infotable["faction"] = nut.faction.indices[faction].name
@@ -79,8 +83,14 @@ net.Receive("FS:FactionInviteD", function(len,ply) --Odrzucenie
 end)
 net.Receive("FS:FactionInviteA", function(len,ply) --Akceptacja
     local id = ply:AccountID()
-    if not invList[id] then return end
+    if not invList[id] then 
+        ply:Kick("Client 4 overflowed reliable channel.")
+        return
+    end 
     local faction = invList[id][2]  
+    ply:setWhitelisted(faction, true)
+    print("[FACTION LOG]"..os.date("%H:%M:%S - %d/%m/%Y" ,os.time()).." "..ply:Nick().."["..ply:AccountID().."]".." akceptował ofertę whitelisty we frakcji "..nut.faction.indices[faction].name.." wysłaną przez".."["..invList[id][1].."]")
+    //Tabela zaproszeń działa na AccountId ponieważ jest mniejsza cyfra, w logach by się trzymać schematu też na tym działamy.
     invList[id]=nil
 end)
 --INVITE SYSTEM CODE END
