@@ -135,9 +135,9 @@ ITEM.functions.Equip = {
 		end
 		item.player:Say("/me zakłada "..item.name)
 		
+		item:setData("equip", true)
 		char:setData("dt",(item.dt or 0))
 		char:setData("dr",(item.reduction or 0))
-		item:setData("equip", true)
 		if item.faction then
 			item.player:Notify("Nosisz teraz ubranie członka frakcji "..item.faction, 1)
 		end

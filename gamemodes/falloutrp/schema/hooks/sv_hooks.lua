@@ -23,13 +23,14 @@ function SCHEMA:PlayerLoadedChar(client, character)
 	end
 
 	
-	if not character:getData("ognick") then
+	--[[if not character:getData("ognick") then
 		character:setData("ognick", character:getName())
 	end
 
 	if  not (character:getData("ognick") == character:getName()) then
 		character:setData("ognick", character:getName())
-	end 
+	end]]--
+	client:SetNWString("NName","Nieznajomy "..randomskladka())
 end
 
 
@@ -39,6 +40,7 @@ function SCHEMA:PlayerDisconnected(ply)
 		local items = char:getInv():getItems()
 		for k, v in pairs(items) do
 			if v.mask == true then
+				
 				v:removePart(ply)
 			end
 		end
