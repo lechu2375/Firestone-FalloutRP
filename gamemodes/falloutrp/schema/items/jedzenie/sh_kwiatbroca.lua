@@ -4,5 +4,5 @@ ITEM.width = 1
 ITEM.height = 1
 ITEM.desc = "Pospolita roślina stanowiąca podstawę proszku leczniczego."
 ITEM.category = "Jedzenie"
-ITEM.lifeTime = ITEM.date + 172800
+ITEM.lifeTime =  172800
 ITEM.health = 3
