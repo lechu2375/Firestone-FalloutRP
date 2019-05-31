@@ -35,7 +35,7 @@ end
 
 
 function SCHEMA:PlayerDisconnected(ply)
-	local char = ply:getChar()
+--[[	local char = ply:getChar()
 	if char then
 		local items = char:getInv():getItems()
 		for k, v in pairs(items) do
@@ -44,7 +44,7 @@ function SCHEMA:PlayerDisconnected(ply)
 				v:removePart(ply)
 			end
 		end
-	end
+	end]]--
 end
 
 function SCHEMA:OnCharCreated( ply, char )
