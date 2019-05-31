@@ -28,6 +28,5 @@ nut.util.include("sh_config.lua")
 -----------------------
 --[[ CONFIGURATION ]]--
 -----------------------
-nut.currency.set("", "kapsel", "kapsli") 
-nut.flag.add("y", "Access to the light runner items.")
-nut.flag.add("Y", "Access to the heavy runner items.")
+nut.currency.set("K", "kapsel", "kapsli") 
+
