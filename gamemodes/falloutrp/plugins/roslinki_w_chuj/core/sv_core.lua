@@ -28,7 +28,7 @@ end
 timer.Create( "Firestone.Plants.Spawn", Firestone.Plants.Time, 0, function()
     for i = 0, Firestone.Plants.Amount do
         local random = math.random(1, #Firestone.Plants.Pos)
-        local x = Firestone.Plants.Pos[random]
+        local x = Firestone.Plants.Pos[random].pos
         local check = ents.FindInBox(x:Add(10,10,10), x:Add(-10,-10,-10))
         for k,v in pairs(check) do
             if v:GetClass() == "nut_item" then
