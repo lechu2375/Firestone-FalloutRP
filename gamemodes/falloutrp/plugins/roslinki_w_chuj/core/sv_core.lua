@@ -33,6 +33,7 @@ timer.Create( "Firestone.Plants.Spawn", Firestone.Plants.Time, 0, function()
         for k,v in pairs(check) do
             if v:GetClass() == "nut_item" then
                 print("Coś tam jest, return.")
+                i = i + 1
                 return
             end
         end
