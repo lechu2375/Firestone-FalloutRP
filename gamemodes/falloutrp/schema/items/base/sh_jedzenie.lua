@@ -12,9 +12,9 @@ ITEM.lifeTime = 67
 
 
 function ITEM:getDesc()
-	local lifeTime = self:getData("lifeTime")
+	local lifeTime = self:getData("lifeTime") or os.time()
 	local desc = self.desc
-	if lifeTime>os.time() then
+	if lifeTime>=os.time() then
 		desc = desc.."\n Nadaje się do jedzenia!"
 	else
 		desc = desc.."\n Nieprzyjemnie pachnie, ale można spróbować to zjeść.."
@@ -38,9 +38,9 @@ ITEM.functions.use = {
 	icon = "icon16/cup.png",
 	onRun = function(item)
 		if item.player:Alive() then
-		local spawntime = os.time()
-		local lifeTime = item:getData("lifeTime")
-			if spawntime < lifeTime then
+		local spawntime = os.time() 
+		local lifeTime = item:getData("lifeTime") or 0
+			if spawntime <= lifeTime then
 				local maxhp = item.player:GetMaxHealth()
 				local hp = item.player:Health()
 				local newhp = hp + item.health
