@@ -4,11 +4,16 @@ util.AddNetworkString("FS:FactionInviteD")
 util.AddNetworkString("FS:FactionInviteA")
 local function SetRank_SV(char,rangaID)
     local frakcja = char:getFaction() 
-    char:setData("ranga",nut.faction.indices[frakcja].rangi[rangaID],false,player.GetAll()) 
-    char:getPlayer():Notify("Twoja ranga została zmieniona na: "..char:getData("ranga"))
-    local charid = tonumber(char:getID())
-    TABELA_RANG[charid] = char:getData("ranga")
+    if nut.faction.indices[frakcja].rangi then
+        char:setData("ranga",nut.faction.indices[frakcja].rangi[rangaID],false,player.GetAll()) 
+        char:getPlayer():Notify("Twoja ranga została zmieniona na: "..char:getData("ranga"))
+        local charid = tonumber(char:getID())
+        TABELA_RANG[charid] = char:getData("ranga")
+    else
+        char:setData("ranga","Brak",false,player.GetAll())
+    end
 end
+
 
 
 function PLUGIN:OnCharCreated(client, id) 
@@ -94,5 +99,5 @@ net.Receive("FS:FactionInviteA", function(len,ply) --Akceptacja
     invList[id]=nil
 end)
 --INVITE SYSTEM CODE END
-print("SV FRAKCJE LOADED :)")
+print("[FACTION LOG]Faction System Loaded")
 

@@ -2,7 +2,7 @@
 --[[ INFO ]]--
 --------------
 SCHEMA.name = "Fallout Roleplay"
-SCHEMA.author = "Firestone Development"
+SCHEMA.author = "Firestone Development Team"
 SCHEMA.desc = "frx to gej"
 
 ----------------

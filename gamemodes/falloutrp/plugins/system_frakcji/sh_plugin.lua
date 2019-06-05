@@ -35,6 +35,8 @@ function SetRank(char,rankID,caller)
 		char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
 		local charid = tonumber(char:getID())
     	TABELA_RANG[charid] = char:getData("ranga")
+	else
+		return false
 	end
 end
 
@@ -79,7 +81,7 @@ nut.command.add("jakaranga", {
 
 nut.command.add("awans", {
 	adminOnly = false,
-	syntax = "[postac] [numer rangi]",
+	syntax = "<postac> [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -153,7 +155,7 @@ nut.command.add("spisrang", {
 })
 
 nut.command.add("uprawnienia", {
-	adminOnly = true,
+	adminOnly = false,
 	syntax = "<brak, komenda wyswietla uprawnienia twojej postaci>",
 	onRun = function(client)
 		if IsValid(client) and client:getChar() then
