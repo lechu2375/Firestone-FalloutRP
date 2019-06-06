@@ -68,3 +68,16 @@ PLUGIN.acts["szczekpies"] = {
 	["citizen_male"] = {sequence = "specialidle_happybark"},
 	["citizen_female"] = {sequence = "specialidle_happybark"}
 }
+
+PLUGIN.acts["wylaczprot"] = {
+	["citizen_male"] = {sequence = "mtspecialidle_deactivateloop", untimed = true, transition = { [ACT_STARTSEQ] = "mtspecialidle_deactivate", [ACT_ENDSEQ] = "mtspecialidle_activate" }},
+	["citizen_female"] = {sequence = "mtspecialidle_deactivateloop", untimed = true, transition = { [ACT_STARTSEQ] = "mtspecialidle_deactivate", [ACT_ENDSEQ] = "mtspecialidle_activate" }}
+}
+PLUGIN.acts["rozgladajprot"] = {
+	["citizen_male"] = {sequence = "mtspecialidle_search"},
+	["citizen_female"] = {sequence = "mtspecialidle_search"}
+}
+PLUGIN.acts["zwarciejprot"] = {
+	["citizen_male"] = {sequence = "specialidle_hitbrain"},
+	["citizen_female"] = {sequence = "specialidle_hitbrain"}
+}
