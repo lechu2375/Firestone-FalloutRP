@@ -4,7 +4,11 @@ FACTION.isDefault = false
 FACTION.color = Color(225, 177, 44) 
 FACTION.weapons = {""} 
 FACTION.models = {
-	"models/visualitygaming/fallout/legion1.mdl"
+	"models/fallout/dogmeat.mdl",
+	"models/fallout/dogskin.mdl",
+	"models/fallout/dogvicious.mdl",
+	"models/fallout/coyote.mdl",
+	"models/fallout/mongrel.mdl"
 }
 FACTION.isGloballyRecognized = false
 FACTION.pay = 0

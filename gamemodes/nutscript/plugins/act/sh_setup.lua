@@ -51,3 +51,20 @@ PLUGIN.acts["stand"] = {
 	["citizen_female"] = {sequence = {"lineidle01", "lineidle02", "lineidle03"}, untimed = true},
 	["metrocop"] = {sequence = "plazathreat2", untimed = true}
 }
+
+PLUGIN.acts["siadajpies"] = {
+	["citizen_male"] = {sequence = "specialidle_sit_loop", untimed = true, transition = { [ACT_STARTSEQ] = "specialidle_sit_start", [ACT_ENDSEQ] = "specialidle_sit_exit" }},
+	["citizen_female"] = {sequence = "specialidle_sit_loop", untimed = true}
+}
+PLUGIN.acts["cieszypies"] = {
+	["citizen_male"] = {sequence = "specialidle_happypant"},
+	["citizen_female"] = {sequence = "specialidle_happypant"}
+}
+PLUGIN.acts["jezykpies"] = {
+	["citizen_male"] = {sequence = "specialidle_toungehang"},
+	["citizen_female"] = {sequence = "specialidle_toungehang"}
+}
+PLUGIN.acts["szczekpies"] = {
+	["citizen_male"] = {sequence = "specialidle_happybark"},
+	["citizen_female"] = {sequence = "specialidle_happybark"}
+}
