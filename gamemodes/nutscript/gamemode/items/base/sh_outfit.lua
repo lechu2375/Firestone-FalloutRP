@@ -54,8 +54,6 @@ function ITEM:removeOutfit(client)
 			client:Notify("Nie nosisz już ubrania członka frakcji "..self.faction, 1)
 	end
 	self:setData("equip", false)
-	character:setData("dt",0)
-	character:setData("dr",0)
 	if (character:getData("oldMdl")) then
 		character:setModel(character:getData("oldMdl"))
 		character:setData("oldMdl", nil)
@@ -136,8 +134,6 @@ ITEM.functions.Equip = {
 		item.player:Say("/me zakłada "..item.name)
 		
 		item:setData("equip", true)
-		char:setData("dt",(item.dt or 0))
-		char:setData("dr",(item.reduction or 0))
 		if item.faction then
 			item.player:Notify("Nosisz teraz ubranie członka frakcji "..item.faction, 1)
 		end

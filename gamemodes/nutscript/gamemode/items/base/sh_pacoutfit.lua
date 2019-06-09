@@ -91,9 +91,6 @@ ITEM.functions.EquipUn = { -- sorry, for name order.
 	onRun = function(item)
 		local char = item.player:getChar()
 		item:removePart(item.player)
-		--[[if item.mask then
-			char:setName(char:getData("ognick"))
-		end]]--
 		return false
 		
 		
@@ -128,11 +125,6 @@ ITEM.functions.Equip = {
 
 		item:setData("equip", true)
 		item.player:Say("/me zakłada "..item.name)--Reszte funkcji wrzucam pod tym wyżej ifem, który sprawdza czy można to ubrać.
-		--[[if item.mask then
-			if  !(string.StartWith(char:getName(), "Nieznajomy")) then --jak już ma nick Nieznajomy to nie zmienia na nowo.
-				char:setName("Nieznajomy "..randomskladka())
-			end
-		end]]--
 		item.player:addPart(item.uniqueID, item)
 
 		if (item.attribBoosts) then
