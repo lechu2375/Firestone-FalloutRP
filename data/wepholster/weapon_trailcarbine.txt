@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[13 8.125 4.0625]",
+		"{180 120.875 89.6562}"
+	],
+	"Bone": "ValveBiped.Bip01_R_Clavicle",
+	"Model": "models/halokiller38/fallout/weapons/rifles/trailcarbine.mdl"
+}

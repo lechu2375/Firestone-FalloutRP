@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[-7.6875 5.7188 -13.5625]",
+		"{180 -105.9375 69.2812}"
+	],
+	"Bone": "ValveBiped.Bip01_L_Thigh",
+	"Model": "models/halokiller38/fallout/weapons/pistols/rangersequoia.mdl"
+}

@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[13 4 5]",
+		"{-4.0625 -16.2812 73.3438}"
+	],
+	"Bone": "ValveBiped.Bip01_R_Clavicle",
+	"Model": "models/halokiller38/fallout/weapons/rifles/cowboyrepeater.mdl"
+}

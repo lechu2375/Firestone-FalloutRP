@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[13.5625 6.625 3.5938]",
+		"{111.375 108.6562 180}"
+	],
+	"Bone": "ValveBiped.Bip01_R_Clavicle",
+	"Model": "models/halokiller38/fallout/weapons/energy weapons/tribeamlaserrifle.mdl"
+}

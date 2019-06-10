@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[2.0938 0 -4.5]",
+		"{-90 0 74.6875}"
+	],
+	"Bone": "ValveBiped.Bip01_R_Clavicle",
+	"Model": "models/halokiller38/fallout/weapons/energy weapons/gatlinglaser.mdl"
+}
