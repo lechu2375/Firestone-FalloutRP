@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\weapons\tfa_nmrih\tool_barricade\w_barricadeboard_d"
+	"$surfaceprop" "wood"
+	"keywords" "barricade board"
+}
