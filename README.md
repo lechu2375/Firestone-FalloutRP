@@ -46,11 +46,6 @@ PLAYER:GetBW()
 PLAYER:SetPowerArmor(bState)
 PLAYER:GetPowerArmor()
 
--- Karma System
-PLAYER:AddKarma(intAmount)
-PLAYER:RemoveKarma(intAmount)
-PLAYER:GetKarma()
-
 -- XP System 
 PLAYER:AddXP(intAmount)
 PLAYER:SetXP(intAmount)
