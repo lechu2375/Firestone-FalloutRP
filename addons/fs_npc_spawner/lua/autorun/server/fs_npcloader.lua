@@ -3,10 +3,11 @@ include("fnscore/fns_locations.lua")
 include("fnscore/fns_singlespawns.lua")
 
 Firestone = Firestone or {}
+FNS = Firestone.FNS or {}
 Firestone.FNS = Firestone.FNS or {}
 Firestone.FNS.Locations = Firestone.FNS.Locations or {}
 Firestone.FNS.SS= Firestone.FNS.SS or {}
-FNS = Firestone.FNS
+
 --[[
 Miejscówki ={
 ["Nazwa_miejscówki"] = { --Nazwa spawnpointa
