@@ -1,13 +1,15 @@
-include("fnscore/fns_spawner.lua")
-include("fnscore/fns_locations.lua")
-include("fnscore/fns_singlespawns.lua")
+
 
 Firestone = Firestone or {}
 FNS = Firestone.FNS or {}
 Firestone.FNS = Firestone.FNS or {}
 Firestone.FNS.Locations = Firestone.FNS.Locations or {}
+Firestone.FNS.Locations = Firestone.FNS.Locations.Spawned or {} --tabela do zapisywania npctów, do uniknięcia pętli ents.getall
 Firestone.FNS.SS= Firestone.FNS.SS or {}
 
+include("fnscore/fns_spawner.lua")
+include("fnscore/fns_locations.lua")
+include("fnscore/fns_singlespawns.lua")
 --[[
 Miejscówki ={
 ["Nazwa_miejscówki"] = { --Nazwa spawnpointa
@@ -28,3 +30,10 @@ Miejscówki ={
 
 ["NPC"] = pos
 ]]
+
+
+
+
+timer.Simple(10,  function()
+    FNS.CheckLocation("test")
+end)
