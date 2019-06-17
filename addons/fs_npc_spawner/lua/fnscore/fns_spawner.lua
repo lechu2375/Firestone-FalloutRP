@@ -4,7 +4,25 @@
 function FNS.CheckLocation(stringLocation)
     if Firestone.FNS.Locations[stringLocation] then 
         local location = Firestone.FNS.Locations[stringLocation]
-        local entsTable = ents.FindInSphere(location.postable[1], location.radius)
+        if location.fibv then
+            if location.fibv[1] and location.fibv[2] then
+                local entsTable = ents.FindInBox(location.fibv[1], location.fibv[2]) 
+                for k,v in pairs(entsTable) do
+                    if v:IsPlayer() then
+                        print("[FNS LOG][Box]Can't spawn npc in "..stringLocation.." location, someone is there.")
+                    return end
+                end
+            end      
+        elseif location.radius then
+            local entsTable = ents.FindInSphere(location.postable[1], location.radius)
+            for k,v in pairs(entsTable) do
+                if v:IsPlayer() then
+                    print("[FNS LOG][Sphere] Can't spawn npc in "..stringLocation.." location, someone is there.")
+                return end
+            end
+        else
+            print("[FNS LOG] Find in box vectors does not exists same as radius! Skipping entities check.")
+        end
         local npcinfo = list.Get("NPC")
         for k,v in pairs(location.npctable) do
             if Firestone.FNS.Locations.Spawned[stringLocation][k] then 
@@ -31,4 +49,4 @@ function FNS.CheckSS(stringLocation)
 
 end
 
---Respimy npc, chuj chuj chuj 
+ 
