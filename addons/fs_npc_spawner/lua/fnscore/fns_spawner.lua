@@ -4,8 +4,8 @@
 function FNS.CheckLocation(stringLocation)
     if Firestone.FNS.Locations[stringLocation] then 
         local location = Firestone.FNS.Locations[stringLocation]
-        if location.fibv then
-            if location.fibv[1] and location.fibv[2] then
+        if location.fibv then --jeśli jest tabela z wektorami do find in box
+            if location.fibv[1] and location.fibv[2] then --wtedy sprawdzamy czy ktoś z graczy jest w równoległoboku
                 local entsTable = ents.FindInBox(location.fibv[1], location.fibv[2]) 
                 for k,v in pairs(entsTable) do
                     if v:IsPlayer() then

@@ -1,8 +1,8 @@
 hook.Add("OnNPCKilled","FNS_tableManager", function(npc)
-        local var = npc:GetVar("FNSlocation")
-        if Firestone.FNS.Locations.Spawned[var] then
-                local var2 = npc:GetVar("FNSque")
-                Firestone.FNS.Locations.Spawned[var][var2] = false
+        local var = npc:GetVar("FNSlocation") --sprawdzamy stringa z lokacją
+        if Firestone.FNS.Locations.Spawned[var] then --jeśli jest taka lokacja
+                local var2 = npc:GetVar("FNSque") --to pobieramy kolejność npcta w tabeli
+                Firestone.FNS.Locations.Spawned[var][var2] = false -- zabity więc false dajemy
         end
 end)
 

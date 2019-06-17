@@ -28,7 +28,7 @@ for k,v in pairs(Firestone.FNS.Locations) do
 end
 
 --[[
-Miejscówki ={
+Miejscówki =
 ["Nazwa_miejscówki"] = { --Nazwa spawnpointa
     ["npctable"] = {
         [1] = klasa_npc --każdy npc wpisany
@@ -42,10 +42,16 @@ Miejscówki ={
     ["time"] = sekundy --Co ile sekund ma nastąpić sprawdzenie czy npc żyją, jeśli nie to je respi
 
 
-}} 
+}
 
-
-["NPC"] = pos
+Pojedyńcze npc=
+["unikalna_nazwa"] = {
+    ["nc"] = klasa_npc
+    ["pos"] = pozycja
+    ["time"] = sekundy
+    ["radius"] = promień
+    ["fibv"] ={Wektor1,Wektor2} -- jesli chcemy 
+}
 ]]
 
 
