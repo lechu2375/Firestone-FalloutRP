@@ -34,8 +34,10 @@ function FNS.CheckLocation(stringLocation)
             npc:Spawn() 
             npc:SetVar("FNSlocation",stringLocation)
             npc:SetVar("FNSque",k)
-            if npcinfo[v].Weapons then
-                npc:Give(table.Random(npcinfo[v].Weapons))
+            if npcinfo[v] then
+                if npcinfo[v].Weapons then
+                    npc:Give(table.Random(npcinfo[v].Weapons))
+                end
             end
             Firestone.FNS.Locations.Spawned[stringLocation][k] = npc
             print("[FNS LOG] Spawned "..v.." at",pos,"with",npc:GetActiveWeapon())
@@ -45,8 +47,24 @@ end
 
 
 
-function FNS.CheckSS(stringLocation)
-
+function FNS.CheckSS(stringUniqeName)
+    local ss = Firestone.FNS.SS[stringUniqeName]
+    if ss then
+        if ss.spawned then return end
+        local npc = ents.Create(ss.nc)
+        local pos = ss.pos
+        local npcinfo = list.Get("NPC")
+        npc:SetPos(pos)
+        npc:Spawn() 
+        ss.spawned = true
+        npc:SetVar("FNSSUname",stringUniqeName)
+        if npcinfo[ss.nc] then
+            if npcinfo[ss.nc].Weapons then
+                npc:Give(table.Random(npcinfo[v].Weapons))
+            end
+        end
+        print("[FNS LOG] Spawned "..ss.nc.." at",pos,"with",npc:GetActiveWeapon())
+    end
 end
 
  

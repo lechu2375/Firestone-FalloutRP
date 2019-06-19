@@ -5,7 +5,8 @@ FNS = Firestone.FNS or {}
 Firestone.FNS = Firestone.FNS or {}
 Firestone.FNS.Locations = Firestone.FNS.Locations or {}
 Firestone.FNS.Locations.Spawned = Firestone.FNS.Locations.Spawned or {} --tabela do zapisywania npctów, do uniknięcia pętli ents.getall
-Firestone.FNS.SS= Firestone.FNS.SS or {}
+Firestone.FNS.SS = Firestone.FNS.SS or {}
+
 
 include("fnscore/fns_spawner.lua")
 include("fnscore/fns_locations.lua")
@@ -26,6 +27,18 @@ for k,v in pairs(Firestone.FNS.Locations) do
         end
     end
 end
+
+
+for k,v in pairs(Firestone.FNS.SS) do
+    if not timer.Exists("FNS_Timer"..k) then
+        if v.time then
+            timer.Create("FNS_Timer"..k, v.time, 0, function()
+                FNS.CheckSS(k)
+            end)
+        end
+    end
+end
+
 
 --[[
 Miejscówki =
@@ -53,7 +66,6 @@ Pojedyńcze npc=
     ["fibv"] ={Wektor1,Wektor2} -- jesli chcemy 
 }
 ]]
-
 
 
 
