@@ -1,6 +1,6 @@
 
 ITEM.name = "Mundur Strażnika RNK"
-ITEM.model = "models/visualitygaming/fallout/prop/prop/merc_grunt_ground.mdl"
+ITEM.model = "models/visualitygaming/fallout/prop/prop/rangercasual_ground.mdl"
 ITEM.replacements = "models/visualitygaming/fallout/rangercasual_male_02.mdl"
 ITEM.width = 3
 ITEM.height = 2
