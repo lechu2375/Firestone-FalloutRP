@@ -12,3 +12,20 @@ if CLIENT then
         return str
     end 
 end
+
+function SCHEMA:PlayerFootstep(client, position, foot, soundName, volume)
+	local itms = client:getChar():getInv():getItems()
+	if itms then
+		for k, v in pairs(itms) do
+			if v.pa and v:getData("equip") then
+				client:EmitSound("fs_armor/fs_power_0"..math.random(1, 6)..".wav", volume * 320)
+                return true
+			end
+   		end
+	end
+end 
+
+
+
+
+
