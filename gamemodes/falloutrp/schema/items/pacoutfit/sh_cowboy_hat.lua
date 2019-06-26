@@ -1,9 +1,9 @@
-ITEM.name = "shemag_test"
-ITEM.desc = "fane"
+ITEM.name = "Kapelusz kowboja"
+ITEM.desc = "Kapelusz noszony przez kowbojów dzikiego zachodu."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_shemagh.mdl"
 ITEM.width = 1
 ITEM.height = 1
-ITEM.mask = true
+ITEM.mask = false
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
     [1] = {
@@ -14,16 +14,16 @@ ITEM.pacData = {
                 ["self"] = {
                     ["BoneMerge"] = true,
                     ["ClassName"] = "model",
-                    ["UniqueID"] = "4014042687",
-                    ["Model"] = "models/visualitygaming/fallout/prop/prop/sol_shemagh.mdl",
+                    ["UniqueID"] = "662996175",
+                    ["Model"] = "models/visualitygaming/fallout/prop/prop/sol_hat2.mdl",
                 },
             },
         },
         ["self"] = {
-            ["EditorExpand"] = false,
-            ["UniqueID"] = "2053614393",
+            ["EditorExpand"] = true,
+            ["UniqueID"] = "662996176",
             ["ClassName"] = "group",
-            ["Name"] = "Shemag",
+            ["Name"] = "Kapelusz kowboja",
             ["Description"] = "Przedmiot",
         },
     },
