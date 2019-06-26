@@ -44,9 +44,14 @@ function PLUGIN:EntityTakeDamage(target,dmg)
 				local damageresist = dr
 				dmg:SetDamage(dmg:GetDamage()*(damageresist/100))
 				if (dmg:GetDamage()-damagetreshold)<0 then
-					dmg:SetDamage(math.random(0, 3))
+					local r = math.random(0, 4)
+					if r == 0 then
+						dmg:SetDamage(1)
+					else
+						dmg:SetDamage(0)
+					end
 					target:EmitSound(("physics/metal/metal_solid_impact_bullet"..math.random(1,4)..".wav"))
-					target:PrintMessage(HUD_PRINTTALK, "dmg 0:"..dmg:GetDamage())
+					target:PrintMessage(HUD_PRINTTALK, "dmg:"..dmg:GetDamage())
 				else 
 					dmg:SetDamage(dmg:GetDamage()-damagetreshold)
 					target:PrintMessage(HUD_PRINTTALK, "dmg po redukcjidt:"..dmg:GetDamage())
