@@ -4,6 +4,7 @@ ITEM.model = "models/visualitygaming/fallout/prop/prop/desertranger_helmet.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.dt = 4
+ITEM.price = 1000
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
     ["children"] = {

@@ -4,6 +4,7 @@ ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_helmet.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.dt = 3
+ITEM.price 820
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 [1] = {

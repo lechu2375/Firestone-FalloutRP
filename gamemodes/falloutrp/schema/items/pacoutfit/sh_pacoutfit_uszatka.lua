@@ -3,6 +3,7 @@ ITEM.desc = "Aż ciepło w uszy."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_goggles.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 6
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 [1] = {

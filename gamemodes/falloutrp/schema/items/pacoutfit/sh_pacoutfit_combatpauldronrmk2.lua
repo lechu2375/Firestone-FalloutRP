@@ -3,6 +3,7 @@ ITEM.desc = "Prawy naramiennik z bojowego pancerza."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/combat_mk2_pauldron.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 370
 ITEM.outfitCategory = "pauldronr"
 ITEM.pacData = {
 	["children"] = {

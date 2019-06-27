@@ -3,6 +3,7 @@ ITEM.desc = "Fajnie wygląda, niestety filtr już trochę zużyty."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/combat_gasmask.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 15
 ITEM.outfitCategory = "face"
 ITEM.pacData = {
 

@@ -3,6 +3,7 @@ ITEM.desc = "Pilotki."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/combat_sunglasses.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 6
 ITEM.outfitCategory = "face"
 ITEM.pacData = {
 

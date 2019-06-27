@@ -4,6 +4,7 @@ ITEM.model = "models/visualitygaming/fallout/prop/prop/combat_headwrap.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.mask = true
+ITEM.price = 100
 ITEM.outfitCategory = "face"
 ITEM.pacData = {
     ["children"] = {

@@ -3,6 +3,7 @@ ITEM.desc = "Zapewniają dobrą osłonę przed różnymi odłamkami i pyłami."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_goggles.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 1
 ITEM.outfitCategory = "face"
 ITEM.pacData = {
 ["children"] = {

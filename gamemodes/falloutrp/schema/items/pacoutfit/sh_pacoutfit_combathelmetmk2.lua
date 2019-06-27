@@ -4,6 +4,7 @@ ITEM.model = "models/visualitygaming/fallout/prop/prop/combat_mk2_helmet.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.dt = 5
+ITEM.price = 1500
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
     ["children"] = {

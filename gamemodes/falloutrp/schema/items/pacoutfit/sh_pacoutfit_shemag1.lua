@@ -3,6 +3,7 @@ ITEM.desc = "Przewiewne a zapewnia ochronę przed słońcem."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_shemagh.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 10
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 [1] = {

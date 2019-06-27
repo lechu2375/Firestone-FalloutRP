@@ -4,6 +4,7 @@ ITEM.model = "models/visualitygaming/fallout/prop/prop/metalarmour_fhelmet.mdl"
 ITEM.width = 1
 ITEM.height = 1
 ITEM.dt = 2
+ITEM.price = 200
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 ["children"] = {

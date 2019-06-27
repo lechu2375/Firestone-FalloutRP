@@ -3,6 +3,7 @@ ITEM.desc = "Pospolite okrycie głowy na zachodzie."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_hat2.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 8
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 [1] = {

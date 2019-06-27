@@ -3,6 +3,7 @@ ITEM.desc = "Z daszkiem - chroni przed słońcem."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/rovingtrader_hat.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 6
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 ["children"] = {

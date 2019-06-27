@@ -4,6 +4,7 @@ ITEM.desc = "Pospolite odzienie głowy wśród Strażników RNK."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/ranger_patrol_hat.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 300
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
     ["children"] = {

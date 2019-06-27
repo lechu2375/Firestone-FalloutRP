@@ -3,6 +3,7 @@ ITEM.desc = "Kiedyś zapewniał ochronę głowy na motorze."
 ITEM.model = "models/visualitygaming/fallout/prop/prop/sol_hat_journey.mdl"
 ITEM.width = 1
 ITEM.height = 1
+ITEM.price = 6
 ITEM.outfitCategory = "hat"
 ITEM.pacData = {
 [1] = {
