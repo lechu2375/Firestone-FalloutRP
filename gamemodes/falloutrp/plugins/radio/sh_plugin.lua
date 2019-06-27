@@ -310,7 +310,7 @@ nut.chat.register("radio", {
 			CURFREQ = freq
 			speaker:EmitSound("npc/metropolice/vo/on"..math.random(1, 2)..".wav", math.random(50, 60), math.random(80, 120))
 		else
-			speaker:notifyLocalized("radioNoRadioComm")
+			speaker:Notify("Nie posiadasz włączonego radia lub jesteś od niego za daleko.")
 			return false
 		end
 	end,
