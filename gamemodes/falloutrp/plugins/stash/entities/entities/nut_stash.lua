@@ -50,7 +50,7 @@ else
 		local position = self:LocalToWorld(self:OBBCenter()):ToScreen()
 		local x, y = position.x, position.y
 
-		nut.util.drawText(L"stashEntity", x, y, ColorAlpha(nut.config.get("color"), alpha), 1, 1, nil, alpha * 0.65)
-		nut.util.drawText(L"stashDesc", x, y + 16, ColorAlpha(color_white, alpha), 1, 1, "nutSmallFont", alpha * 0.65)
+		nut.util.drawText("Schowek", x, y, ColorAlpha(nut.config.get("color"), alpha), 1, 1, nil, alpha * 0.65)
+		nut.util.drawText("Możesz tu coś schować", x, y + 16, ColorAlpha(color_white, alpha), 1, 1, "nutSmallFont", alpha * 0.65)
 	end
 end

@@ -1,4 +1,4 @@
-ITEM.name = "Stationary Radio"
+ITEM.name = "Stacjonarne Radio"
 ITEM.model = "models/props_lab/citizenradio.mdl"
 ITEM.width = 2
 ITEM.height = 2
@@ -10,12 +10,12 @@ function ITEM:getDesc()
 	local str
 	
 	if (!self.entity or !IsValid(self.entity)) then
-		str = "A Pager that allows you to send a signal to other characters in distance.\nPower: %s\nFrequency: %s"
+		str = "Pozwala na komunikację z innymi na odległość.\nZasilanie: %s\nCzęstotliwość: %s"
 		return Format(str, (self:getData("power") and "On" or "Off"), self:getData("freq", "000.0"))
 	else
 		local data = self.entity:getData()
 		
-		str = "A Functional Pager. Power: %s Frequency: %s"
+		str = "Działające radio. Zasilanie: %s Częstotliwość: %s"
 		return Format(str, (self.entity:getData("power") and "On" or "Off"), self.entity:getData("freq", "000.0"))
 	end
 end

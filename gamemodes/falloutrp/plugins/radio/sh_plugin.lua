@@ -201,7 +201,7 @@ local function endChatter(listener)
 end
 
 nut.chat.register("radio", {
-	format = "%s says in radio: \"%s\"",
+	format = "%s mówi przez radio: \"%s\"",
 	font = "nutRadioFont",
 	onGetColor = function(speaker, text)
 		return RADIO_CHATCOLOR

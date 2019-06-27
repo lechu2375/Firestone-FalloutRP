@@ -13,7 +13,7 @@ local PANEL = {}
 		local noticeBar = self:Add("nutNoticeBar")
 		noticeBar:Dock(TOP)
 		noticeBar:setType(4)
-		noticeBar:setText(L("stashTip"))
+		noticeBar:setText("Możesz schować tu swoje przedmioty.")
 		noticeBar:DockMargin(3, 0, 3, 5)
 
 		self.stash = self:Add("nutStashItemList")
@@ -21,14 +21,14 @@ local PANEL = {}
 		self.stash:SetWide(self:GetWide() * 0.5 - 7)
 		self.stash:SetDrawBackground(true)
 		self.stash:DockMargin(0, 0, 5, 0)
-		self.stash.action:SetText(L"stashOut")
+		self.stash.action:SetText("Wyciągnij")
 
 		self.inv = self:Add("nutStashItemList")
 		self.inv:Dock(RIGHT)
 		self.inv:SetWide(self:GetWide() * 0.5 - 7)
 		self.inv:SetDrawBackground(true)
 		self.inv.title:SetText(LocalPlayer():Name())
-		self.inv.action:SetText(L"stashIn")
+		self.inv.action:SetText("Włóż")
 
 		self.stash.action.DoClick = function()
 			local selectedItem = nut.gui.stash.activeItem
