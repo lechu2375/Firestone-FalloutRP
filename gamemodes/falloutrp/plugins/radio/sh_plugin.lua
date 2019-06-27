@@ -13,9 +13,7 @@ local langTable = {
 	radioFormat = "%s radios in \"%s\"",
 }
 
-function PLUGIN:PluginLoaded()
-	table.Merge(nut.lang.stored[langkey], langTable)
-end
+
 
 if (CLIENT) then
 	local PANEL = {}
