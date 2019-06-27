@@ -42,11 +42,7 @@ timer.Create( "Firestone.Plants.Spawn", Firestone.Plants.Time, 0, function()
     end
 end )
 
-for k,v in pairs(ents.GetAll()) do
-            if v:GetClass() == "nut_item" then
-                v:Remove()
-            end     
-end
+
 
 
 
