@@ -42,9 +42,15 @@ function PLUGIN:EntityTakeDamage(target,dmg)
         if damagetype[dmg:GetDamageType()] and ( attacker:IsNPC() or attacker:IsPlayer() ) then
 				local damagetreshold = dt 
 				local damageresist = dr
-				dmg:SetDamage(dmg:GetDamage()*(damageresist/100))
-				if (dmg:GetDamage()-damagetreshold)<0 then
-					local r = math.random(0, 4)
+				if attacker:IsNPC() then
+					dmg:SetDamage(dmg:GetDamage()*1.2)
+				end
+				if damageresist>0 then
+					dmg:SetDamage(dmg:GetDamage()*(damageresist/10))
+					target:PrintMessage(HUD_PRINTTALK, "dr większe od zera dmg:"..dmg:GetDamage())
+				end
+				if (dmg:GetDamage()-damagetreshold)<=0 then
+					local r = math.random(0, 5)
 					if r == 0 then
 						dmg:SetDamage(1)
 					else
