@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[7.2188 20 -6.4688]",
+		"{80.125 -13.5625 100}"
+	],
+	"Bone": "ValveBiped.Bip01_Spine4",
+	"Model": "models/halokiller38/fallout/weapons/melee/lilysblade.mdl"
+}

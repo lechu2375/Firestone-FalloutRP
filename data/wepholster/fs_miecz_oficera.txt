@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[-7.375 -2.8438 6.1875]",
+		"{-4.0625 -145.3438 -81.5}"
+	],
+	"Bone": "ValveBiped.Bip01_Spine",
+	"Model": "models/halokiller38/fallout/weapons/melee/chineseofficersword.mdl"
+}

@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[5.125 17.9375 -1.0313]",
+		"{124.9688 1.3438 95.0938}"
+	],
+	"Bone": "ValveBiped.Bip01_Spine4",
+	"Model": "models/halokiller38/fallout/weapons/melee/rebar.mdl"
+}

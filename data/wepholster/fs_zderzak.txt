@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[3.9063 19.4688 -10.5625]",
+		"{82.8438 -21.7188 91}"
+	],
+	"Bone": "ValveBiped.Bip01_Spine4",
+	"Model": "models/halokiller38/fallout/weapons/melee/bumpersword.mdl"
+}

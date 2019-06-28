@@ -1,0 +1,8 @@
+{
+	"BoneOffset": [
+		"[11.1563 -15.8438 8.2813]",
+		"{-180 -19 96.4375}"
+	],
+	"Bone": "ValveBiped.Bip01_Spine",
+	"Model": "models/halokiller38/fallout/weapons/melee/shishkebab.mdl"
+}
