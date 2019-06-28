@@ -1,4 +1,7 @@
-SCHEMA.digitsLen = 4
+SCHEMA.NonHumanFactions = {
+    [FACTION_ROBOTY] = true,
+    [FACTION_PSY] = true,
+}
 
 
 

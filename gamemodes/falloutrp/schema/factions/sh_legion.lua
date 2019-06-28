@@ -7,7 +7,7 @@ FACTION.models = {
 	"models/visualitygaming/fallout/legion1.mdl"
 }
 FACTION.isGloballyRecognized = true
-FACTION.pay = 0
+FACTION.pay = 2
 FACTION_LEGION = FACTION.index
 
 FACTION.rangi = { 

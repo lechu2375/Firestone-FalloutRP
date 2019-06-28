@@ -90,6 +90,11 @@ nut.command.add("awans", {
 			local pos1 = client:GetPos()
 			local pos2 = char:getPlayer():GetPos()
 			if not client:getChar():getFaction() == char:getFaction() then return end
+			if client == target then
+				if not uprawnienia.dowodca then
+					return
+				end
+			end
 			if uprawnienia.awans and pos1:Distance(pos2)<300 then
 				local id = tonumber(arguments[2])
 				SetRank(char,id,client)

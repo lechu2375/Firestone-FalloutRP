@@ -14,7 +14,7 @@ FACTION.models = {
 
 }
 FACTION.isGloballyRecognized = false
-FACTION.pay = 0
+FACTION.pay = 5
 FACTION_RUN = FACTION.index
 
 FACTION.rangi = {
@@ -33,4 +33,19 @@ FACTION.rangi = {
     "Skryba",
     "Starszy Skryba",
     "Wysoki Skryba"
+}
+
+FACTION.permissions["Starszy"] = {
+    invite = true,
+    awans = true,
+    dowodca = true
+}
+FACTION.permissions["Wysoki skryba"] = {
+    invite = true,
+    awans = true,
+}
+
+FACTION.permissions["Gwieździsty Paladyn"] = {
+    invite = true,
+    awans = true,
 }

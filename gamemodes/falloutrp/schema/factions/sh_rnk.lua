@@ -14,7 +14,7 @@ FACTION.models = {
     "models/player/ncr/hub/ncr_ghoul.mdl"
 }
 FACTION.isGloballyRecognized = true
-FACTION.pay = 0
+FACTION.pay = 2
 FACTION_RNK = FACTION.index
 
 FACTION.rangi = {
@@ -42,4 +42,19 @@ FACTION.rangi = {
     "Strażnik Weteran",
     --szefunio--
     "Chief"
+}
+
+FACTION.permissions["Chief"] = {
+    invite = true,
+    awans = true,
+}
+FACTION.permissions["Generał"] = {
+    invite = true,
+    awans = true,
+    dowodca = true
+}
+FACTION.permissions["Generał Dywizji"] = {
+    invite = true,
+    awans = true,
+    dowodca = true
 }
