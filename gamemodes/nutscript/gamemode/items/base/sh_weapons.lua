@@ -32,7 +32,7 @@ ITEM:hook("drop", function(item)
 
 			item.player:StripWeapon(item.class)
 			item.player.carryWeapons[item.weaponCategory] = nil
-			item.player:EmitSound("items/ammo_pickup.wav", 80)
+			item.player:EmitSound("fs_items/ui_items_generic_up_01.wav", 80)
 		end
 	end
 end)
@@ -59,7 +59,7 @@ ITEM.functions.EquipUn = { -- sorry, for name order.
 			print(Format("[Nutscript] Weapon %s does not exist!", item.class))
 		end
 
-		item.player:EmitSound("items/ammo_pickup.wav", 80)
+		item.player:EmitSound("fs_items/ui_items_generic_up_01.wav", 80)
 		item.player.carryWeapons[item.weaponCategory] = nil
 
 		item:setData("equip", nil)
@@ -114,7 +114,7 @@ ITEM.functions.Equip = {
 			client.carryWeapons[item.weaponCategory] = weapon
 			client:SelectWeapon(weapon:GetClass())
 			client:SetActiveWeapon(weapon)
-			client:EmitSound("items/ammo_pickup.wav", 80)
+			client:EmitSound("fs_items/itm_rifle_up.wav", 80)
 
 			-- Remove default given ammo.
 			if (client:GetAmmoCount(weapon:GetPrimaryAmmoType()) == weapon:Clip1() and item:getData("ammo", 0) == 0) then
