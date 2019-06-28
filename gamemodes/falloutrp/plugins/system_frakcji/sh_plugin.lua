@@ -13,7 +13,7 @@ TABELA_RANG = {}
 function SetRank(char,rankID,caller)
 	local faction = char:getFaction()
 	if rankID == 0 then
-		return false
+		return 
 	elseif rankID<0 then
 		rankID = (rankID*(-1))
 	end
@@ -23,13 +23,12 @@ function SetRank(char,rankID,caller)
 			if caller then
 				caller:Notify("Podałeś zbyt duże ID rangi, nie ma tyle rang w tabeli.")
 				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-				return false
+				return 
 			else
 				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-				return false
+				return 
 			end
 		end
-
 		local newrank = nut.faction.indices[faction].rangi[rankID]
 		char:setData("ranga",newrank,false,player.GetAll())
 		char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
@@ -81,7 +80,7 @@ nut.command.add("jakaranga", {
 
 nut.command.add("awans", {
 	adminOnly = false,
-	syntax = "<postac> [numer rangi]",
+	syntax = "<postać> [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -90,6 +89,7 @@ nut.command.add("awans", {
 			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
 			local pos1 = client:GetPos()
 			local pos2 = char:getPlayer():GetPos()
+			if not client:getChar():getFaction() == char:getFaction() then return end
 			if uprawnienia.awans and pos1:Distance(pos2)<300 then
 				local id = tonumber(arguments[2])
 				SetRank(char,id,client)
@@ -107,7 +107,7 @@ nut.command.add("awans", {
 
 nut.command.add("odleglosc", {
 	adminOnly = true,
-	syntax = "[postac] ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
+	syntax = "<postać> ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
@@ -121,16 +121,21 @@ nut.command.add("odleglosc", {
 
 nut.command.add("adminawans", {
 	adminOnly = true,
-	syntax = "[postac] [numer rangi]",
+	syntax = "<postać> [numer rangi]",
 	onRun = function(client, arguments)
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
 			local char = target:getChar()
 			local frakcja = char:getFaction()
 			local id = tonumber(arguments[2])
+			if  not nut.faction.indices[faction].rangi then return end
+			if id<=0 then 
+				client:Notify("Wprowadź poprawny numer rangi.")
+				return
+			end
 			local nowa_ranga = nut.faction.indices[frakcja].rangi[id]
-			client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
 			SetRank(char,id)
+			client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
 		end
 	end
 })

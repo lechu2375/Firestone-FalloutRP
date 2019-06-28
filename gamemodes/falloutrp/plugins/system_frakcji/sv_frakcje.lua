@@ -18,8 +18,7 @@ end
 
 function PLUGIN:OnCharCreated(client, id) 
     local frakcja = id:getFaction()
-    local spis_frakcji = nut.faction.indices
-    if (nut.faction.indices[frakcja].name ~= "Mieszkaniec Pustkowi") then --Mieszkańcy pustkowia nie mają rang.
+    if nut.faction.indices[frakcja].rangi then --Mieszkańcy pustkowia nie mają rang.
         SetRank_SV(id,1)
     end
 end

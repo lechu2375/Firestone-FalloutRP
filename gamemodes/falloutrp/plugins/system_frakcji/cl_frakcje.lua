@@ -87,7 +87,7 @@ end)
 function PLUGIN:DrawCharInfo(client, character, info)
     local frakcja = client:getChar():getFaction()
     local kolor_frakcji = nut.faction.indices[frakcja].color
-    if (nut.faction.indices[frakcja].name ~= "Mieszkaniec Pustkowi") then 
+    if (nut.faction.indices[frakcja].rangi) then 
         local rank =  TABELA_RANG_cl[tonumber(character:getID())]
         if rank then
             info[#info + 1] = {rank, kolor_frakcji}
