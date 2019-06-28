@@ -46,13 +46,13 @@ function PLUGIN:EntityTakeDamage(target,dmg)
 					dmg:SetDamage(dmg:GetDamage()*1.2)
 				end
 				if damageresist>0 then
-					dmg:SetDamage(dmg:GetDamage()*(damageresist/10))
+					dmg:SetDamage(dmg:GetDamage()*((100-math.min(damageresist,85))/100))
 					target:PrintMessage(HUD_PRINTTALK, "dr większe od zera dmg:"..dmg:GetDamage())
 				end
 				if (dmg:GetDamage()-damagetreshold)<=0 then
-					local r = math.random(0, 5)
+					local r = math.random(0, 3)
 					if r == 0 then
-						dmg:SetDamage(1)
+						dmg:SetDamage(math.random(1, 5))
 					else
 						dmg:SetDamage(0)
 					end
