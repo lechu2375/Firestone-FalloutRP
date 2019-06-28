@@ -40,7 +40,7 @@ SWEP.Offset = { --Procedural world model animation, defaulted for CS:S purposes.
 SWEP.Primary.Sound = Sound("Weapon_Melee.HatchetLight")
 SWEP.Secondary.Sound = Sound("Weapon_Melee.HatchetHeavy")
 
-SWEP.MoveSpeed = 0.975
+SWEP.MoveSpeed = 1.15
 SWEP.IronSightsMoveSpeed  = SWEP.MoveSpeed
 
 SWEP.InspectPos = Vector(3.874, -13.436, 3.969)
