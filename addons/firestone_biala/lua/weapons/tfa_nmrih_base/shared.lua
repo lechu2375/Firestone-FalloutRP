@@ -35,5 +35,5 @@ SWEP.Offset = { --Procedural world model animation, defaulted for CS:S purposes.
 		Scale = 1.1
 }
 
-SWEP.MoveSpeed = 0.9
+SWEP.MoveSpeed = 1.2
 SWEP.IronSightsMoveSpeed  = SWEP.MoveSpeed * 0.8
