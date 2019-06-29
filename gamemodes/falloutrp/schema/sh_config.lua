@@ -2,7 +2,9 @@ SCHEMA.NonHumanFactions = {
     FACTION_ROBOTY,
     FACTION_PSY,
 }
-SCHEMA.RestrictedCategories = {}
+SCHEMA.AllowedCategories = {
+    ["Jedzenie"] = true
+}
 
 
 

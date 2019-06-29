@@ -29,11 +29,13 @@ function SCHEMA:invAddItem(item)
 	end
 end
 
-function SCHEMA:CanPlayerInteractItem(client,action)
+function SCHEMA:CanPlayerInteractItem(client,action,item)
 	local faction = client:getChar():getFaction()
 	for k,v in pairs(SCHEMA.NonHumanFactions) do
 		if v == faction then 
-			return false
+			if not SCHEMA.AllowedCategories[item.category] then
+				return false
+			end
 		end
 	end
 end
