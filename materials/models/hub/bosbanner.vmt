@@ -1,6 +1,0 @@
-"VertexlitGeneric"
-{
-	"$basetexture" "models/hub/bosbanner"
-	"$bumpmap" "models/hub/bosbanner_n"
-	"$translucent" 1
-}

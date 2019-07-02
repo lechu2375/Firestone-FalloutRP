@@ -1,8 +1,0 @@
-"VertexlitGeneric"
-{
-	"$basetexture" "models/dominator/fallout/armors/t-45d/t45d_outcast_helmet"
-//	"$bumpmap" "models/dominator/fallout/armors/t-45d/t45d_helmet_n"
-
-	"$selfillum" 1
-}
-

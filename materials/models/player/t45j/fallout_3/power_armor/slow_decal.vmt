@@ -1,7 +1,0 @@
-"VertexlitGeneric"
-{
-	"$basetexture" "models/player/t45j/fallout_3/power_armor/slow_decal"
-	"$bumpmap" "models/player/t45j/fallout_3/power_armor/slow_decal_bump"
-
-	"$translucent" 1
-}
