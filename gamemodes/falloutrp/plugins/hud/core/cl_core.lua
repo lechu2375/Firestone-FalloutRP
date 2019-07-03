@@ -38,8 +38,8 @@ function PLUGIN:HUDPaint()
 	if !LocalPlayer():Alive() or lchar == nil then return end
 	// HP, AP
 
-	DrawBar(width*0.07, height*0.93, "Left", "HP", healthLerp)
-  	DrawBar(width*0.73, height*0.93, "Right", "ST", staminaLerp)
+	DrawBar(width*0.07, height*0.93, "Left", "HP", math.Clamp( healthLerp, 0, 100 ) )
+  	DrawBar(width*0.73, height*0.93, "Right", "ST", math.Clamp( staminaLerp, 0, 100 ) )
 
 	// KOMPAS PO STARYM JEBANY
 
