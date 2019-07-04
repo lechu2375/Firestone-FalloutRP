@@ -547,13 +547,13 @@ LIMB_GROUPS[HITGROUP_RIGHTLEG] = true
 LIMB_GROUPS[HITGROUP_GEAR] = true
 
 function GM:ScalePlayerDamage(client, hitGroup, dmgInfo)
-	dmgInfo:ScaleDamage(1.5)
-
+	--[[dmgInfo:ScaleDamage(1.5)
+	if client:getChar():HasPAEquipped() then return end
 	if (hitGroup == HITGROUP_HEAD) then
 		dmgInfo:ScaleDamage(7)
 	elseif (LIMB_GROUPS[hitGroup]) then
 		dmgInfo:ScaleDamage(0.5)
-	end
+	end]]--
 end
 
 function GM:GetGameDescription()

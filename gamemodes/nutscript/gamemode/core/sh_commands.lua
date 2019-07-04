@@ -658,7 +658,7 @@ nut.command.add("plytransfer", {
 
 			if (!faction) then
 				for k, v in pairs(nut.faction.indices) do
-					if (nut.util.stringMatches(L(v.name, client), name)) then
+					if (nut.util.stringMatches(v.name, name)) then
 						faction = v
 
 						break
