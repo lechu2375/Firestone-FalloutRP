@@ -133,7 +133,7 @@ nut.command.add("adminawans", {
 			local char = target:getChar()
 			local frakcja = char:getFaction()
 			local id = tonumber(arguments[2])
-			if  not nut.faction.indices[faction].rangi then return end
+			if not nut.faction.indices[frakcja].rangi then return end
 			if id<=0 then 
 				client:Notify("Wprowadź poprawny numer rangi.")
 				return

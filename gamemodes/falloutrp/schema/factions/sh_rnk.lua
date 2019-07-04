@@ -43,7 +43,7 @@ FACTION.rangi = {
     --szefunio--
     "Chief"
 }
-
+FACTION.permissions = {}
 FACTION.permissions["Chief"] = {
     invite = true,
     awans = true,

@@ -8,7 +8,7 @@ SCHEMA.desc = "frx to gej"
 ----------------
 --[[ GLOBAL ]]--
 ----------------
-Firestone = {}
+Firestone = Firestone or {}
 Firestone.API = {}
 Firestone.Util = {}
 Firestone.LightGreen = Color(15, 72, 34,215)

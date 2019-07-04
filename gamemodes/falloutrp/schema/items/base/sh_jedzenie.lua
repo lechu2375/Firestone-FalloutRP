@@ -23,7 +23,7 @@ function ITEM:getDesc()
 end
 
 ITEM:hook("use", function(item)
-	item.player:EmitSound("npc_human_eating_food_chewy_01.wav")
+	item.player:EmitSound("fs_items/npc_human_eating_food_chewy_01.wav")
 end)
 
 ITEM.eatTable = {

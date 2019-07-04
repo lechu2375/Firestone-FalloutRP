@@ -2,22 +2,26 @@ if !SERVER then return end
  
 Firestone = Firestone || {}
 Firestone.Plants = Firestone.Plants || {}
-Firestone.Plants.LifeTime = 10
-Firestone.Plants.Time = 5 -- Co ile rośliny się pojawiają?
+Firestone.Plants.LifeTime = 172800
+Firestone.Plants.Time = 360 -- Co ile rośliny się pojawiają?
 Firestone.Plants.Amount = 1 -- Ile roślin się wtedy pojawia?
 Firestone.Plants.Pos = {
     [ 1 ] = {
-        pos = Vector( -2686.730469, 9130.890625, 344.425507 ),
-        id = "dynia"
+        pos = Vector( 4946.500000, 8805.593750, 157.781250 ),
+        id = "kukurydza"
     },
     [ 2 ] = {
-        pos = Vector( -2686.730469, 9130.890625, 344.425507 ),
+        pos = Vector( 4958.906250, 8800.218750, 132.218750),
         id = "kukurydza"
     },
     [ 3 ] = {
-        pos = Vector( -2686.730469, 9130.890625, 344.425507 ),
-        id = "papryczka"
-    }
+        pos = Vector( 4949.468750, 8793.937500, 118.750000),
+        id = "kukurydza"
+    },
+    [4] = {
+        pos = Vector(4960.937500, 9207.031250, 139.531250),
+        id = "owocyucca"
+    }   
 }
 
 
@@ -33,7 +37,6 @@ timer.Create( "Firestone.Plants.Spawn", Firestone.Plants.Time, 0, function()
         local check = ents.FindInBox(x1,x2)
         for k,v in pairs(check) do
             if v:GetClass() == "nut_item" then
-                print("Coś tam jest, return.")
                 i = i + 1
                 return
             end     

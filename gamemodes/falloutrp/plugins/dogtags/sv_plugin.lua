@@ -6,9 +6,10 @@ if !file.Exists("dogtags.txt", "DATA") then --Jesli nie ma pliku to go robi i od
 end
 
 local allowed_factions = {
-    [FACTION_RNK]=true,
-    [FACTION_BS]=true
-} --w pliku frakcji musi byc na przykład FACTION_BS = FACTION.index
+    [FACTION_RNK]= true,
+    [FACTION_BS]= true
+} 
+--w pliku frakcji musi byc na przykład FACTION_BS = FACTION.index
 --Dla tych frakcji będą generowane nieśmiertelniki
 
 dogtagsTable = util.JSONToTable(file.Read( "dogtags.txt", "DATA" ))  --Czytamy plik, JSONA konwertujemy tabele

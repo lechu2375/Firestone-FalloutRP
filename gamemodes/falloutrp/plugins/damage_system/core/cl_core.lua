@@ -68,25 +68,25 @@ function PLUGIN:Think()
             end)
         end
         // bleeding
-        if char:getData("FS.Bleeding") > 0 then
+        if (char:getData("FS.Bleeding") or 0) > 0 then
             if IsValid(basePanel) then
                 bleedingHolder:SetVisible(true)
             end
         end
-        if char:getData("FS.Bleeding") <= 0 || !LocalPlayer():Alive() then
+        if (char:getData("FS.Bleeding") or 0) <= 0 || !LocalPlayer():Alive() then
             if IsValid(basePanel) then
                 bleedingHolder:SetVisible(false)
             end
         end
         // low headhp/hp effects
         local tab = {
-            ["$pp_colour_colour"] = (0.3 + (char:getData("BodyPart.Head") + LocalPlayer():Health())/400), 
+            ["$pp_colour_colour"] = (0.3 + ((char:getData("BodyPart.Head") or 100) + LocalPlayer():Health())/400), 
             ["$pp_colour_contrast"] = 0.8,
         }
 
-        if char:getData("BodyPart.Head") <= 60 || LocalPlayer():Health() <= 20 then
+        if (char:getData("BodyPart.Head")or 100) <= 60 || LocalPlayer():Health() <= 20 then
             hook.Add("RenderScreenspaceEffects", "Firestone.MotionBlur", function()
-                DrawMotionBlur((0.3 + (char:getData("BodyPart.Head") + LocalPlayer():Health())/2000), 0.8, 0.01 )
+                DrawMotionBlur((0.3 + ((char:getData("BodyPart.Head") or 100) + LocalPlayer():Health())/2000), 0.8, 0.01 )
                 DrawColorModify(tab)  
             end)
         else

@@ -10,7 +10,7 @@ function PLUGIN:PlayerLoadedChar( ply, char )
 end
 
 function PLAYER:GetLegsCondition()
-    local condition = ( self:GetBodyPartCondition("RightLeg") + self:GetBodyPartCondition("LeftLeg") )/2
+    local condition = ( (self:GetBodyPartCondition("RightLeg") or 100) + (self:GetBodyPartCondition("LeftLeg") or 100) )/2 
     return condition
 end
 
@@ -41,7 +41,7 @@ function PLUGIN:Think()
             char:setVar( "stm", LazyClamp( char:getVar("stm") + nut.config.get("staminaRestoreSpeed")/100 ) )
         end
             if char:HasPAEquipped() then
-                ply:SetWalkSpeed(nut.config.get("walkSpeed")*0.5)
+                ply:SetWalkSpeed(nut.config.get("walkSpeed")*0.8)
             else
                 ply:SetWalkSpeed( math.Round( math.Clamp( ( nut.config.get("walkSpeed") * math.Clamp( ply:GetLegsCondition()/75, 0.2, 1 ) ) + char:getVar("drugRunInfluence", 0), 100, 250 ) ) )
             end
@@ -60,3 +60,4 @@ function PLUGIN:KeyPress( ply, key )
         end
     end
 end
+ha

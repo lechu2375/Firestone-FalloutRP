@@ -1,5 +1,6 @@
 ITEM.name = "EnergyCell"
 ITEM.model = "EnergyCell"
+ITEM.model = "models/visualitygaming/fallout/ammo/ecell.mdl"
 ITEM.ammo = "MicrofusionCell" 
 ITEM.width = 2
 ITEM.height = 1

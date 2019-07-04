@@ -15,7 +15,7 @@ FACTION.models = {
 }
 FACTION.isGloballyRecognized = false
 FACTION.pay = 5
-FACTION_RUN = FACTION.index
+FACTION_BS = FACTION.index
 
 FACTION.rangi = {
     "Nowicjusz",
@@ -34,6 +34,7 @@ FACTION.rangi = {
     "Starszy Skryba",
     "Wysoki Skryba"
 }
+FACTION.permissions = {}
 
 FACTION.permissions["Starszy"] = {
     invite = true,

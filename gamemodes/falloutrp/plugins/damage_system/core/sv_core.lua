@@ -82,7 +82,7 @@ function PLUGIN:Think()
         if !char then return end
         -- Legs
         for _,leg in ipairs( {"RightLeg", "LeftLeg"} ) do
-            if ply:GetBodyPartCondition( leg ) < 50 then
+            if (ply:GetBodyPartCondition( leg ) or 100) < 50 then
                 if char:getVar("brokenLeg") then return end
                 char:setVar("brokenLeg", true)
             end
