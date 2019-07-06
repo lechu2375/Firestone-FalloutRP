@@ -10,6 +10,6 @@ FACTION.models = {
 	"models/fallout/coyote.mdl",
 	"models/fallout/mongrel.mdl"
 }
-FACTION.isGloballyRecognized = false
+FACTION.isGloballyRecognized = true
 FACTION.pay = 0
 FACTION_PSY = FACTION.index

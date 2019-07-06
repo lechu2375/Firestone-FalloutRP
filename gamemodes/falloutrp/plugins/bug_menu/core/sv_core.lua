@@ -68,7 +68,10 @@ net.Receive("fs_bug_info", function(len, ply)
         }
     }
 
-    http.Post(PLUGIN.WebhookURL, {payload_json = util.TableToJSON(payload)})
+    http.Post("https://firestone.nazwa.pl/bugreport/koks.php", {payload_json = payload}, function(res)
+        print(res)
+        print("kkk")
+    end)
     ply:Notify("Otrzymaliśmy zgłoszenie, dziękujemy!", 5)
 
 end)

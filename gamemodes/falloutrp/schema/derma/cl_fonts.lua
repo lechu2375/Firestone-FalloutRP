@@ -34,7 +34,7 @@ surface.CreateFont( "FS_Side", {
 
 surface.CreateFont( "FS_Side_Small", {
 	font = "Roboto Condensed",
-	size = ScreenScale( 6 ),
+	size = ScreenScale( 5 ),
 	antialias = true,
 	extended = true,
 } )
@@ -55,7 +55,7 @@ surface.CreateFont( "FS_Title_Bold", {
 
 surface.CreateFont( "FS_Notify", {
 	font = "Roboto Condensed",
-	size = ScreenScale( 8 ),
+	size = ScreenScale( 7 ),
 	antialias = true,
 	extended = true,
 } )

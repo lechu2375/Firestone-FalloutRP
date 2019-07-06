@@ -10,6 +10,6 @@ FACTION.models = {
 	"models/fallout/eyebot_ede.mdl",
 	"models/fallout/eyebot_edeclone.mdl"
 }
-FACTION.isGloballyRecognized = false
+FACTION.isGloballyRecognized = true
 FACTION.pay = 0
 FACTION_ROBOTY = FACTION.index

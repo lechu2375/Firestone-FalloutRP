@@ -24,8 +24,8 @@ local textPos = nil
 	surface.DrawRect(x + width*0.2 - 3, y - 10, 3, 10)
 	if lerp then
 
-		healthLerp = Lerp(4 * FrameTime(), healthLerp, lchar:Health())
-		staminaLerp = Lerp(8 * FrameTime(), staminaLerp, lchar:getVar("stm"))
+		healthLerp = Lerp((4 * FrameTime()), healthLerp, (LocalPlayer():Health()))
+		staminaLerp = Lerp((8 * FrameTime()), staminaLerp, (lchar:getVar("stm")))
 		surface.DrawRect(x, y - 10,(lerp * (ScrW() * 0.2) )/100, 10)
 	end
 	if text then

@@ -104,7 +104,7 @@ ITEM.functions.EquipUn = { -- sorry, for name order.
 	icon = "icon16/cross.png",
 	onRun = function(item)
 		item:removeOutfit(item.player)
-		
+		item.player:EmitSound("fs_items/ui_items_clothing_up_01.wav")
 		return false
 	end,
 	onCanRun = function(item)
@@ -131,13 +131,14 @@ ITEM.functions.Equip = {
 				end
 			end
 		end
-		item.player:Say("/me zakłada "..item.name)
+		
 		
 		item:setData("equip", true)
 		if item.faction then
 			item.player:Notify("Nosisz teraz ubranie członka frakcji "..item.faction, 1)
 		end
-		
+		item.player:Say("/me zakłada "..item.name)
+		item.player:EmitSound("fs_items/ui_items_clothing_up_01.wav")
 		if (type(item.onGetReplacement) == "function") then
 			char:setData("oldMdl", char:getData("oldMdl", item.player:GetModel()))
 			char:setModel(item:onGetReplacement())

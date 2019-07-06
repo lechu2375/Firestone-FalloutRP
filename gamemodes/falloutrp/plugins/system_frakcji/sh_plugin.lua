@@ -4,8 +4,6 @@ PLUGIN.desc = "Rozwija funkcjonalność frakcji."
 local dir = PLUGIN.folder
 nut.util.include("sv_frakcje.lua")
 nut.util.include("cl_frakcje.lua")
-nut.util.includeDir(dir.."/frakcje")
-nut.flag.add("o", "Uprawnienia oficera we frakcji.")
 TABELA_RANG = {}
 
 
@@ -85,25 +83,24 @@ nut.command.add("awans", {
 	local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
 			local char = target:getChar()
-			local uprawnienia = getPermissions(client:getChar()) 
-			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
-			local pos1 = client:GetPos()
-			local pos2 = char:getPlayer():GetPos()
 			if not client:getChar():getFaction() == char:getFaction() then return end
-			if client == target then
+			local uprawnienia = getPermissions(client:getChar()) 
+			if client == target then --Jeśli nie jest dowódcą nie może sam sie awansować
 				if not uprawnienia.dowodca then
+					client:Notify("Nie możesz się sam awansować.")
 					return
 				end
 			end
-			if uprawnienia.awans and pos1:Distance(pos2)<300 then
+			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
+			if uprawnienia.awans and client:GetPos():Distance(char:getPlayer():GetPos())<300 then
 				local id = tonumber(arguments[2])
 				SetRank(char,id,client)
 				if nowa_ranga then
 					client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
 				end
-			elseif pos1:Distance(pos2)>300 then
+			elseif client:GetPos():Distance(char:getPlayer():GetPos())>300 then
 				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować.")
-			elseif IsValid(uprawnienia.awans) == false then
+			elseif not IsValid(uprawnienia.awans) then
 				client:Notify("Nie posiadasz uprawnień by awansować.")
 			end
 		end
@@ -139,6 +136,7 @@ nut.command.add("adminawans", {
 				return
 			end
 			local nowa_ranga = nut.faction.indices[frakcja].rangi[id]
+			if not nowa_ranga then client:Notify("W tamtej frakcji nie ma rang lub podałeś zły numer rangi.") return end
 			SetRank(char,id)
 			client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
 		end
@@ -191,6 +189,8 @@ nut.command.add("zapros", {
 	onRun = function(client, arguments)
 		local target = nut.command.findPlayer(client, arguments[1])
 		if IsValid(target) and target:getChar() then
+			local perm = getPermissions(client:getChar())
+			if not perm.invite then client:Notify("Nie posiadasz do tego uprawnień") return end
 			if client then
 				if timer.Exists( "CMD_Delay" ) then
 						if math.Round(timer.TimeLeft("CMD_Delay")) == 1 then

@@ -10,6 +10,12 @@ function SCHEMA:PlayerLoadedChar(client, character)
 		client:PrintMessage(HUD_PRINTTALK,"Dopiero rozpoczęto przygodę na Firestone FalloutRP!")
 	end
 	client:SetNWString("NName","Nieznajomy "..randomskladka())
+
+	if character:getFaction() == FACTION_PSY or FACTION_ROBOTY then
+		client:DrawWorldModel(false)
+	else
+		client:DrawWorldModel(true)
+	end
 end
 
 
@@ -30,12 +36,18 @@ function SCHEMA:invAddItem(item)
 end
 
 function SCHEMA:CanPlayerInteractItem(client,action,item)
-	local faction = client:getChar():getFaction()
-	for k,v in pairs(SCHEMA.NonHumanFactions) do
-		if v == faction then 
-			if not SCHEMA.AllowedCategories[item.category] then
-				return false
-			end
+	local itemTable
+	if (type(item) == "Entity") then
+		if (IsValid(item)) then
+			itemTable = nut.item.instances[item.nutItemID]
 		end
+	else
+		itemTable = nut.item.instances[item]
+	end
+	if SCHEMA.AllowedCategories[itemTable.category] then
+		return true 
+	else
+		return false
 	end
 end
+

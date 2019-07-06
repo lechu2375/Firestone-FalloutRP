@@ -4,17 +4,33 @@ FACTION.isDefault = false
 FACTION.color = Color(104, 109, 224) 
 FACTION.weapons = {""} 
 FACTION.models = {
-	"models/reconarmor/reconarmor_01.mdl",
-    "models/reconarmor/reconarmor_02.mdl",
-    "models/reconarmor/reconarmor_03.mdl",
-    "models/reconarmor/reconarmor_04.mdl",
-    "models/reconarmor/reconarmor_05.mdl",
-    "models/reconarmor/reconarmor_06.mdl"
-    
-
+	"models/visualitygaming/fallout/wastelander1_female_01.mdl",
+    "models/visualitygaming/fallout/wastelander1_female_02.mdl",
+    "models/visualitygaming/fallout/wastelander1_female_03.mdl",
+    "models/visualitygaming/fallout/wastelander1_female_04.mdl",
+    "models/visualitygaming/fallout/wastelander1_male_01.mdl",
+    "models/visualitygaming/fallout/wastelander1_male_02.mdl",
+    "models/visualitygaming/fallout/wastelander1_male_03.mdl",
+    "models/visualitygaming/fallout/wastelander1_male_04.mdl",
+    "models/visualitygaming/fallout/wastelander2_female_01.mdl",
+    "models/visualitygaming/fallout/wastelander2_female_02.mdl",
+    "models/visualitygaming/fallout/wastelander2_female_03.mdl",
+    "models/visualitygaming/fallout/wastelander2_female_04.mdl",
+    "models/visualitygaming/fallout/wastelander2_male_01.mdl",
+    "models/visualitygaming/fallout/wastelander2_male_02.mdl",
+    "models/visualitygaming/fallout/wastelander2_male_03.mdl",
+    "models/visualitygaming/fallout/wastelander2_male_04.mdl",
+    "models/visualitygaming/fallout/wastelander3_female_01.mdl",
+    "models/visualitygaming/fallout/wastelander3_female_02.mdl",
+    "models/visualitygaming/fallout/wastelander3_female_03.mdl",
+    "models/visualitygaming/fallout/wastelander3_female_04.mdl",
+    "models/visualitygaming/fallout/wastelander3_male_01.mdl",
+    "models/visualitygaming/fallout/wastelander3_male_02.mdl",
+    "models/visualitygaming/fallout/wastelander3_male_03.mdl",
+    "models/visualitygaming/fallout/wastelander3_male_04.mdl"
 }
 FACTION.isGloballyRecognized = false
-FACTION.pay = 5
+FACTION.pay = 1
 FACTION_BS = FACTION.index
 
 FACTION.rangi = {
