@@ -1,6 +1,6 @@
 ITEM.name = "Pistolet laserowy"
 ITEM.desc = "Broń energetyczna."
-ITEM.model = "models/weapons/w_laserpistol.mdl"
+ITEM.model = "models/halokiller38/fallout/weapons/energy weapons/laserpistol.mdl"
 ITEM.class = "weapon_laserpistol"
 ITEM.weaponCategory = "sidearm"
 ITEM.width = 2
