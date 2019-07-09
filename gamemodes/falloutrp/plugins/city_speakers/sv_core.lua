@@ -1,5 +1,5 @@
 Firestone.speakers = {}
-speakers = FS.speakers
+speakers = Firestone.speakers
 function speakers.getAll()
     local speakers = {}
     for k,v in pairs(ents.GetAll()) do
