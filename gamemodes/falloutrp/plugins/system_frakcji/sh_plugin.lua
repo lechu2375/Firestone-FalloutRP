@@ -4,6 +4,7 @@ PLUGIN.desc = "Rozwija funkcjonalność frakcji."
 local dir = PLUGIN.folder
 nut.util.include("sv_frakcje.lua")
 nut.util.include("cl_frakcje.lua")
+nut.util.include("sv_accounts.lua")
 TABELA_RANG = {}
 
 

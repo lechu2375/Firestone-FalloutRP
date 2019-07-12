@@ -2,27 +2,7 @@ util.AddNetworkString("tabela_rang")
 util.AddNetworkString("FS:FactionInvite")
 util.AddNetworkString("FS:FactionInviteD")
 util.AddNetworkString("FS:FactionInviteA")
-Firestone.FactionsVault = {} or util.JSONToTable(file.Read("sv_vault.txt"))
 
-for k,v ipairs(nut.faction.indices) do
-	if not Firestone.FactionsVault[v] then
-		Firestone.FactionsVault[v] = 0
-	end
-end
-
-function PLUGIN:VaultTransaction(char,data)
-	if not getPermissions(char).vault then return false end
-	local faction = char:getFaction()
-	local vault = Firestone.FactionsVault[faction]
-	local transaction = data.transaction
-	if transaction.add and data.value <= char:getMoney()then
-		
-	elseif transaction.withdraw and data.value=<vault then
-	
-	else 
-		return false 
-	end
-end
 
 local function SetRank_SV(char,rangaID)
     local frakcja = char:getFaction() 
