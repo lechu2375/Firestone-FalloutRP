@@ -28,4 +28,5 @@ function Firestone.FactionsVault.AddMoney(char,amount)
     char:takeMoney(amount)
     Firestone.FactionsVault.FactionData.faction.money = Firestone.FactionsVault.FactionData.faction.money + amount
     Firestone.FactionsVault.Save()
+    print("[FV LOG] "..char:getName().." wpłacił "..amount.." na konto frakcji \n Bilans konta: "..Firestone.FactionsVault.FactionData.faction.money)
 end
