@@ -20,7 +20,7 @@ end
 
 function Firestone.FactionsVault.AddMoney(char,amount)
     amount = math.abs(amount)
-    if amount=<0 then return end
+    if amount<=0 then return end
     if not char then return end
     if not char:hasMoney(amount) then char:Notify("Nie posiadasz tylu pieniędzy") return end
     local faction = nut.faction.indices[char:getFaction()][uniqueID]
