@@ -19,14 +19,37 @@ function Firestone.FactionsVault.Save()
 end
 
 function Firestone.FactionsVault.AddMoney(char,amount)
-    amount = math.abs(amount)
+    if not getPermissions(char) then return end
+    if not getPermissions(char).vault then char:getPlayer():Notify("Nie posiadasz uprawnień") end
+    local amount = math.abs(amount)
     if amount<=0 then return end
     if not char then return end
-    if not char:hasMoney(amount) then char:Notify("Nie posiadasz tylu pieniędzy") return end
-    local faction = nut.faction.indices[char:getFaction()][uniqueID]
-    if not Firestone.FactionsVault.Allowed.faction then return end
+    if not char:hasMoney(amount) then char:getPlayer():Notify("Nie posiadasz tylu pieniędzy") return end
+    local faction = nut.faction.indices[char:getFaction()].uniqueID
+    if not Firestone.FactionsVault.Allowed[faction] then char:getPlayer():Notify("Twoja frakcja nie posiada konta") return end
     char:takeMoney(amount)
-    Firestone.FactionsVault.FactionData.faction.money = Firestone.FactionsVault.FactionData.faction.money + amount
+    Firestone.FactionsVault.FactionData[faction].money = Firestone.FactionsVault.FactionData[faction].money + amount
     Firestone.FactionsVault.Save()
-    print("[FV LOG] "..char:getName().." wpłacił "..amount.." na konto frakcji \n Bilans konta: "..Firestone.FactionsVault.FactionData.faction.money)
+    print("[FV LOG] "..char:getName().." wpłacił "..amount.." na konto frakcji "..faction.."\n Bilans konta: "..Firestone.FactionsVault.FactionData[faction].money)
+end
+function Firestone.FactionsVault.WithdrawMoney(char,amount)
+    if not getPermissions(char) then return end
+    if not getPermissions(char).vault then char:getPlayer():Notify("Nie posiadasz uprawnień") return end
+    local amount = math.abs(amount)
+    if amount<=0 then return end
+    if not char then return end
+    local faction = nut.faction.indices[char:getFaction()].uniqueID
+    if not Firestone.FactionsVault.Allowed[faction] then char:getPlayer():Notify("Twoja frakcja nie posiada konta") return end
+    Firestone.FactionsVault.FactionData[faction].money = Firestone.FactionsVault.FactionData[faction].money - amount
+    char:giveMoney(amount)
+    Firestone.FactionsVault.Save()
+    print("[FV LOG] "..char:getName().." wypłacił "..amount.." z konta frakcji "..faction.."\n Bilans konta: "..Firestone.FactionsVault.FactionData[faction].money)
+end
+function Firestone.FactionsVault.GetBalance(char)
+    if not getPermissions(char) then return end
+    if not getPermissions(char).vault then return char:getPlayer():Notify("Nie posiadasz uprawnień") end
+    if not char then return end
+    local faction = nut.faction.indices[char:getFaction()].uniqueID
+    if not Firestone.FactionsVault.Allowed[faction] then char:getPlayer():Notify("Twoja frakcja nie posiada konta") return end
+    if Firestone.FactionsVault.FactionData[faction].money>0 then return Firestone.FactionsVault.FactionData[faction].money end
 end
