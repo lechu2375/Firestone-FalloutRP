@@ -235,42 +235,54 @@ function FO_AMB.RadiusThink()
 	FO_AMB.NextRadius = CurTime() + delay
 	--
 	local ply = LocalPlayer()
-	local pos = ply:GetPos()
-	local tbl = FO_AMB.RadiusVecs
-	if !tbl then return end
-	
-	for k,v in pairs(tbl) do
-		if FO_AMB.Entered and FO_AMB.Entered != k then continue end
+	if IsValid(ply) then
+		local pos = ply:GetPos()
+		local tbl = FO_AMB.RadiusVecs
+		if !tbl then return end
 		
-		local dist = pos:Distance(v.Vec)
-		local radius = v.Rad
-		if dist > radius then
-			if FO_AMB.Entered then
-				FO_AMB.SetRadius(nil)
-				FO_AMB.Entered = nil
-				print("Resetting Radius..")
+		for k,v in pairs(tbl) do
+			if FO_AMB.Entered and FO_AMB.Entered != k then continue end
+			
+			local dist = pos:Distance(v.Vec)
+			local radius = v.Rad
+			if dist > radius then
+				if FO_AMB.Entered then
+					FO_AMB.SetRadius(nil)
+					FO_AMB.Entered = nil
+					print("Resetting Radius..")
+				end
+				continue
 			end
-			continue
-		end
-		-- -- --
-		local diff = (pos.z - v.Vec.z)
-		if diff < -500 or diff > 0 and diff > 500 then
-			if FO_AMB.Entered then
-				FO_AMB.SetRadius(nil)
-				FO_AMB.Entered = nil
-				print("Resetting Radius..")
+			-- -- --
+			local diff = (pos.z - v.Vec.z)
+			if diff < -500 or diff > 0 and diff > 500 then
+				if FO_AMB.Entered then
+					FO_AMB.SetRadius(nil)
+					FO_AMB.Entered = nil
+					print("Resetting Radius..")
+				end
+				continue
 			end
-			continue
-		end
 
-		local myrad = k
-		local rad = FO_AMB.GetRadius()
-		if rad != myrad and !FO_AMB.Entered then
-			FO_AMB.SetRadius(myrad)
-			FO_AMB.PlayTrack()
-			FO_AMB.Entered = k
+			local myrad = k
+			local rad = FO_AMB.GetRadius()
+			if rad != myrad and !FO_AMB.Entered then
+				FO_AMB.SetRadius(myrad)
+				FO_AMB.PlayTrack()
+				FO_AMB.Entered = k
+			end
 		end
 	end
+end
+
+
+function FO_AMB.SetNextTrack() 
+	local track = table.Random(FO_AMB.Tracks)
+	while track.RadiusName do 
+		track = table.Random(FO_AMB.Tracks)
+	end
+		FO_AMB.CurrentTrack = track
+	return
 end
 --------------------------------
 --
@@ -284,3 +296,28 @@ end)
 concommand.Add("AMBIENCE_ReCacheSounds",function()
 	FO_AMB.CacheTracks()
 end)
+
+
+--[[ do developingu bozego
+concommand.Add("drawsphere",function(ply,cmd,args)
+	radius_s = args[1]
+
+end)
+concommand.Add("drawspherepos",function(ply,cmd,args)
+	radius_pos = ply:GetPos()
+
+end)
+
+hook.Add( "PostDrawTranslucentRenderables", "test", function()
+
+
+	render.SetColorMaterial()
+
+	
+	local pos =  Vector( 6092.316895, 11013.401367, 474.960999)
+
+
+	render.DrawSphere( pos, (radius_s or 100), 30, 30, Color( 0, 175, 175, 100 ) )
+	render.DrawWireframeSphere( (radius_pos or pos), (radius_s or 100), 30, 30, Color( 255, 255, 255, 255 ) )
+
+end ) --]]

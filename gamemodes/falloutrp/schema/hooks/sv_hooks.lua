@@ -36,18 +36,35 @@ function SCHEMA:invAddItem(item)
 end
 
 function SCHEMA:CanPlayerInteractItem(client,action,item)
-	local itemTable
-	if (type(item) == "Entity") then
-		if (IsValid(item)) then
-			itemTable = nut.item.instances[item.nutItemID]
+	local faction = client:getChar():getFaction()
+	if SCHEMA.NonHumanFactions[faction] then
+		local itemTable
+		if (type(item) == "Entity") then
+			if (IsValid(item)) then
+				itemTable = nut.item.instances[item.nutItemID]
+			end
+		else
+			itemTable = nut.item.instances[item]
+		end
+		if SCHEMA.AllowedCategories[itemTable.category] then
+			return true 
+		else
+			return false
 		end
 	else
-		itemTable = nut.item.instances[item]
-	end
-	if SCHEMA.AllowedCategories[itemTable.category] then
-		return true 
-	else
-		return false
+		local itemTable
+		if (type(item) == "Entity") then
+			if (IsValid(item)) then
+				itemTable = nut.item.instances[item.nutItemID]
+			end
+		else
+			itemTable = nut.item.instances[item]
+		end
+		if itemTable.isModule then
+			return false 
+		else
+			return true
+		end
 	end
 end
 

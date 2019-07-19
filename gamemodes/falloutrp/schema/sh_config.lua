@@ -1,6 +1,6 @@
 SCHEMA.NonHumanFactions = {
-    FACTION_ROBOTY,
-    FACTION_PSY
+    [FACTION_ROBOTY] = true,
+    [FACTION_PSY] = true
 }
 SCHEMA.AllowedCategories = {
     ["Jedzenie"] = true,

@@ -1,6 +1,6 @@
-ITEM.name = "Zip Ties"
-ITEM.desc = "ziptieDesc"
-ITEM.price = 50
+ITEM.name = "Opaska zaciskowa"
+ITEM.desc = "Opaska zaciskowa, może posłużyć do związywania kogoś."
+ITEM.price = 30
 ITEM.model = "models/items/crossbowrounds.mdl"
 ITEM.flag = "y"
 ITEM.functions.Use = {

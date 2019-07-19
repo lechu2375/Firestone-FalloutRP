@@ -5,30 +5,30 @@ local function initAMBIENCE()
   -- AMBIENT MUSIC
   ----------------------------------------------------------------------------------------------------
   FO_AMB.RegisterTrack("Ambient1", "fs_map/ambient/sounds/fs_zwiedzanie_1.mp3", 126, 100)
-  FO_AMB.RegisterTrack("Ambient2", "fs_map/ambient/sounds/fs_zwiedzanie_2.mp3", 211, 100, {"Legion"})
+  FO_AMB.RegisterTrack("Ambient2", "fs_map/ambient/sounds/fs_zwiedzanie_2.mp3", 211, 100)
   FO_AMB.RegisterTrack("Ambient3", "fs_map/ambient/sounds/fs_zwiedzanie_3.mp3", 270, 100)
-  FO_AMB.RegisterTrack("Ambient4", "fs_map/ambient/sounds/fs_zwiedzanie_4.mp3", 210, 100, {"NCR"})
-  FO_AMB.RegisterTrack("Ambient5","fs_map/ambient/sounds/fs_zwiedzanie_5.mp3",240, 100, {"Legion"})
-  FO_AMB.RegisterTrack("Ambient6","fs_map/ambient/sounds/fs_zwiedzanie_6.mp3",270, 100, {"NCR"})  
-  FO_AMB.RegisterTrack("Ambient7","fs_map/ambient/sounds/fs_zwiedzanie_7.mp3",246, 100, {"Legion"})
-  FO_AMB.RegisterTrack("Ambient8","fs_map/ambient/sounds/fs_zwiedzanie_8.mp3",288, 100, {"NCR"})
+  FO_AMB.RegisterTrack("Ambient4", "fs_map/ambient/sounds/fs_zwiedzanie_4.mp3", 210, 100)
+  FO_AMB.RegisterTrack("Ambient5","fs_map/ambient/sounds/fs_zwiedzanie_5.mp3",240, 100)
+  FO_AMB.RegisterTrack("Ambient6","fs_map/ambient/sounds/fs_zwiedzanie_6.mp3",270, 100)  
+  FO_AMB.RegisterTrack("Ambient7","fs_map/ambient/sounds/fs_zwiedzanie_7.mp3",246, 100)
+  FO_AMB.RegisterTrack("Ambient8","fs_map/ambient/sounds/fs_zwiedzanie_8.mp3",288, 100)
   ----------------------------------------------------------------------------------------------------
 
   -- RADIAL AMBIENCE
   --SKŁADNIA FO_AMB.RegisterTrack("NAZWA","ŚCIEŻKA",DŁUGOŚĆ TRACKU W SEKUNDACH, GŁOŚNOŚĆ, czy do bitki muza bool, "lokacja")--
- FO_AMB.RegisterTrack("Legion 1","fs_map/ambient/sounds/fs_cezar.mp3",252, 100, nil, "Legion")  
- FO_AMB.RegisterTrack("NCR 1","fs_map/ambient/sounds/fs_miasto.mp3",264, 100, nil, "NCR") 
- FO_AMB.RegisterTrack("Podziemia 1","fs_map/ambient/sounds/fs_podziemia.mp3",264, 100, nil, "Schron")
+ FO_AMB.RegisterTrack("Legion 1","fs_map/ambient/sounds/fs_cezar.mp3",252, 100, false, "Legion")  
+ FO_AMB.RegisterTrack("NCR 1","fs_map/ambient/sounds/fs_miasto.mp3",264, 100, false, "NCR") 
+ FO_AMB.RegisterTrack("Podziemia 1","fs_map/ambient/sounds/fs_podziemia.mp3",264, 100, false, "Schron")
 
- FO_AMB.RegisterTrack("BoS 1","fs_map/ambient/sounds/fs_bunkier.mp3",187, 100, nil, "BoS")
+ FO_AMB.RegisterTrack("BoS 1","fs_map/ambient/sounds/fs_bunkier.mp3",187, 100, false, "BoS")
 
   ---------------------------------------------------------------------------------------------------------
 
   --VECTORS FOR LOCATION BASED AMBIENCE
- FO_AMB.RadiusVecs["Legion"] = {Vec = Vector(5936, 96, 595.054), Rad = 2816} 	
- FO_AMB.RadiusVecs["NCR"] = {Vec = Vector(5261.08, 10732.5, 392), Rad = 5427}
- FO_AMB.RadiusVecs["BoS"] = {Vec = Vector(-9160, 3696, -5464), Rad = 4640}  
- FO_AMB.RadiusVecs["Schron"] = {Vec = Vector(-7880, 10976, -416), Rad = 2056}  
+ FO_AMB.RadiusVecs["Legion"] = {Vec = Vector(6220, -762, 579), Rad = 3000} 	
+ FO_AMB.RadiusVecs["NCR"] = {Vec = Vector(5201, 10852, 440), Rad = 4000}
+ FO_AMB.RadiusVecs["BoS"] = {Vec = Vector(-6717, 29, -2998), Rad = 3200}  
+ FO_AMB.RadiusVecs["Schron"] = {Vec = Vector(-7997, 10562, -838), Rad = 1000}  
 
 end 
 

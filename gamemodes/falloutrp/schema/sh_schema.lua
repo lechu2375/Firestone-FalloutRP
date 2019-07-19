@@ -3,7 +3,7 @@
 --------------
 SCHEMA.name = "Fallout Roleplay"
 SCHEMA.author = "Firestone Development Team"
-SCHEMA.desc = "frx to gej"
+SCHEMA.desc = ""
 
 ----------------
 --[[ GLOBAL ]]--
@@ -19,6 +19,7 @@ Firestone.License = 'FS7AVM4ikg9A6FS'
 ------------------
 --[[ INCLUDES ]]--
 ------------------
+nut.util.includeDir("modules", nil, true)
 nut.util.includeDir("hooks")
 nut.util.includeDir("derma")
 nut.util.includeDir("api")

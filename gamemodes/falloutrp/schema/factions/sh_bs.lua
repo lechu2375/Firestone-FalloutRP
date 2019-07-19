@@ -55,14 +55,17 @@ FACTION.permissions = {}
 FACTION.permissions["Starszy"] = {
     invite = true,
     awans = true,
-    dowodca = true
+    dowodca = true,
+    vault = true
 }
 FACTION.permissions["Wysoki skryba"] = {
     invite = true,
     awans = true,
+    vault = true
 }
 
 FACTION.permissions["Gwieździsty Paladyn"] = {
     invite = true,
     awans = true,
+    vault = true
 }

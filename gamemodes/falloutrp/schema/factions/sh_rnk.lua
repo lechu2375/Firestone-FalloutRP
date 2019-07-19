@@ -67,12 +67,14 @@ FACTION.permissions["Chief"] = {
 FACTION.permissions["Generał"] = {
     invite = true,
     awans = true,
-    dowodca = true
+    dowodca = true,
+    vault = true
 }
 FACTION.permissions["Generał Dywizji"] = {
     invite = true,
     awans = true,
-    dowodca = true
+    dowodca = true,
+    vault = true
 }
 FACTION.permissions["Major"] = {
     invite = true,

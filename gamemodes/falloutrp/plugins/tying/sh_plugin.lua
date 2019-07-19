@@ -38,7 +38,7 @@ else
 
 	function PLUGIN:DrawCharInfo(client, character, info)
 		if (client:getNetVar("restricted")) then
-			info[#info + 1] = {L"isTied", COLOR_TIED}
+			info[#info + 1] = {L"Związany", COLOR_TIED}
 		end
 	end
 end
