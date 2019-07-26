@@ -41,6 +41,13 @@ function PLAYER:IsEarlySupporter()
     end
 end
 
+function PLAYER:getDescColor()
+    if self:IsPrime() then
+        return Color(251, 197, 49) 
+    else 
+        return color_white
+     end
+end
 
 
 
