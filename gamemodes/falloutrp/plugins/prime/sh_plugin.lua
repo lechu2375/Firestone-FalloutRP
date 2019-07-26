@@ -22,6 +22,27 @@ function PLUGIN:GetMaxPlayerCharacter(client)
 end
 
 
+local PLAYER = FindMetaTable("Player")
+
+function PLAYER:IsPrime()
+    if table.HasValue({"prime", "early_supporter","superadmin"}, self:GetNWInt("usergroup")) then 
+        return true
+    else
+        return false
+    end
+    
+ end
+
+function PLAYER:IsEarlySupporter()
+   if table.HasValue({"early_supporter","superadmin"}, self:GetNWInt("usergroup")) then
+        return true
+   else
+        return false
+    end
+end
+
+
+
 
 
 
