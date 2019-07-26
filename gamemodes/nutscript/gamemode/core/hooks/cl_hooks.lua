@@ -605,7 +605,7 @@ function GM:DrawEntityInfo(entity, alpha, position)
 			end
 
 			for i = 1, #entity.nutDescLines do
-				charInfo[#charInfo + 1] = {entity.nutDescLines[i]}
+				charInfo[#charInfo + 1] = {entity.nutDescLines[i],entity:getDescColor()}
 			end
 
 			hookRun("DrawCharInfo", entity, character, charInfo)
