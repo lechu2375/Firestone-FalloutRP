@@ -30,7 +30,7 @@ FACTION.models = {
     "models/visualitygaming/fallout/wastelander3_male_04.mdl"
 }
 FACTION.isGloballyRecognized = true
-FACTION.pay = 2
+FACTION.pay = 30
 FACTION_RNK = FACTION.index
 
 FACTION.rangi = {
@@ -74,7 +74,7 @@ FACTION.permissions["Generał Dywizji"] = {
     invite = true,
     awans = true,
     dowodca = true,
-    vault = true
+    vault = true,
 }
 FACTION.permissions["Major"] = {
     invite = true,

@@ -37,7 +37,7 @@ hook.Add("PostRenderVGUI", "FS_Crash", function()
         return
     end
     if CurTime() - lastRequest < 5 then return end
-    local toReconnect = 30 - math.Round( CurTime() - lastRequest ) + 5
+    local toReconnect = 60 - math.Round( CurTime() - lastRequest ) + 5
 
     if toReconnect == 0 then 
         RunConsoleCommand("retry")

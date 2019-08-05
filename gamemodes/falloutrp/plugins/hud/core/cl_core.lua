@@ -36,6 +36,17 @@ end
 
 function PLUGIN:HUDPaint()
 
+	local nsBlocked = {
+		nut.gui.char,
+		nut.gui.charCreate,
+		nut.gui.menu
+	}
+
+	for _,v in pairs(nsBlocked) do
+		if IsValid(v) then return end
+	end
+
+
 	if !LocalPlayer():Alive() or lchar == nil then return end
 	// HP, AP
 

@@ -56,7 +56,7 @@ end
 
 function PLUGIN:Think()
   // toggling
-    if char then
+    if char and !IsValid(nut.gui.menu) then
         if input.IsKeyDown(KEY_F4) && !pIsVisible then
             ToggleDerma()
             pIsVisible = true

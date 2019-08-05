@@ -29,5 +29,5 @@ nut.util.include("sh_config.lua")
 -----------------------
 --[[ CONFIGURATION ]]--
 -----------------------
-nut.currency.set("K", "kapsel", "kapsli") 
+nut.currency.set("", "kapsel", "kapsli") 
 

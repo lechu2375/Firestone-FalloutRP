@@ -18,7 +18,7 @@ net.Receive("FS_RunAdvert", function()
   local height = advertPanel:GetTall()
 
   local advertText = advertPanel:Add("FS_Label")
-  advertText:SetText(text)
+  advertText:SetText(string.upper(text))
   advertText:SetSize(width*2,height)
   advertText:SetFont("FS_Main_Small")
 

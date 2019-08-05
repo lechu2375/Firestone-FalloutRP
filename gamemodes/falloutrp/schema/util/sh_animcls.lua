@@ -7,7 +7,8 @@ nut.anim.setModelClass("models/hub/fallout/armors/starpaladin.mdl", "player")--P
 --Legion
 nut.anim.setModelClass("models/dizcordum/caesar.mdl", "player")
 nut.anim.setModelClass("models/dizcordum/centurion.mdl", "player")
-nut.anim.setModelClass("models/dizcordum/praetorian.mdl", "player")
+nut.anim.setModelClass("models/dizcordum/praetorian.mdl", "player") 
+nut.anim.setModelClass("models/auditor/fnv/lanius/chr_legate_lanius.mdl", "player")
 --zjebane
 nut.anim.setModelClass("models/frix/cnr/aassasinnew.mdl", "player") 
 nut.anim.setModelClass("models/frix/cnr/explorernew.mdl", "player") 

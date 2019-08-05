@@ -30,7 +30,7 @@ FACTION.models = {
     "models/visualitygaming/fallout/wastelander3_male_04.mdl"
 }
 FACTION.isGloballyRecognized = false
-FACTION.pay = 1
+FACTION.pay = 30
 FACTION_BS = FACTION.index
 
 FACTION.rangi = {

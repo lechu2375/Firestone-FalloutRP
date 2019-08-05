@@ -1,4 +1,4 @@
-if !CLIENT then return end
+
 
 ------------------OVERLAY LOGO SIECI---------------------------
 

@@ -68,10 +68,9 @@ net.Receive("fs_bug_info", function(len, ply)
         }
     }
 
-    http.Post("https://firestone.nazwa.pl/bugreport/koks.php", {payload_json = payload}, function(res)
-        print(res)
-        print("kkk")
-    end)
-    ply:Notify("Otrzymaliśmy zgłoszenie, dziękujemy!", 5)
+    //http.Post("https://firestone.nazwa.pl/bugreport/koks.php", {payload_json = payload}, function(res)
+
+    //end)
+    ply:Notify("Menu nie jest aktywowane", 5)
 
 end)

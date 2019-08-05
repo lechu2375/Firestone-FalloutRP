@@ -3,7 +3,7 @@ PLUGIN.name = "Stamina System"
 PLUGIN.author = "Djuk"
 
 local dir = PLUGIN.folder.."/"
-nut.util.includeDir(dir.."core", "server", true)
+nut.util.includeDir(dir.."core", true, true)
 
 nut.config.add("staminaDrainSpeed", 50, "Jak szybko spada kondycja", nil, {
 	form = "Float",

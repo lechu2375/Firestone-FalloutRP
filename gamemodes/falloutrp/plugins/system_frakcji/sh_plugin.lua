@@ -1,158 +1,90 @@
 PLUGIN.name = "System frakcji"
-PLUGIN.author = "Lechu2375"
+PLUGIN.author = "Djuk & Lechu2375"
 PLUGIN.desc = "Rozwija funkcjonalność frakcji."
-local dir = PLUGIN.folder
-nut.util.include("sv_frakcje.lua")
-nut.util.include("cl_frakcje.lua")
-nut.util.include("sv_accounts.lua")
-nut.util.include("sh_accounts.lua")
-TABELA_RANG = {}
+local dir = PLUGIN.folder.."/"
+nut.util.includeDir(dir.."core", true, true)
+FS = FS or {}
+FS.Factions = FS.Factions or {}
 
-
-
-function SetRank(char,rankID,caller)
-	local faction = char:getFaction()
-	if rankID == 0 then
-		return 
-	elseif rankID<0 then
-		rankID = (rankID*(-1))
-	end
-	if nut.faction.indices[faction].rangi then
-
-		if rankID > #nut.faction.indices[faction].rangi then
-			if caller then
-				caller:Notify("Podałeś zbyt duże ID rangi, nie ma tyle rang w tabeli.")
-				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-				return 
-			else
-				print("Zbyt duże ID rangi, nie ma takiej rangi w tabeli.")
-				return 
-			end
+nut.command.add("awans", {
+	adminOnly = false,
+	syntax = "<nazwa postaci> [numer rangi]",
+	onRun = function(caller, args)
+		local target = nut.command.findPlayer(caller, args[1])
+		if !(target) then return end
+		local char, permissions = target:getChar(), caller:GetFactionPermissions()
+		local faction, rank = char:getFaction(), tonumber(args[2])
+    	if !(nut.faction.indices[faction].rangi) then return end
+    	if (permissions.awans == nil) then 
+			caller:Notify("Nie masz do tego uprawnień!")
+			return
 		end
-		local newrank = nut.faction.indices[faction].rangi[rankID]
-		char:setData("ranga",newrank,false,player.GetAll())
-		char:getPlayer():Notify("Twoja ranga została zmieniona na "..char:getData("ranga"))
-		local charid = tonumber(char:getID())
-    	TABELA_RANG[charid] = char:getData("ranga")
-	else
-		return false
-	end
-end
-
-function getPermissions(char)
-    if char then
-        if nut.faction.indices[char:getFaction()].permissions then
-			if nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] then
-
-            	return nut.faction.indices[char:getFaction()].permissions[char:getData("ranga")] --zwracam tabele
-			
-			else
-				print("Get_Permissions dla "..char:getName().." nie powiodla sie, ranga nie posiada uprawnien lub tabela jest zle skonfigurowana.")
-            	local tabelka = {}
-            	return tabelka
-			end
-
-        else
-            print("Get_Permissions dla "..char:getName().." nie powiodla sie, ranga nie posiada uprawnien lub tabela jest zle skonfigurowana.")
-            local tabelka = {}
-            return tabelka
-        end
-    end
-end
-
-
-
-
-
-
-
+		if (caller == target) and !(permissions.dowodca) then
+			caller:Notify("Nie możesz awansować samego siebie!")
+			return
+		end
+		if (rank <= 0) then
+			caller:Notify("Podałeś za małe id rangi")
+			return
+		end
+		if rank > #nut.faction.indices[faction].rangi then
+			caller:Notify("Podałeś za duże id rangi")
+			return
+		end
+		if (caller:GetPos():Distance(target:GetPos()) > 300) then
+			caller:Notify("Stoisz za daleko od gracza, którego chcesz awansować!")
+			return
+		end
+		char:setData("factionRank", nut.faction.indices[faction].rangi[rank], false, player.GetAll())
+		target:Notify("Twoja ranga została zmieniona na: "..char:getData("factionRank"))
+			caller:Notify("Zmieniono rangę gracza "..target:GetName().." na "..char:getData("factionRank"))	
+		end
+})
 
 nut.command.add("jakaranga", {
 	adminOnly = true,
 	syntax = "<nazwa postaci>",
-	onRun = function(client, arguments)
-		local target = nut.command.findPlayer(client, arguments[1])
-		if(IsValid(target) and target:getChar()) then
-			client:PrintMessage(HUD_PRINTTALK,"Ranga postaci "..target:getChar():getName().." to: "..target:getChar():getData("ranga"))
-		end
-	end
-})
-
-nut.command.add("awans", {
-	adminOnly = false,
-	syntax = "<postać> [numer rangi]",
-	onRun = function(client, arguments)
-	local target = nut.command.findPlayer(client, arguments[1])
-		if IsValid(target) and target:getChar() then
-			local char = target:getChar()
-			if not client:getChar():getFaction() == char:getFaction() then return end
-			local uprawnienia = getPermissions(client:getChar()) 
-			if client == target then --Jeśli nie jest dowódcą nie może sam sie awansować
-				if not uprawnienia.dowodca then
-					client:Notify("Nie możesz się sam awansować.")
-					return
-				end
-			end
-			local nowa_ranga = nut.faction.indices[char:getFaction()].rangi[tonumber(arguments[2])]
-			if uprawnienia.awans and client:GetPos():Distance(char:getPlayer():GetPos())<300 then
-				local id = tonumber(arguments[2])
-				SetRank(char,id,client)
-				if nowa_ranga then
-					client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
-				end
-			elseif client:GetPos():Distance(char:getPlayer():GetPos())>300 then
-				client:Notify("Stoisz za daleko od gracza, którego chcesz awansować.")
-			elseif not IsValid(uprawnienia.awans) then
-				client:Notify("Nie posiadasz uprawnień by awansować.")
-			end
-		end
-	end
-})
-
-nut.command.add("odleglosc", {
-	adminOnly = true,
-	syntax = "<postać> ((Mierzy odleglosc pomiedzy twoją postacią a wybraną))",
-	onRun = function(client, arguments)
-	local target = nut.command.findPlayer(client, arguments[1])
-		if IsValid(target) and target:getChar() then
-			local char = target:getChar()
-			local pos1 = client:GetPos()
-			local pos2 = char:getPlayer():GetPos()
-			client:Notify(pos1:Distance(pos2))	
+	onRun = function(ply, args)
+		local target = nut.command.findPlayer(client, args[1])
+		if (IsValid(target) and target:getChar()) then
+			ply:ChatPrint("Ranga postaci "..target:getChar():getName().." to: "..target:getChar():getData("factionRank"))
 		end
 	end
 })
 
 nut.command.add("adminawans", {
 	adminOnly = true,
-	syntax = "<postać> [numer rangi]",
-	onRun = function(client, arguments)
-	local target = nut.command.findPlayer(client, arguments[1])
-		if IsValid(target) and target:getChar() then
-			local char = target:getChar()
-			local frakcja = char:getFaction()
-			local id = tonumber(arguments[2])
-			if not nut.faction.indices[frakcja].rangi then return end
-			if id<=0 then 
-				client:Notify("Wprowadź poprawny numer rangi.")
-				return
-			end
-			local nowa_ranga = nut.faction.indices[frakcja].rangi[id]
-			if not nowa_ranga then client:Notify("W tamtej frakcji nie ma rang lub podałeś zły numer rangi.") return end
-			SetRank(char,id)
-			client:Notify("Awansowałeś postać "..char:getName().." na: "..nowa_ranga)
+	syntax = "<nazwa postaci> [numer rangi]",
+	onRun = function(caller, args)
+		local target = nut.command.findPlayer(caller, args[1])
+		local char = target:getChar()
+		local id = tonumber(args[2])
+		if !(char) then 
+			caller:Notify("Nie znaleziono postaci")
+			return
 		end
+		local faction = char:getFaction()
+		if !(nut.faction.indices[faction].rangi) then
+			caller:Notify("Ta frakcja nie posiada rang")
+			return
+		end
+		if (id <= 0 or id > #nut.faction.indices[faction].rangi) then
+			caller:Notify("Wprowadź poprawny numer rangi.")
+			return
+		end
+		target:SetFactionRank(target:getChar(), id)
+		caller:Notify("Zmieniono rangę gracza "..target:GetName().." na "..char:getData("factionRank"))	
 	end
 })
 
 nut.command.add("spisrang", {
-	adminOnly = true,
+	adminOnly = false,
 	syntax = "<brak, komenda wyswietla wszystkie rangi z frakcji postaci>",
 	onRun = function(client)
 		if IsValid(client) and client:getChar() then
 			local char = client:getChar()
 			local frakcja = char:getFaction()
-			if nut.faction.indices[frakcja].rangi then
+			if (nut.faction.indices[frakcja].rangi) then
 				client:PrintMessage(HUD_PRINTTALK,"Sprawdź konsolę.")
 				for k,v in SortedPairs(nut.faction.indices[frakcja].rangi) do
 					client:PrintMessage(HUD_PRINTCONSOLE,(k.."."..v.."\n"))
@@ -172,13 +104,13 @@ nut.command.add("uprawnienia", {
 			local char = client:getChar()
 			local uprawnienia = getPermissions(char)
 			if table.Count(uprawnienia) == 0 then 
-				PrintMessage(HUD_PRINTTALK,"Brak uprawnień")
+				client:PrintMessage(HUD_PRINTTALK,"Brak uprawnień")
 			else
 				local text = ""
 				for k,v in pairs(uprawnienia) do
 					text = text.." "..k
 				end 
-				PrintMessage(HUD_PRINTTALK,"Posiadasz następujące uprawnienia: "..text)
+				client:PrintMessage(HUD_PRINTTALK,"Posiadasz następujące uprawnienia: "..text)
 			end
 		end
 	end
@@ -190,27 +122,48 @@ nut.command.add("zapros", {
 	syntax = "<Postać którą chcesz zaprosic do frakcji]",
 	onRun = function(client, arguments)
 		local target = nut.command.findPlayer(client, arguments[1])
-		if IsValid(target) and target:getChar() then
-			local perm = getPermissions(client:getChar())
-			if not perm.invite then client:Notify("Nie posiadasz do tego uprawnień") return end
-			if client then
-				if timer.Exists( "CMD_Delay" ) then
-						if math.Round(timer.TimeLeft("CMD_Delay")) == 1 then
-							client:Notify("Odczekaj sekundę zanim znów zaprosisz gracza.")
-						elseif math.Round(timer.TimeLeft("CMD_Delay")) == 0 then
-							client:Notify("Spróbuj ponownie zaprosić gracza.")
-						else
-							client:Notify("Odczekaj "..math.Round(timer.TimeLeft("CMD_Delay")).." sekundy zanim znów zaprosisz gracza.")
-						end
-					return false
-				else	
-					timer.Create("CMD_Delay", 5, 0, function()
-						timer.Destroy("CMD_Delay")
-					end)
+			FS.Factions.HandleInvite(client, target)
+	end
+})
+
+
+nut.command.add("plytransfer", {
+	adminOnly = true,
+	syntax = "<string name> <string faction>",
+	onRun = function(client, arguments)
+		local target = nut.command.findPlayer(client, arguments[1])
+		local name = table.concat(arguments, " ", 2)
+
+		if (IsValid(target) and target:getChar()) then
+			local faction = nut.faction.teams[name]
+
+			if (!faction) then
+				for k, v in pairs(nut.faction.indices) do
+					if (nut.util.stringMatches(v.name, name)) then
+						faction = v
+
+						break
+					end
 				end
 			end
-			factionInvite(client,target)	
+
+			if (faction) then
+				target:getChar().vars.faction = faction.uniqueID
+				target:getChar():setFaction(faction.index)
+				target:SetFactionRank(target:getChar(), 1)
+
+				if (faction.onTransfered) then
+					faction:onTransfered(target)
+				end
+
+				for k, v in ipairs(player.GetAll()) do
+					nut.util.notifyLocalized("cChangeFaction", v, client:Name(), target:Name(), L(faction.name, v))
+				end
+			else
+				return "@invalidFaction"
+			end
 		end
 	end
 })
+
 

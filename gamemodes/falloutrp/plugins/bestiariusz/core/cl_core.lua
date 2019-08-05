@@ -48,4 +48,9 @@ timer.Create("bestiariusz.update", 5, 0, function ()
     bestiariusz.save()
 end)
 
-return bestiariusz
+
+
+
+concommand.Add( "bestiariusz", function(  )
+	PrintTable(bestiariusz.list)
+end )

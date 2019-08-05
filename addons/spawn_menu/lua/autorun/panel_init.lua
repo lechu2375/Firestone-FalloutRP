@@ -31,7 +31,7 @@ if SERVER then
     util.AddNetworkString("FS:SpM:Receive")
 
     net.Receive("FS:SpM:Receive", function( len, ply )
-    //if !ply:IsSuperAdmin() then return end
+    if !ply:IsSuperAdmin() then return end
         local item, type, name = net.ReadString(), net.ReadString(), net.ReadString()
         if ( type == "weapon" ) then
             ply:Give( item )

@@ -26,7 +26,7 @@ surface.CreateFont( "FS_Main_Bold", {
 } )
 
 surface.CreateFont( "FS_Side", {
-	font = "Monofonto-Regular",
+	font = "Roboto Condensed",
 	size = ScreenScale( 10 ),
 	antialias = true,
 	extended = true,

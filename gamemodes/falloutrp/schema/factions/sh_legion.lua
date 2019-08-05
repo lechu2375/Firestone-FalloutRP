@@ -30,7 +30,7 @@ FACTION.models = {
     "models/visualitygaming/fallout/wastelander3_male_04.mdl"
 }
 FACTION.isGloballyRecognized = true
-FACTION.pay = 2
+FACTION.pay = 30
 FACTION_LEGION = FACTION.index
 FACTION.permissions = {}
 FACTION.rangi = { 
@@ -54,11 +54,13 @@ FACTION.rangi = {
 FACTION.permissions["Cezar"] = {
     invite = true,
     awans = true,
-    dowodca = true
+    dowodca = true,
+    vault = true
 }
 FACTION.permissions["Legat"] = {
     invite = true,
-    awans = true
+    awans = true,
+    vault = true
 }
 FACTION.permissions["Centurion"] = {
     invite = true,

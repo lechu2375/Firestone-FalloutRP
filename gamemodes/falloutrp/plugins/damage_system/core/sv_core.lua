@@ -20,6 +20,7 @@ end
 
 function PLAYER:DamageBodyPart( bodyPart, dmg )
     local char = self:getChar()
+    if !bodyPart then return end
     char:setData( "BodyPart."..bodyPart, math.Clamp( self:GetBodyPartCondition( bodyPart ) - math.Round( dmg ), 0, 100 ) )
 end
 
@@ -39,6 +40,7 @@ end
 
 function PLUGIN:ScalePlayerDamage( ply, hitGroup, dmgInfo )
     local bodyPart
+    if !ply:IsPlayer() then return end
     local char = ply:getChar()
     
     for _,part in ipairs( DamageSys.BodyParts ) do
