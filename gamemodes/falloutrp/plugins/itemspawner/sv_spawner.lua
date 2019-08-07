@@ -1,10 +1,10 @@
 FS = FS or {}
 FS.ItemSpawner = FS.ItemSpawner or {}
-
+if not FS.ItemSpawner.SpawnTable then FS.ItemSpawner.LoadTable()
 function FS.ItemSpawner.LoadTable()
     if not IsValid(FS.ItemSpawner.SpawnTable) or table.IsEmpty(FS.ItemSpawner.SpawnTable) then
         if not file.Exists("FSitemspawner.txt", "DATA") then
-            file.Append("FSitemspawner.txt","{}")
+            file.Append("FSitemspawner.txt","")
         end        
         FS.ItemSpawner.SpawnTable = util.JSONToTable(file.Read("FSitemspawner.txt"))
     end
@@ -42,6 +42,7 @@ function FS.ItemSpawner.AddSpawn(data)
         end
     else
         return false --no jak nie ma ani kurwa tabeli ani stringa to NARA DO JASNEJ kurwy
+        --przepraszam za przeklenstwo
     end
 end
 
@@ -50,7 +51,9 @@ data = {
     item = stringItem
     pos = Vector(0, 0, 0)
     itemData = {}
-}
+} 
+OR
+data = stringItem
 ]]--
 
 
