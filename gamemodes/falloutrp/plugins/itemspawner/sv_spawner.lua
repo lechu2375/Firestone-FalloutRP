@@ -1,9 +1,8 @@
 FS = FS or {}
 FS.ItemSpawner = FS.ItemSpawner or {}
-FS.ItemSpawner.Vectors = FS.ItemSpawner.Vectors or {
-Vector(-4980.464355, 6492.281738, 178.061661),
-Vector(-4685.096680, 6706.563477, 144.031250)
-}
+FS.ItemSpawner.Vectors = FS.ItemSpawner.Vectors or util.JSONToTable(file.Read("FSitemspawnerpos.txt"))
+FS.ItemSpawner.Debug = true
+util.AddNetworkString("FS.RequestSpawnPos")
 
 function FS.ItemSpawner.LoadTable()
     if not IsValid(FS.ItemSpawner.SpawnTable) or table.IsEmpty(FS.ItemSpawner.SpawnTable) then
@@ -56,11 +55,12 @@ function FS.ItemSpawner.RandomSpawn()
         print("[Item Spawner] Add at least one item for spawning.") --to print dla ludzi ze zle jest 
         return false 
     end
+    
     local randomItem = table.Random(FS.ItemSpawner.SpawnTable) --losowa wartosc z tabeli wkoncu
     if istable(randomItem) then -- jak jest tabelom
-        nut.item.spawn(randomItem.item,(randomItem.pos or table.Random(FS.ItemSpawner.Vectors)),_,angle_zero,(randomItem.itemData or {}))
+        nut.item.spawn(randomItem.item,(randomItem.pos or table.Random(FS.ItemSpawner.Vectors)),FS.ItemSpawner.DebugSpawn,angle_zero,(randomItem.itemData or {}))
     elseif isstring(randomItem) then -- jak jest stringiem to respi item w randomowym miejscu
-        nut.item.spawn(randomItem,(table.Random(FS.ItemSpawner.Vectors)+Vector(0,0,20)),_,angle_zero)
+        nut.item.spawn(randomItem,(table.Random(FS.ItemSpawner.Vectors)+Vector(0,0,20)),FS.ItemSpawner.DebugSpawn,angle_zero)
     else --jak jakims cudem nwm co to jest to nara
         print("[Item Spawner] Something is wrong with",randomItem)
     end
@@ -68,10 +68,29 @@ function FS.ItemSpawner.RandomSpawn()
 
 end
 
+function FS.ItemSpawner.DebugSpawn(item,entity)
+    if not FS.ItemSpawner.Debug then return end
+    print("[Item Spawner Debug] Spawned ",item.name," Position ",entity:GetPos())
+end
 
 
 
 if not FS.ItemSpawner.SpawnTable then FS.ItemSpawner.LoadTable() end
+if not timer.Exists("FS.ItemSpawner.Timer") then
+    timer.Create("FS.ItemSpawner.Timer", nut.config.get("randomItemSpawnTime", 60),0, FS.ItemSpawner.RandomSpawn)
+end
+
+
+net.Receive("FS.RequestSpawnPos",function( _, pl )
+	if ( IsValid( pl ) and pl:IsPlayer() ) then
+        if not pl:IsAdmin() then pl:Kick() return end 
+        net.Start("FS.RequestSpawnPos")
+        net.WriteString(util.Compress(util.TableToJSON(FS.ItemSpawner.SpawnTable)))
+        net.Send(pl)
+    end
+end)
+
+
 --[[
 data = {
     item = stringItem
