@@ -1,15 +1,15 @@
 
 
 
-
+local postable = postable or nil
 
 local function readpos()
     net.Start("FS.RequestSpawnPos")
     net.SendToServer()
 end
 
-net.Receive("FS.RequestSpawnPos", function( )
-	local postable = util.JSONToTable(util.Decompress(net.ReadString()))
+net.Receive("FS.RequestSpawnPos", function()
+	postable = util.JSONToTable(net.ReadString())
 end ) 
  
 
@@ -23,11 +23,18 @@ hook.Add( "PostDrawTranslucentRenderables", "test", function()
 end )
 
 concommand.Add("spawnerdebug", function()
-    if not postable then readpos() end
-
+    if not LocalPlayer():IsAdmin() then return end
+    if not postable then 
+        readpos() 
+    end
     if FSItemSpawnerDebug then
-        FSItemSpawnerDebug = nil 
+        FSItemSpawnerDebug = false 
     else
         FSItemSpawnerDebug = true
     end
+end)
+
+concommand.Add("spawnerdebugreloadpos", function()
+    if not LocalPlayer():IsAdmin() then return end
+        readpos() 
 end)
