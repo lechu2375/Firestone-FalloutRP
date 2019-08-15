@@ -1,18 +1,15 @@
 ﻿# Firestone Foundation - FalloutRP
-Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatywą Lecha mający na celu stworzenie najlepszego w Polsce serwera opartego o serię gier Fallout. Projekt w całości działa na silnku Nutscript, jest on jednak wspomagany autorskimi skryptami oraz innowacyjnymi rozwiązaniami. Projekt jest aktualnie w  fazie Alpha podczas której nasz zespół aktywnie pracuje nad wprowadzaniem nowych mechanik oraz  udoskonalaniem starych.
+Firestone Foundation to rozpoczęty w paźdzeriniku 2018r. projekt za inicjatywą Lecha mający na celu stworzenie najlepszego w Polsce serwera opartego o serię gier Fallout. Projekt w całości działa na silnku Nutscript, jest on jednak wspomagany autorskimi skryptami oraz innowacyjnymi rozwiązaniami. Projekt jest aktualnie w  fazie Beta podczas której nasz zespół aktywnie pracuje nad wprowadzaniem nowych mechanik oraz  udoskonalaniem starych.
  
 ### Informacje
-- GitHub: https://github.com/rebel1324/NutScript
-- FalloutRP (dla inspiracji): https://github.com/NutScript/falloutrp
-- Discord: https://discord.gg/vgfGyEs
-- Dokumentacja: https://nutscript.miraheze.org/wiki/Main_Page
-- Stara Dokumentacja: https://github.com/Chessnut/NutScript/wiki
-- Przykłady wykorzystania funkcji NS: https://github.com/rebel1324/CityRP 
+- Discord Serwera: https://discord.gg/vgfGyEs
+- GitHub Nutscripta: https://github.com/rebel1324/NutScript
+- Dokumentacja Nutscripta: https://nutscript.miraheze.org/wiki/Main_Page
 
 ### Dokumentacja
 ```lua 
--- Fallout UI Library 
-vgui.Create("FS_Button")
+**Biblioteka Interfejsu**
+vgui.Create("FS_Button") -- Potem uzupełnie
 vgui.Create("FS_Button_S")
 vgui.Create("FS_Button_ESC")
 vgui.Create("FS_Close")
@@ -24,40 +21,40 @@ vgui.Create("FS_Panel")
 vgui.Create("FS_TextEntry")
 vgui.Create("FS_Blur")
 
--- Utility Library 
-PLAYER:Notify(strText, intLength)
-FS_Convert(time) 
+**Biblioteka Funkcjonalności**
+PLAYER:Notify(text) -- Wysyła powiadomienie 
+FS_Convert(time) -- Zmienia jednostkę czasu (sekundy) na ładną date (string)
 
--- Damage System 
-PLAYER:DamageBodyPart(strBodypPart, intDmg)
-PLAYER:GetBodyPartHealth(strBodyPart)
-PLAYER:HealBodyPart(strBodyPart, intAmount)
-PLAYER:ApplyBleeding(intAmount)
-PLAYER:GetBleeding()
-PLAYER:IsBleeding()
-PLAYER:SetArmor(intAmount)
-PLAYER:GetArmor()
-PLAYER:AddArmor(intAmount)
-PLAYER:RemoveArmor(intAmount)
-PLAYER:BW(intLength)
-PLAYER:GetBW()
+**Biblioteka Systemu Obrażeń**
+PLAYER:DamageBodyPart(strBodypPart, intDmg) -- Uszkadza daną część ciała
+PLAYER:GetBodyPartHealth(strBodyPart) -- Uzyskuje dane (int) o stanie części ciała
+PLAYER:HealBodyPart(strBodyPart, intAmount) -- Leczy daną część ciała o daną wartość
+PLAYER:ApplyBleeding(intAmount) -- Ustawia krwawienie
+PLAYER:GetBleeding() -- Uzyskuje dane (int) o krwawieniu
+PLAYER:IsBleeding() -- Uzyskuje dane (boolean) o krwawieniu
+PLAYER:SetArmor(intAmount) -- Ustawia pancerz
+PLAYER:GetArmor() -- Uzyskuje dane (int) o pancerzu
+PLAYER:AddArmor(intAmount) -- Dodaje pancerz
+PLAYER:RemoveArmor(intAmount) -- Usuwa pancerz
+PLAYER:BW(intLength) -- Ustawia stan bw
+PLAYER:GetBW() -- Uzyskuje dane (boolean) o bw
 
--- Power Armor
+**Biblioteka Power Armoru** -- Proszę uzupełnić
 PLAYER:SetPowerArmor(bState)
 PLAYER:GetPowerArmor()
 
--- XP System 
+**Biblioteka systemu XP**
 PLAYER:AddXP(intAmount)
 PLAYER:SetXP(intAmount)
 PLAYER:RemoveXP(intAmount)
 PLAYER:GetXP()
 
---System frakcji
+**Biblioteka systemu frakcji**
  getPermissions(char) Returnuje tabelę z uprawnieniami
  SetRank(char,rankID,caller) 
 ```
 ### Credits
-- Djuk (Developer)
+- Djuk (Lead Developer)
 - Lechu (Developer, Mapper)
-- FrX (Developer) - [ Wydalony dnia 17.03.2019r ]
-- SaturdaysHeroes (wypierdolony)
+- FrX (Wydalony Developer)
+- SaturdaysHeroes (Wydalony Developer)
